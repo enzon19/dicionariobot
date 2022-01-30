@@ -15,7 +15,7 @@
 
 # Dicionário Bot
 
-Dicionário Bot is a brazilian portuguese dictionary on Telegram that works normally or through inline mode. When writing a word, returns the definition and synonyms. If you make a mistake, the bot might fix you or fix other members of a group.
+Dicionário Bot is a Brazilian Portuguese dictionary on Telegram that works normally or through inline mode. When writing a word, returns the definition and synonyms. If you make a mistake, the bot might fix you or fix other members of a group.
 
 # About the Development
 
