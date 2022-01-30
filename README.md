@@ -1,7 +1,7 @@
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/Botpic.png" alt="Dicionário Bot" width="187" height="187">
     <br><br>
-    <a href="https://github.com/enzon19/dicionariobot/">
+    <a href="https://github.com/enzon19/dicionariobot/blob/main/README.md#20">
         <img height="20px" src="https://img.shields.io/badge/Current%20Version-v2.0-ee2919">
     </a>
     <a href="https://github.com/enzon19/dicionariobot/blob/main/README.md">
