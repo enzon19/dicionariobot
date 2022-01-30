@@ -1,24 +1,42 @@
 <p align="center">
-<img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/Botpic.png" alt="Dicionário Bot" width="187" height="187">
+    <img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/Botpic.png" alt="Dicionário Bot" width="187" height="187">
+    <br><br>
+    <a href="https://github.com/enzon19/dicionariobot/">
+        <img height="20px" src="https://img.shields.io/badge/Current%20Version-v2.0-ee2919">
+    </a>
+    <a href="https://github.com/enzon19/dicionariobot/blob/main/README.md">
+        <img height="20px" src="https://img.shields.io/badge/EN-flag.svg?color=555555&style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNjAgMzAiIGhlaWdodD0iNjAwIj4NCjxkZWZzPg0KPGNsaXBQYXRoIGlkPSJ0Ij4NCjxwYXRoIGQ9Im0zMCwxNWgzMHYxNXp2MTVoLTMwemgtMzB2LTE1enYtMTVoMzB6Ii8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPHBhdGggZmlsbD0iIzAwMjQ3ZCIgZD0ibTAsMHYzMGg2MHYtMzB6Ii8+DQo8cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNiIgZD0ibTAsMGw2MCwzMG0wLTMwbC02MCwzMCIvPg0KPHBhdGggc3Ryb2tlPSIjY2YxNDJiIiBzdHJva2Utd2lkdGg9IjQiIGQ9Im0wLDBsNjAsMzBtMC0zMGwtNjAsMzAiIGNsaXAtcGF0aD0idXJsKCN0KSIvPg0KPHBhdGggc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBkPSJtMzAsMHYzMG0tMzAtMTVoNjAiLz4NCjxwYXRoIHN0cm9rZT0iI2NmMTQyYiIgc3Ryb2tlLXdpZHRoPSI2IiBkPSJtMzAsMHYzMG0tMzAtMTVoNjAiLz4NCjwvc3ZnPg0K">
+    </a>
+    <a align="center" href="https://github.com/enzon19/dicionariobot/blob/main/README.pt-BR.md">
+        <img height="20px" src="https://img.shields.io/badge/PT--BR-green">
+    </a>
 </p>
-<a align="center" href="https://github.com/enzon19/dicionariobot/blob/main/README.pt-BR.md">
-    <img height="20px" src="https://img.shields.io/badge/BR-flag.svg?color=555555&style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSItMjEwMCAtMTQ3MCA0MjAwIDI5NDAiPjxkZWZzPjxwYXRoIGlkPSJpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0tMzEuNSAwaDMzYTMwIDMwIDAgMDAzMC0zMHYtMTBhMzAgMzAgMCAwMC0zMC0zMGgtMzN6bTEzLTEzaDE5YTE5IDE5IDAgMDAxOS0xOXYtNmExOSAxOSAwIDAwLTE5LTE5aC0xOXoiLz48cGF0aCBpZD0ibiIgZD0iTS0xNS43NS0yMkMtMTUuNzUtMTUtOS0xMS41IDEtMTEuNXMxNC43NC0zLjI1IDE0Ljc1LTcuNzVjMC0xNC4yNS00Ni43NS01LjI1LTQ2LjUtMzAuMjVDLTMwLjUtNzEtNi03MCAzLTcwczI2IDQgMjUuNzUgMjEuMjVIMTMuNWMwLTcuNS03LTEwLjI1LTE1LTEwLjI1LTcuNzUgMC0xMy4yNSAxLjI1LTEzLjI1IDguNS0uMjUgMTEuNzUgNDYuMjUgNCA0Ni4yNSAyOC43NUMzMS41LTMuNSAxMy41IDAgMCAwYy0xMS41IDAtMzEuNTUtNC41LTMxLjUtMjJ6Ii8+PHBhdGggaWQ9ImwiIGQ9Ik0tMjYuMjUgMGg1Mi41di0xMmgtNDAuNXYtMTZoMzN2LTEyaC0zM3YtMTFIMjV2LTEyaC01MS4yNXoiLz48cGF0aCBpZD0iayIgZD0iTS0zMS41IDBoMTJ2LTQ4bDE0IDQ4aDExbDE0LTQ4VjBoMTJ2LTcwSDE0TDAtMjJsLTE0LTQ4aC0xNy41eiIvPjxwYXRoIGlkPSJkIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDBhMzEuNSAzNSAwIDAwMC03MEEzMS41IDM1IDAgMDAwIDBtMC0xM2ExOC41IDIyIDAgMDAwLTQ0IDE4LjUgMjIgMCAwMDAgNDQiLz48cGF0aCBpZD0iZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNLTMxLjUgMGgxM3YtMjZoMjhhMjIgMjIgMCAwMDAtNDRoLTQwem0xMy0zOWgyN2E5IDkgMCAwMDAtMThoLTI3eiIvPjxwYXRoIGlkPSJqIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzEuNSkiIGQ9Ik0wIDBoNjN2LTEzSDEydi0xOGg0MHYtMTJIMTJ2LTE0aDQ4di0xM0gweiIvPjx1c2UgaWQ9InEiIHhsaW5rOmhyZWY9IiNhIiB0cmFuc2Zvcm09InNjYWxlKDE1KSIvPjx1c2UgaWQ9InMiIHhsaW5rOmhyZWY9IiNhIiB0cmFuc2Zvcm09InNjYWxlKDEwLjUpIi8+PHVzZSBpZD0iciIgeGxpbms6aHJlZj0iI2EiIHRyYW5zZm9ybT0ic2NhbGUoMjEpIi8+PHVzZSBpZD0ibyIgeGxpbms6aHJlZj0iI2EiIHRyYW5zZm9ybT0ic2NhbGUoMzEuNSkiLz48dXNlIGlkPSJwIiB4bGluazpocmVmPSIjYSIgdHJhbnNmb3JtPSJzY2FsZSgyNi4yNSkiLz48ZyBpZD0iYSIgZmlsbD0iI2ZmZiI+PGcgaWQ9ImMiPjxwYXRoIGlkPSJiIiB0cmFuc2Zvcm09InJvdGF0ZSgxOCAwIC0xKSIgZD0iTTAtMXYxaC41Ii8+PHVzZSB4bGluazpocmVmPSIjYiIgdHJhbnNmb3JtPSJzY2FsZSgtMSAxKSIvPjwvZz48dXNlIHhsaW5rOmhyZWY9IiNjIiB0cmFuc2Zvcm09InJvdGF0ZSg3MikiLz48dXNlIHhsaW5rOmhyZWY9IiNjIiB0cmFuc2Zvcm09InJvdGF0ZSgtNzIpIi8+PHVzZSB4bGluazpocmVmPSIjYyIgdHJhbnNmb3JtPSJyb3RhdGUoMTQ0KSIvPjx1c2UgeGxpbms6aHJlZj0iI2MiIHRyYW5zZm9ybT0icm90YXRlKDIxNikiLz48L2c+PGcgaWQ9Im0iPjxjbGlwUGF0aCBpZD0iZSI+PHBhdGggZD0iTS0zMS41IDB2LTcwaDYzVjB6TTAtNDd2MTJoMzEuNXYtMTJ6Ii8+PC9jbGlwUGF0aD48dXNlIHhsaW5rOmhyZWY9IiNkIiBjbGlwLXBhdGg9InVybCgjZSkiLz48cGF0aCBkPSJNNS0zNWgyNi41djEwSDV6Ii8+PHBhdGggZD0iTTIxLjUtMzVoMTBWMGgtMTB6Ii8+PC9nPjxnIGlkPSJoIj48dXNlIHhsaW5rOmhyZWY9IiNmIi8+PHBhdGggZD0iTTI4IDBjMC0xMCAwLTMyLTE1LTMySC02YzIyIDAgMjIgMjIgMjIgMzIiLz48L2c+PC9kZWZzPjxyZWN0IHk9Ii01MCUiIHg9Ii01MCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwOWIzYSIgd2lkdGg9IjEwMCUiLz48cGF0aCBkPSJNLTE3NDMgMEwwIDExMTMgMTc0MyAwIDAtMTExM3oiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIHI9IjczNSIgZmlsbD0iIzAwMjc3NiIvPjxjbGlwUGF0aCBpZD0iZyI+PGNpcmNsZSByPSI3MzUiLz48L2NsaXBQYXRoPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0tMjIwNSAxNDcwYTE3ODUgMTc4NSAwIDAxMzU3MCAwaC0xMDVhMTY4MCAxNjgwIDAgMTAtMzM2MCAweiIgY2xpcC1wYXRoPSJ1cmwoI2cpIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQyMCAxNDcwKSIgZmlsbD0iIzAwOWIzYSI+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjZCIgdHJhbnNmb3JtPSJyb3RhdGUoLTcpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjaCIgdHJhbnNmb3JtPSJyb3RhdGUoLTQpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjaSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjaiIgdHJhbnNmb3JtPSJyb3RhdGUoMikiLz48dXNlIHk9Ii0xNjk3LjUiIHhsaW5rOmhyZWY9IiNrIiB0cmFuc2Zvcm09InJvdGF0ZSg1KSIvPjx1c2UgeT0iLTE2OTcuNSIgeGxpbms6aHJlZj0iI2wiIHRyYW5zZm9ybT0icm90YXRlKDkuNzUpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjZiIgdHJhbnNmb3JtPSJyb3RhdGUoMTQuNSkiLz48dXNlIHk9Ii0xNjk3LjUiIHhsaW5rOmhyZWY9IiNoIiB0cmFuc2Zvcm09InJvdGF0ZSgxNy41KSIvPjx1c2UgeT0iLTE2OTcuNSIgeGxpbms6aHJlZj0iI2QiIHRyYW5zZm9ybT0icm90YXRlKDIwLjUpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjbSIgdHJhbnNmb3JtPSJyb3RhdGUoMjMuNSkiLz48dXNlIHk9Ii0xNjk3LjUiIHhsaW5rOmhyZWY9IiNoIiB0cmFuc2Zvcm09InJvdGF0ZSgyNi41KSIvPjx1c2UgeT0iLTE2OTcuNSIgeGxpbms6aHJlZj0iI2oiIHRyYW5zZm9ybT0icm90YXRlKDI5LjUpIi8+PHVzZSB5PSItMTY5Ny41IiB4bGluazpocmVmPSIjbiIgdHJhbnNmb3JtPSJyb3RhdGUoMzIuNSkiLz48dXNlIHk9Ii0xNjk3LjUiIHhsaW5rOmhyZWY9IiNuIiB0cmFuc2Zvcm09InJvdGF0ZSgzNS41KSIvPjx1c2UgeT0iLTE2OTcuNSIgeGxpbms6aHJlZj0iI2QiIHRyYW5zZm9ybT0icm90YXRlKDM4LjUpIi8+PC9nPjx1c2UgeT0iLTEzMiIgeD0iLTYwMCIgeGxpbms6aHJlZj0iI28iLz48dXNlIHk9IjE3NyIgeD0iLTUzNSIgeGxpbms6aHJlZj0iI28iLz48dXNlIHk9IjI0MyIgeD0iLTYyNSIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjEzMiIgeD0iLTQ2MyIgeGxpbms6aHJlZj0iI3EiLz48dXNlIHk9IjI1MCIgeD0iLTM4MiIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjMyMyIgeD0iLTQwNCIgeGxpbms6aHJlZj0iI3IiLz48dXNlIHk9Ii0yMjgiIHg9IjIyOCIgeGxpbms6aHJlZj0iI28iLz48dXNlIHk9IjI1OCIgeD0iNTE1IiB4bGluazpocmVmPSIjbyIvPjx1c2UgeT0iMjY1IiB4PSI2MTciIHhsaW5rOmhyZWY9IiNyIi8+PHVzZSB5PSIzMjMiIHg9IjU0NSIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjQ3NyIgeD0iMzY4IiB4bGluazpocmVmPSIjcCIvPjx1c2UgeT0iNTUxIiB4PSIzNjciIHhsaW5rOmhyZWY9IiNyIi8+PHVzZSB5PSI0MTkiIHg9IjQ0MSIgeGxpbms6aHJlZj0iI3IiLz48dXNlIHk9IjM4MiIgeD0iNTAwIiB4bGluazpocmVmPSIjcCIvPjx1c2UgeT0iNDA1IiB4PSIzNjUiIHhsaW5rOmhyZWY9IiNyIi8+PHVzZSB5PSIzMCIgeD0iLTI4MCIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9Ii0zNyIgeD0iMjAwIiB4bGluazpocmVmPSIjciIvPjx1c2UgeT0iMzMwIiB4bGluazpocmVmPSIjbyIvPjx1c2UgeT0iMTg0IiB4PSI4NSIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjExOCIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjE4NCIgeD0iLTc0IiB4bGluazpocmVmPSIjciIvPjx1c2UgeT0iMjM1IiB4PSItMzciIHhsaW5rOmhyZWY9IiNxIi8+PHVzZSB5PSI0OTUiIHg9IjIyMCIgeGxpbms6aHJlZj0iI3AiLz48dXNlIHk9IjQzMCIgeD0iMjgzIiB4bGluazpocmVmPSIjciIvPjx1c2UgeT0iNDEyIiB4PSIxNjIiIHhsaW5rOmhyZWY9IiNyIi8+PHVzZSB5PSIzOTAiIHg9Ii0yOTUiIHhsaW5rOmhyZWY9IiNvIi8+PHVzZSB5PSI1NzUiIHhsaW5rOmhyZWY9IiNzIi8+PC9zdmc+">
-  </a>
+
 
 # Dicionário Bot
 
-Dicionário Bot is a Telegram bot that works normally or through inline mode.
+Dicionário Bot is a brazilian portuguese dictionary on Telegram that works normally or through inline mode. When writing a word, returns the definition and synonyms. If you make a mistake, the bot might fix you or fix other members of a group.
 
-# Introduction & About
+# About the Development
 
-I'm new to these languages, so probably the code and the methods aren't the better. The bot is hosted and made at [Replit](https://replit.com), and the token of the APIs are stored in .env files on Replit. When writing a word, returns the definition and synonyms. When writing a sentence, returns the entire sentence redone with synonyms and the definition of the first word. If you make a mistake, the bot might fix you or fix other members of a group.
+The bot is hosted and made at [Replit](https://replit.com), and the token of the APIs are stored in .env files on Replit. I'm still learning these languages, so probably the code and the methods aren't the better. 
 
 *Atenttion: all of this is in portuguese.*
 
-# Packages Used
+---
 
-Here's the list of all packages used:
-- [axios](https://github.com/axios/axios) (for GET of the APIs)
-- [express](https://github.com/expressjs/express) (for the server)
-- [sinonimos](https://github.com/mateuspiresl/sinonimos) (for the /sinonimo command and the inline mode)
-- [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api) (the base of the bot)
+# Updates
+## 2.0
+<details open>
+<summary><b>News and Changes</b></summary>
+    • <i><b>NEW!</b></i> It is now possible to just send /definir or /sinonimo and write a word replying to the bot's message. Try it, just click: /definir.<br>
+    • <i><b>NEW!</b></i> Set up shortcuts for definition or synonyms of a word in private chat. For example, you can type /arroz in private chat with the bot to receive the definition of rice (arroz). If you prefer to receive synonyms, change this in /settings.<br>
+    • <i><b>NEW!</b></i> Auxiliary commands like /settings and /help were added.<br>
+    • Updated command order and description for all.<br>
+    • Instead of just getting a synonym of the given word, get a list with all of them.<br>
+    • The privacy policy has been updated.<br>
+</details>
+<details open>
+<summary><b>Bug Fixes</b></summary>
+    • Synonyms are back in inline mode.
+</details>
