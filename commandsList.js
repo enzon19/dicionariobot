@@ -4,7 +4,7 @@ module.exports = [
     command: '/definir',
     description: 'Use o comando para receber a definição de uma palavra. Ao informar uma frase, apenas a primeira palavra gerá resultados.',
     example: '/definir dicionário',
-    alternative: ['/definicoes', '/definicao', '/definições', '/definição', '/definiçoes', '/definiçao'],
+    alternative: ['/definicoes', '/definicao', '/definições', '/definição', '/definiçoes', '/definiçao', '/significado', '/significados'],
     args: '[palavra ou frase]',
     admin: false,
     parameters: [ 'bot', 'message', 'args' ],
