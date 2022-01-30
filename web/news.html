@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Dicionário Bot News</title>
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/favicon_io/favicon-16x16.png">
+  <link rel="manifest"
+    href="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/favicon_io/site.webmanifest">
+  <style>
+    .tgme_widget_message_bubble {
+      position: relative;
+      border: 1px solid #d7e3ec;
+      border-radius: 0 10px 10px 10px;
+      background: #fff;
+      padding: 12px 17px;
+    }
+    .tgme_widget_message_bubble,
+    .tgme_widget_message_inline_keyboard {
+      margin-left: 45px;
+    }
+    .no_userpic .tgme_widget_message_user {
+      display: none;
+    }
+    .no_userpic .tgme_widget_message_bubble,
+    .no_userpic .tgme_widget_message_inline_keyboard {
+      margin-left: 7px;
+    }
+    .tgme_widget_message_bubble_tail {
+      pointer-events: none;
+      position: absolute;
+      left: -8px;
+      top: -1px;
+    }
+    .tgme_widget_message_bubble_tail .background {
+      pointer-events: auto;
+      fill: #fff;
+    }
+    .tgme_widget_message_bubble_tail .border_1x {
+      fill: #d7e3ec;
+    }
+    .tgme_widget_message_author,
+    .tgme_widget_message_forwarded_from {
+      font-size: 16px;
+      line-height: 23px;
+      margin: -2px 0;
+      color: #2481CC;
+      text-align: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-flex;
+      display: flex;
+    }
+    .widget_frame_base .tgme_widget_message_author a,
+    .widget_frame_base .tgme_widget_message_author a:hover,
+    .widget_frame_base .tgme_widget_message_forwarded_from a,
+    .widget_frame_base .tgme_widget_message_forwarded_from a:hover {
+      color: inherit;
+    }
+    .tgme_widget_message_forwarded_from {
+      margin-top: 0;
+    }
+    .tgme_widget_message_author_name,
+    .tgme_widget_message_owner_name,
+    .tgme_widget_message_via_bot,
+    .tgme_widget_message_forwarded_from_name,
+    .tgme_widget_message_forwarded_from_author {
+      -webkit-flex: 0 1 auto;
+      flex: 0 1 auto;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-weight: 500;
+    }
+    .tgme_widget_message_author_labels,
+    .tgme_widget_message_owner_labels,
+    .tgme_widget_message_forwarded_from_labels {
+      text-decoration: none !important;
+      font-weight: 500;
+    }
+    .tgme_widget_message_photo_wrap {
+      display: block;
+      background: no-repeat -10000px -10000px;
+      background-size: 0 0;
+      margin: 12px -17px;
+      min-width: calc(100% + 34px) !important;
+      max-width: calc(100% + 34px) !important;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .tgme_widget_message_photo_wrap:hover {
+      text-decoration: none;
+    }
+    .tgme_widget_message_photo {
+      display: block;
+      position: relative;
+      background: no-repeat center;
+      background-size: cover;
+      background-image: inherit;
+      margin: 0 auto;
+      z-index: 2;
+    }
+    .tgme_widget_message_photo_wrap.blured:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -30px;
+      right: -30px;
+      top: -30px;
+      bottom: -30px;
+      background: no-repeat center;
+      background-size: cover;
+      background-image: inherit;
+      -webkit-filter: blur(15px);
+      filter: blur(15px);
+      z-index: 1;
+    }
+    .tgme_widget_message_photo_wrap.blured:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      top: -1px;
+      bottom: -1px;
+      background: #fff;
+      opacity: .3;
+      z-index: 1;
+    }
+    .tgme_widget_message_text {
+      font-size: 16px;
+      line-height: 21px;
+      word-break: break-word;
+      margin-top: 6px;
+    }
+    .tgme_widget_message_text b {
+      font-weight: 500;
+    }
+    .tgme_widget_message_text code,
+    .tgme_widget_message_text pre {
+      font-family: monospace;
+      white-space: normal;
+      /*color: #4e7391;*/
+    }
+    .tgme_widget_message_text pre {
+      padding: 0;
+      margin: 0;
+    }
+    .tgme_widget_message_reply .tgme_widget_message_author,
+    .tgme_widget_message_reply .tgme_widget_message_text,
+    .tgme_widget_message_reply .tgme_widget_message_metatext {
+      font-size: 14px;
+      line-height: 20px;
+      margin: -2px 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-bottom: 1px;
+    }
+    .tgme_widget_message_info {
+      text-align: right;
+    }
+    .tgme_widget_message_from_author {
+      vertical-align: top;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-flex: 0 1 auto;
+      flex: 0 1 auto;
+    }
+    .widget_frame_base a.tgme_widget_message_date,
+    .widget_frame_base a.tgme_widget_message_date:hover,
+    body.dark.widget_frame_base a.tgme_widget_message_date,
+    body.dark.widget_frame_base a.tgme_widget_message_date:hover {
+      vertical-align: top;
+      white-space: nowrap;
+      color: inherit;
+    }
+    body.name_nocolor .tgme_widget_message_author_name > .name {
+      color: #2481CC;
+    }
+  </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700');
+
+    body {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1054%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(144%2c 25%2c 15%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c424.448C90.455%2c439.814%2c194.363%2c472.024%2c269.634%2c419.559C345.011%2c367.02%2c327.461%2c250.517%2c367.901%2c168.015C409.965%2c82.199%2c509.932%2c22.044%2c511.324%2c-73.517C512.741%2c-170.82%2c450.566%2c-263.593%2c375.083%2c-325.011C304.256%2c-382.64%2c206.716%2c-384.517%2c116.028%2c-395.156C38.778%2c-404.218%2c-38.97%2c-408.341%2c-112.217%2c-382.177C-182.863%2c-356.942%2c-230.483%2c-297.342%2c-289.048%2c-250.461C-362.434%2c-191.717%2c-469.065%2c-160.683%2c-499.864%2c-71.87C-531.18%2c18.433%2c-501.077%2c125.413%2c-446.638%2c203.973C-395.14%2c278.29%2c-297.632%2c296.946%2c-216.556%2c336.968C-145.302%2c372.141%2c-78.34%2c411.14%2c0%2c424.448' fill='%235e100a'%3e%3c/path%3e%3cpath d='M1440 1228.287C1565.564 1244.674 1702.374 1197.325 1792.267 1108.1390000000001 1877.923 1023.156 1862.205 884.816 1901.262 770.6510000000001 1935.518 670.519 2024.972 582.789 2007.716 478.375 1990.5030000000002 374.222 1892.079 306.735 1813.029 236.76799999999997 1742.874 174.67399999999998 1665.467 124.60300000000001 1576.131 96.37900000000002 1485.358 67.70100000000002 1391.569 60.97800000000001 1297.243 73.81400000000002 1190.097 88.39499999999998 1062.311 89.86200000000002 996.0550000000001 175.32 929.694 260.912 977.76 384.6 972.4200000000001 492.772 967.663 589.137 936.971 684.403 966.386 776.292 997.838 874.5450000000001 1067.6190000000001 952.0830000000001 1142.25 1023.308 1231.221 1108.2179999999998 1318.048 1212.3719999999998 1440 1228.287' fill='%23c22214'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1054'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+      background-repeat: repeat;
+      font-family: 'Inter', sans-serif;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    @media only screen and (min-width: 1px) {
+      .card {
+        width: 80%;
+        margin: auto;
+        padding: 10px;
+      }
+    }
+
+    @media only screen and (min-width: 786px) {
+      .card {
+        width: 60%;
+        margin: auto;
+        padding: 10px;
+      }
+    }
+
+    @media only screen and (min-width: 1170px) {
+      .card {
+        width: 40%;
+        margin: auto;
+        padding: 10px;
+      }
+    }
+
+    @media only screen and (min-width: 1440px) {
+      .card {
+        width: 30%;
+        margin: auto;
+        padding: 10px;
+      }
+    }
+
+    a:link,
+    a:visited {
+      color: #60bfeb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:link:active,
+    a:visited:active,
+    a:hover {
+      color: #89d0f0;
+      cursor: pointer;
+    }
+
+    textarea {
+      color: black;
+      font-family: 'Inter';
+      outline: none;
+      border-radius: 10px;
+      resize: none;
+      padding: 10px 0px 0px 10px;
+    }
+
+    input[type="text"] {
+      color: black;
+      font-family: 'Inter';
+      outline: none;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      width: 535px;
+    }
+
+    button {
+      color: white;
+      font-family: 'Inter';
+      outline: none;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      background-color: rgb(231, 15, 0);
+      margin: 5px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <center>
+
+    <div class="card" align="center" style="vertical-align: top; display: inline-block; left: 0; top: 0; margin-top: 30px;">
+
+      <h2>Nova notícia</h2>
+      <form>
+        <input type="radio" id="r1" name="Type" value="Notícias">
+        <label for="r1">Notícias</label>
+        <input type="radio" id="r2" name="Type" value="Divulgação de Bot">
+        <label for="r2">Divulgação de Bot</label>
+        <input type="radio" id="r3" name="Type" value="Anúncio">
+        <label for="r3">Anúncio</label>
+      </form>
+      <br>
+      <textarea id="text" oninput="previewText()" name="text" rows="19" cols="73" class="textarea"><b>Atualização v2.1 do Dicionário Bot!</b>\n\n
+
+> Novidades e Mudanças\n
+• <b><i>NOVO!</i></b> Comando \exemplos. Veja frases exemplificando o uso de uma palavra.\n
+• Veja uma imagem da palavra usando o modo inline.\n\n
+
+> Correções de bugs\n
+• Clique do botão no modo inline ao não ter respostas agora funciona.</textarea>
+      <br><br>
+      <input type="text" oninput="photoURL()" id="photoURL" placeholder="URL da foto" name="photoURL">
+      <br><br>
+      <textarea id="ntgOptions" name="text" rows="05" cols="71" style="font-family: Consolas !important; padding-right: 5px !important;" class="textarea">{"reply_markup": {"inline_keyboard": [[{"text": "Usar o bot", "switch_inline_query": ""}]]}}</textarea>
+      <br><br>
+      <button onclick="generate(0)">Rascunho</button><button onclick="generate(1)">Enviar geral</button>
+
+    </div>
+    <div class="card" align="center" style="display: inline-block; bottom: 0px; right: 0; margin: 30px 1px 2px 30px;">
+
+      <h2>Pré-visualização</h2>
+      <div class="tgme_widget_message js-widget_message no_userpic">
+        <div class="tgme_widget_message_bubble">
+          <i class="tgme_widget_message_bubble_tail">
+            <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+              <g fill="none">
+                <path class="background" fill="#ffffff"
+                  d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z">
+                </path>
+                <path class="border_1x" fill="#d7e3ec"
+                  d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z">
+                </path>
+                <path class="border_2x"
+                  d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z">
+                </path>
+                <path class="border_3x"
+                  d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z">
+                </path>
+              </g>
+            </svg>
+          </i>
+          <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name"
+              href="https://t.me/dicionariobot"><span dir="auto">Dicionário Bot</span></a></div>
+          <img class="tgme_widget_message_photo_wrap" id="photoPreview" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhttp2.mlstatic.com%2Fdicionario-escolar-oxford-ingls-portugus-4-oxford-readers-D_NQ_NP_875556-MLB27074092728_032018-F.jpg&f=1&nofb=1" >
+          <div class="tgme_widget_message_text js-message_text" id="previewText" style="text-align: left !important; color: black;"
+            dir="auto"><strong>Atualização v2.1 do Dicionário Bot!</strong><br><br>
+
+              > Novidades e Mudanças<br>
+              • <strong><i>NOVO!</i></strong> Comando \exemplos. Veja frases exemplificando o uso de uma palavra.<br>
+              • Veja uma imagem da palavra usando o modo inline.<br><br>
+              
+              > Correções de bugs<br>
+              • Clique do botão no modo inline ao não ter respostas agora funciona.</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </center>
+
+  <script>
+
+    function previewText () {
+
+      console.log(document.getElementById("text").value.replace(/<(\/?)b>/, "<$1strong>"))
+      document.getElementById("previewText").innerHTML = document.getElementById("text").value.replace(/<(\/?)b>/gi, "<$1strong>").replace(/\\n/g, "<br>");
+      
+    }
+
+    function photoURL () {
+
+      document.getElementById("photoPreview").src = document.getElementById("photoURL").value
+
+    }
+
+    function generate (sentType) {
+
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("newspassword");
+
+      for (var i = 1; i < 4; i++) {
+
+        if (document.getElementById("r" + i).checked) break; 
+
+      }
+
+      var toCopy1 = `https://dicionario-bot.enzon19.repl.co/?password=${token}&sentType=${sentType}&type=${i - 1}`;
+      navigator.clipboard.writeText(toCopy1).then(() => alert(toCopy1));
+      ;
+      var toCopy2 = `text:${document.getElementById("text").value.replace(/\n/g, "")}\r\nphoto:${document.getElementById("photoURL").value}\r\ntgOptions:${document.getElementById("ntgOptions").value}`;
+      navigator.clipboard.writeText(toCopy2).then(() => alert(toCopy2));
+      ;
+
+    }
+
+  </script>
+
+</body>
