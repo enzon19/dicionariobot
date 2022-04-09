@@ -15,7 +15,6 @@
     "body-parser": "^1.19.1",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "node-sinonimos": "0.0.2",
     "node-telegram-bot-api": "^0.54.0",
     "remove-accents-diacritics": "^1.0.2",
     "require-from-string": "^2.0.2"
