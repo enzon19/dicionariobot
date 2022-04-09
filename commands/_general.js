@@ -1,6 +1,6 @@
 function ping (bot, message) {
 
-  bot.sendMessage(message.chat.id, `Pong! `, {reply_to_message_id: message.message_id, disable_notification: true});
+  bot.sendMessage(message.chat.id, `Pong! 🏓`, {reply_to_message_id: message.message_id, disable_notification: true});
 
 }
 
