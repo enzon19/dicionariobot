@@ -5,7 +5,7 @@ async function synonym (word) {
   
   return new Promise((resolve, reject) => {
 
-    axios.get(`https://significado.herokuapp.com/synonyms/${word}`).then(async(res) => {
+    axios.get(`https://significado.herokuapp.com/v2/synonyms/${encodeURIComponent(word)}`).then(async(res) => {
 
       if (res.data[0]) {
         
@@ -13,11 +13,11 @@ async function synonym (word) {
         
       } else {
 
-        resolve(undefined);
+        resolve([undefined, 400]);
 
       }
 
-    }).catch(e => resolve(undefined));
+    }).catch(e => resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]));
 
   });
 
@@ -35,13 +35,21 @@ async function synonymMessage (bot, message, args) {
 
     let response = await synonym(args.split(" ")[0]);
 
-    if (response) {
+    if (response[0]) {
 
       bot.sendMessage(message.chat.id, response, { parse_mode: "Markdown", reply_to_message_id: message.message_id, disable_notification: true });
 
-    } else {
+    } else if (response[1] == 400) {
 
       bot.sendMessage(message.chat.id, `Infelizmente, a palavra "${args.split(" ")[0]}" não tem sinônimos.`, { parse_mode: "Markdown", reply_to_message_id: message.message_id, disable_notification: true });
+
+    } else if (response[1] == 503) {
+
+      bot.sendMessage(message.chat.id, `Eita. Parece que o servidor que serve as informações do bot (banco de dados do dicionário) está fora do ar temporariamente. Infelizmente o Dicionário Bot não administra esse banco de dados e por isso não tem controle sobre o servidor. Tudo que podemos fazer no momento é esperar.`, { parse_mode: "Markdown", reply_to_message_id: message.message_id, disable_notification: true });
+
+    } else {
+
+      bot.sendMessage(message.chat.id, `Eita. Houve um erro ao procurar por esta palavra no dicionário.`, { parse_mode: "Markdown", reply_to_message_id: message.message_id, disable_notification: true });
 
     }
 

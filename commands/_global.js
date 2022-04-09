@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 function capitalize (str, obj, merge) {
 
   const defaultReplace = {"Do ": "do ", "Da ": "da ", "De ": "de ", "E ": "e ", "Aos ": "aos ", "Pela ": "pela ", "Pelo ": "pelo ", "Ao ": "ao ", "Pelas ": "pelas ", "Pelos ": "pelos ", "Dos ": "dos ", "Das ": "das ", "Com ": "com "};

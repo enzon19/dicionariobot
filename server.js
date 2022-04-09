@@ -23,7 +23,7 @@ app.post('*', (req, res) => {
   if (req.query.password == process.env.PASSWORD && req.query.type && req.query.sentType && req.body.text) {
 
     const news = requireFromString(fs.readFileSync("./commands/news.js","utf8"));
-    [news.draft, news.publish][req.query.sentType](req.query.type, req.body.text, req.body.photo, req.body.tgOptions, botReference, db, res);
+    [news.draft, news.publish][parseInt(req.query.sentType)](req.query.type, req.body.text, req.body.photo, req.body.tgOptions, botReference, db, res);
 
   }
 

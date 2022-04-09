@@ -19,7 +19,7 @@ const sinonimos = require('node-sinonimos');
 const removeAccents = require('remove-accents-diacritics');
 
 bot.on('message', async (message) => {
-
+  
   let type = "text";
   let content;
   const commandsList = requireFromString(fs.readFileSync("./commandsList.js","utf8"));
@@ -55,7 +55,7 @@ bot.on('message', async (message) => {
     if (content.startsWith("/")) {
 
       sentCommand = commandsList.filter(e => e.command == command.toLowerCase() || e.alternative.includes(command.toLowerCase()) || e.command + "@dicionariobot" == command.toLowerCase())[0];
-
+      
       if (sentCommand) {
       
         const parameters = sentCommand.parameters.map(e => Object.values(variables)[Object.keys(variables).indexOf(e)]);
@@ -100,7 +100,7 @@ bot.on('message', async (message) => {
         content = message.text.toString().toLowerCase();
         const inlineVariables = {"false": false, "true": true, "null": null, "bot": bot, "message": message, "content": content, "args": content, "dicionarioDB": dicionarioDB}
 
-        const replyCommand = commandsList.filter(e => e.command == ["/sinonimo", "/definir"][["sinônimos", "definir"].indexOf(replyTxt.match(/Respondendo essa mensagem, envia a palavra que você quer (.*?)\./)[1])])[0];
+        const replyCommand = commandsList.filter(e => e.command == ["/sinonimo", "/definir", "/exemplos"][["sinônimos", "definir", "exemplos"].indexOf(replyTxt.match(/Respondendo essa mensagem, envia a palavra que você quer (.*?)\./)[1])])[0];
         const parameters = replyCommand.parameters.map(e => Object.values(inlineVariables)[Object.keys(inlineVariables).indexOf(e)]);
         const module = requireFromString(fs.readFileSync(replyCommand.modulePath, "utf8"));
         module[replyCommand.function](...parameters);
@@ -119,7 +119,7 @@ bot.on('inline_query', async (inline) =>{
 
   if (!inline.query || inline.query == " ") {
 
-		bot.answerInlineQuery(inline.id, [], {switch_pm_text: "Escreva uma palavra para definição", switch_pm_parameter: "start", cache_time: 1});
+		bot.answerInlineQuery(inline.id, [], {switch_pm_text: "Escreva uma palavra para consultar", switch_pm_parameter: "byInline", cache_time: 1200});
 
 	} else {
 	
@@ -130,21 +130,36 @@ bot.on('inline_query', async (inline) =>{
 });
 
 bot.on("callback_query", async (callbackQuery) => {
-
   // settings
 
   if (callbackQuery.data.startsWith("shortcut_")) {
 
     const change = callbackQuery.data.split("_")[1];
+    const shortcutSettings = {"0": "definição", "1": "sinônimos", "2": "exemplos"};
+    
     let news = await dicionarioDB.get(callbackQuery.message.chat.id);
     if (![0, 1].includes(news)) { news = 1; await dicionarioDB.set(callbackQuery.message.chat.id, 1); }
-
-    dicionarioDB.set("shortcut_" + callbackQuery.message.chat.id, [1, 0][change]).then(
-
-      bot.editMessageText(`<b>Configurações</b>\n\n• Atalho ao usar / no privado\nVocê pode escrever, por exemplo, /dicionário no chat privado para poder receber os sinônimos ou a definição. <u>Atualmente usando ${["sinônimo", "definição"][change]}</u>.\n\nPara ${["", "poder parar de"][news]} receber notícias do desenvolvimento de bots, use /${["com_interesse", "sem_interesse"][news]}.`, {chat_id: callbackQuery.message.chat.id, message_id: callbackQuery.message.message_id, parse_mode: "HTML", reply_markup: {inline_keyboard: [[{text: "Atalho para " + ["definição", "sinônimos"][change], callback_data: "shortcut_" + [1, 0][change]}]]}})
-
+    
+    dicionarioDB.set("shortcut_" + callbackQuery.message.chat.id, (change + 1) % 3).then(
+      bot.editMessageText(`<b>Configurações</b>\n\n• Atalho ao usar / no privado\nVocê pode escrever, por exemplo, /livro no chat privado para poder receber os sinônimos ou a definição. <u>Atualmente usando ${shortcutSettings[(change + 1) % 3]}</u>.\n• Dados que o bot armazena sobre você\n<pre>Seu ID do Telegram: ${callbackQuery.message.chat.id},\nTipo de atalho: ${shortcutSettings[(change + 1) % 3]},\nRecebimento de divulgação e anúncios: ${["desativado", "ativado"][news]}</pre>\n\nPara ${["", "poder parar de"][news]} receber notícias do desenvolvimento de bots, use /${["com_interesse", "sem_interesse"][news]}.`, {chat_id: callbackQuery.message.chat.id, message_id: callbackQuery.message.message_id, parse_mode: "HTML", reply_markup: {inline_keyboard: [[{text: "Atalho para " + shortcutSettings[(change + 2) % 3], callback_data: "shortcut_" + (change + 1) % 3}], [{text: "Deletar todos os meus dados", callback_data: "del_" + callbackQuery.message.chat.id}]]}})
     );
 
+  } else if (callbackQuery.data.startsWith("del_")) {
+
+    bot.sendMessage(callbackQuery.message.chat.id, "Tem certeza que deseja deletar os dados exibidos no comando /settings?", { reply_markup: {inline_keyboard: [[{text: "Não", callback_data: "fdel_no"}, {text: "Sim", callback_data: "fdel_yes"}]]}});
+    
+  } else if (callbackQuery.data == "fdel_yes") {
+
+    dicionarioDB.delete(callbackQuery.message.chat.id).then(() => {
+      dicionarioDB.delete("shortcut_" + callbackQuery.message.chat.id).then(() => {
+        bot.editMessageText("Dados deletados.", {"chat_id": callbackQuery.message.chat.id, "message_id": callbackQuery.message.message_id});
+      }).catch(() => bot.editMessageText("Eita. Houve um erro ao deletar seus dados. Tente novamente.", {"chat_id": callbackQuery.message.chat.id, "message_id": callbackQuery.message.message_id}));
+    }).catch(() => bot.editMessageText("Eita. Houve um erro ao deletar seus dados. Tente novamente.", {"chat_id": callbackQuery.message.chat.id, "message_id": callbackQuery.message.message_id}));
+    
+  } else if (callbackQuery.data == "fdel_no") {
+
+    bot.editMessageText("Dados não deletados.", {"chat_id": callbackQuery.message.chat.id, "message_id": callbackQuery.message.message_id});
+    
   } else if (callbackQuery.data.startsWith("/")) {
 
     const help = requireFromString(fs.readFileSync("./commands/help.js","utf8"));

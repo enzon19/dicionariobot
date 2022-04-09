@@ -2,7 +2,7 @@ module.exports = [
   {
     name: 'Definição de Palavras',
     command: '/definir',
-    description: 'Use o comando para receber a definição de uma palavra. Ao informar uma frase, apenas a primeira palavra gerá resultados.',
+    description: 'Use o comando para receber a definição de uma palavra. Ao informar uma frase, apenas a primeira palavra gera resultados.',
     example: '/definir dicionário',
     alternative: ['/definicoes', '/definicao', '/definições', '/definição', '/definiçoes', '/definiçao', '/significado', '/significados'],
     args: '[palavra ou frase]',
@@ -14,7 +14,7 @@ module.exports = [
   {
     name: 'Sinônimo de Palavras',
     command: '/sinonimo',
-    description: 'Use o comando para receber o sinônimo de uma palavra. Ao informar uma frase, apenas a primeira palavra gerá resultados.',
+    description: 'Use o comando para receber o sinônimo de uma palavra. Ao informar uma frase, apenas a primeira palavra gera resultados.',
     example: '/sinonimo dicionário',
     alternative: ['/sinônimo', '/sinônimos', '/sinonimos'],
     args: '[palavra ou frase]',
@@ -22,6 +22,18 @@ module.exports = [
     parameters: [ 'bot', 'message', 'args' ],
     function: 'synonymMessage',
     modulePath: './commands/synonym.js'
+  },
+  {
+    name: 'Exemplos para Palavras',
+    command: '/exemplos',
+    description: 'Use o comando para receber frases exemplificando o uso de uma palavra. Ao informar uma frase, apenas a primeira palavra gera resultados.',
+    example: '/exemplos dicionário',
+    alternative: ['/exemplo', '/frases', '/frase'],
+    args: '[palavra ou frase]',
+    admin: false,
+    parameters: [ 'bot', 'message', 'args' ],
+    function: 'examplesMessage',
+    modulePath: './commands/examples.js'
   },
   {
     name: 'Introdução',
@@ -50,7 +62,7 @@ module.exports = [
   {
     name: 'Ajustes',
     command: '/settings',
-    description: 'Configure o atalho no chat privado.',
+    description: 'Configure o atalho no chat privado e saiba quais dados são armazenados pelo bot.',
     example: '',
     alternative: ['/ajustes', '/configuracoes', '/configurações'],
     args: '',
@@ -103,7 +115,7 @@ module.exports = [
     alternative: [],
     args: '',
     admin: true,
-    parameters: [ 'dicionarioDB', 'bot' ],
+    parameters: [ 'dicionarioDB', 'bot', 'message' ],
     function: 'allData',
     modulePath: './commands/news.js'
   },

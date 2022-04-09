@@ -1,0 +1,23 @@
+{
+  "name": "dicionariobot",
+  "version": "2.1.0",
+  "description": "Dicionário Bot is a Brazilian Portuguese dictionary on Telegram that works normally or through inline mode.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["nodejs", "bot", "telegram", "telegram-bot", "dictionary", "words"],
+  "author": "enzon19",
+  "license": "ISC",
+  "dependencies": {
+    "@replit/database": "^2.0.1",
+    "axios": "^0.21.4",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "node-sinonimos": "0.0.2",
+    "node-telegram-bot-api": "^0.54.0",
+    "remove-accents-diacritics": "^1.0.2",
+    "require-from-string": "^2.0.2"
+  }
+}
