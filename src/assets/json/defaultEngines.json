@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Google",
+    "url": "https://www.google.com/search?q="
+  },
+  {
+    "name": "Bing",
+    "url": "https://www.bing.com/search?q="
+  },
+  {
+    "name": "DuckDuckGo",
+    "url": "https://www.duckduckgo.com/search?q="
+  },
+  {
+    "name": "Dicionário Informal",
+    "url": "https://www.dicionarioinformal.com.br/"
+  },
+  {
+    "name": "Wikipédia",
+    "url": "https://pt.wikipedia.org/wiki/Special:Search?search="
+  }
+]

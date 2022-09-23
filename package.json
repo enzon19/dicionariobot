@@ -1,22 +1,36 @@
 {
   "name": "dicionariobot",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Dicionário Bot is a Brazilian Portuguese dictionary on Telegram that works normally or through inline mode.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "enzon19",
+    "email": "contato@enzon19.com",
+    "url": "https://enzon19.com"
   },
-  "keywords": ["nodejs", "bot", "telegram", "telegram-bot", "dictionary", "words"],
-  "author": "enzon19",
-  "license": "ISC",
+  "homepage": "https://dicionariobot.enzon19.com",
+  "funding": "http://enzon19.com/#donate",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/enzon19/dicionariobot/issues"
+  },
+  "main": "src/main/index.js",
+  "keywords": [
+    "nodejs",
+    "bot",
+    "telegram",
+    "telegram-bot",
+    "dictionary",
+    "words"
+  ],
   "dependencies": {
-    "@replit/database": "^2.0.1",
-    "axios": "^0.21.4",
-    "body-parser": "^1.19.1",
-    "express": "^4.17.1",
+    "@supabase/supabase-js": "^1.35.6",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "lodash": "^4.17.21",
-    "node-telegram-bot-api": "^0.54.0",
-    "remove-accents-diacritics": "^1.0.2",
+    "node-telegram-bot-api": "^0.58.0",
+    "path": "^0.12.7",
     "require-from-string": "^2.0.2"
   }
 }
