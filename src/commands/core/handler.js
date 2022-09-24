@@ -54,8 +54,7 @@ function findCommand (command, args, chatType, message) {
   // check if commandUsed exists
   if (commandUsed) {
     // get all elements in parameters array that are in the JSON, and replace with the values of 'variablesNamesWithValues'
-    const parameters = commandUsed.parameters.map(value => variablesNamesWithValues[value]);
-
+    const parameters = commandUsed.parameters.map(value => typeof value == 'number' || typeof value == 'boolean' ? value : variablesNamesWithValues[value]);
     // use function that are in the JSON and pass the parameters
     const module = requireFromString(fs.readFileSync('./src/commands' + commandUsed.modulePath, "utf8"));
     module[commandUsed.function](...parameters);
@@ -67,6 +66,22 @@ function findCommand (command, args, chatType, message) {
   }
 }
 
+function parseReply (message) {
+  // message
+  const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
+
+  // reply
+  const replyMessage = message.reply_to_message;
+  const replyMessageText = replyMessage.text;
+  const command = replyMessageText.match(/Respondendo esta mensagem, envie a palavra que você quer (.*?)\./)[1];
+  
+  if (command) {
+    const newMessageText = `/${command} ${messageText}`;
+    message.text = newMessageText;
+    parseMessageAndSaveUser(message);
+  }
+}
+
 function userShortcut () {
   console.log('atalho')
 }
@@ -75,4 +90,4 @@ function checkGrammar () {
   console.log('ver se tem erros gramáticos')
 }
 
-module.exports = {parseMessageAndSaveUser};
+module.exports = {parseMessageAndSaveUser, parseReply};

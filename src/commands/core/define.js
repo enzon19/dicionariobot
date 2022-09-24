@@ -15,7 +15,7 @@ function define (word) {
       const syllablesText = `*Sílabas:* ${syllables.join('-')} (${syllables.length})`;
       const rightWordSpelling = word.includes('-') ? word : syllables.join('');
       
-      resolve(`*SIGNIFICADO DE ${rightWordSpelling.toUpperCase()}*\n${syllablesText}\n\n${definitionText}`);
+      resolve(`*DEFINIÇÃO DE ${rightWordSpelling.toUpperCase()}*\n${syllablesText}\n\n${definitionText}`);
     } catch (e) {
       //logError(e);
       resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]);
@@ -58,7 +58,5 @@ function transformStructureToHumanReadable (wordDefinition) {
 
   return wordDefinitionHumanReadable.join('\n\n');
 }
-
-define('aasd');
 
 module.exports = { define };

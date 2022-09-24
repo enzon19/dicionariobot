@@ -35,8 +35,9 @@ bot.on('message', async (message) => {
   }
 
   // commands using reply
-  if (message.reply_to_message?.text) {
-    //
+  if (message.reply_to_message?.text && message.reply_to_message?.from?.username == process.env.BOT_USERNAME) {
+    const commandsHandler = requireFromString(fs.readFileSync(corePath + '/handler.js', 'utf-8'));
+    commandsHandler.parseReply(message);
   }
 });
 
@@ -48,4 +49,4 @@ process.on('uncaughtException', (reason, origin) => logError(reason, origin));
 bot.on('polling_error', error => logError(error));
 
 // server
-require('./server')(bot);
+require('./server')();

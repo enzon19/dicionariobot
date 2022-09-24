@@ -35,8 +35,6 @@ app.post("*", (req, res) => {
   // }
 });
 
-module.exports = (bot, dicionarioDB) => {
-  // botReference = bot;
-  // db = dicionarioDB;
-  app.listen(2608, () => console.log("Dicionário Bot 3.0\n\nO servidor está supimpa."));
+module.exports = () => {
+  app.listen(2608, () => console.log("Dicionário Bot 3.0.0\n\nO servidor está supimpa."));
 };

@@ -7,13 +7,16 @@ const requireFromString = require('require-from-string');
 const bot = global.bot;
 const corePath = './src/commands/core';
 
-async function defineMessage(message, args) {
-  const defineCore = requireFromString(fs.readFileSync(corePath + '/define.js', 'utf-8'));
+async function chooseMessage (message, args, typeNumber) {
+  const coreFileAndFunctionName = ['define', 'synonyms', 'examples'][typeNumber];
+  const noArgsText = ['definir', 'sinônimos', 'exemplos'][typeNumber];
+
+  const typeCore = requireFromString(fs.readFileSync(`${corePath}/${coreFileAndFunctionName}.js`, 'utf-8'));
   const chatID = message.chat.id;
 
   if (!args) {
     // Se o usuário mandou apenas '/definir', então ele tem que enviar a palavra logo em seguida.
-    bot.sendMessage(chatID, "Respondendo *esta mensagem*, envie a palavra que você quer definir.",
+    bot.sendMessage(chatID, `Respondendo *esta mensagem*, envie a palavra que você quer ${noArgsText}.`,
       {
         parse_mode: "Markdown",
         reply_to_message_id: message.message_id,
@@ -26,11 +29,10 @@ async function defineMessage(message, args) {
     );
   } else {
     bot.sendChatAction(chatID, "typing");
-    const response = await defineCore.define(args);
+    const response = await typeCore[coreFileAndFunctionName](args);
 
     if (response[0]) {
       // Se response[0] existe, então ele achou a palavra
-      console.log(response)
       bot.sendMessage(chatID, response, 
         {
         parse_mode: "Markdown",
@@ -67,4 +69,4 @@ async function defineMessage(message, args) {
   }
 }
 
-module.exports = { defineMessage };
+module.exports = { chooseMessage };
