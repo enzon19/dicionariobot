@@ -34,7 +34,6 @@ async function chooseMessage (message, args, typeNumber) {
 
     if (response[0]) {
       // Se response[0] existe, então ele achou a palavra
-      console.log(response)
       bot.sendMessage(chatID, response, 
         {
         parse_mode: "MarkdownV2",

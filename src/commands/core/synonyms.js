@@ -13,7 +13,7 @@ function synonyms (word) {
       ).data;
       const synonymsText = transformStructureToHumanReadable(responseWithJustData);
 
-      resolve(`__*SINÔNIMOS DE ${markdownEscaper(word.toUpperCase())}*__\n${markdownEscaper(synonymsText)}`);
+      resolve(`__*SINÔNIMOS DE ${markdownEscaper(word.toUpperCase())}*__\n\n${markdownEscaper(synonymsText)}`);
     } catch (e) {
       //logError(e);
       resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]);

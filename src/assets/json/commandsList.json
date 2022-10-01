@@ -43,9 +43,9 @@
     "args": "[palavra ou frase]",
     "admin": false,
     "saveUserData": true,
-    "parameters": ["message", "args"],
-    "function": "examplesMessage",
-    "modulePath": "./commands/examples.js"
+    "parameters": ["message", "args", 2],
+    "function": "chooseMessage",
+    "modulePath": "/messages.js"
   },
   {
     "name": "Introdução",

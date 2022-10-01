@@ -16,7 +16,7 @@ function define (word) {
       const syllablesText = `*Sílabas:* ${markdownEscaper(syllables.join('-'), /(\*|\_)/g)} \\(${syllables.length}\\)`;
       const rightWordSpelling = markdownEscaper(word.includes('-') ? word : syllables.join(''), /(\*|\_)/g);
       
-      resolve(`__*DEFINIÇÃO DE ${rightWordSpelling.toUpperCase()}*__\n${syllablesText}\n\n${definitionText}`);
+      resolve(`__*DEFINIÇÃO DE ${rightWordSpelling.toUpperCase()}*__\n\n${syllablesText}\n\n${definitionText}`);
     } catch (e) {
       //logError(e);
       resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]);
