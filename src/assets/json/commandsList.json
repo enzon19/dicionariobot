@@ -58,7 +58,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "start",
-    "modulePath": "./commands/_general.js"
+    "modulePath": "/about.js"
   },
   {
     "name": "Ajuda",
@@ -71,7 +71,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "helpMessage",
-    "modulePath": "./commands/help.js"
+    "modulePath": "/help.js"
   },
   {
     "name": "Ajustes",
@@ -84,7 +84,7 @@
     "saveUserData": true,
     "parameters": ["message", "dicionarioDB"],
     "function": "settings",
-    "modulePath": "./commands/_general.js"
+    "modulePath": "/_general.js"
   },
   {
     "name": "Privacidade",
@@ -97,7 +97,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "privacy",
-    "modulePath": "./commands/_general.js"
+    "modulePath": "/_general.js"
   },
   {
     "name": "Ping",
@@ -110,45 +110,6 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "ping",
-    "modulePath": "./commands/_general.js"
-  },
-  {
-    "name": "allData",
-    "command": "/alldata",
-    "description": "",
-    "example": "",
-    "alternatives": [],
-    "args": "",
-    "admin": true,
-    "saveUserData": true,
-    "parameters": ["dicionarioDB", "message"],
-    "function": "allData",
-    "modulePath": "./commands/news.js"
-  },
-  {
-    "name": "addData",
-    "command": "/adddata",
-    "description": "",
-    "example": "",
-    "alternatives": [],
-    "args": "",
-    "admin": true,
-    "saveUserData": true,
-    "parameters": ["dicionarioDB", "args", "message"],
-    "function": "addData",
-    "modulePath": "./commands/news.js"
-  },
-  {
-    "name": "deleteData",
-    "command": "/deletedata",
-    "description": "",
-    "example": "",
-    "alternatives": [],
-    "args": "",
-    "admin": true,
-    "saveUserData": true,
-    "parameters": ["dicionarioDB", "args", "message"],
-    "function": "deleteData",
-    "modulePath": "./commands/news.js"
+    "modulePath": "/_general.js"
   }
 ]

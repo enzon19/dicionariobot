@@ -73,10 +73,10 @@ function parseReply (message) {
   // reply
   const replyMessage = message.reply_to_message;
   const replyMessageText = replyMessage.text;
-  const command = replyMessageText.match(/Respondendo esta mensagem, envie a palavra que você quer (.*?)\./)[1];
-  
+  const command = replyMessageText.match(/Respondendo esta mensagem, envie a palavra que você quer (.*?)\./);
+
   if (command) {
-    const newMessageText = `/${command} ${messageText}`;
+    const newMessageText = `/${command[1]} ${messageText}`;
     message.text = newMessageText;
     parseMessageAndSaveUser(message);
   }
