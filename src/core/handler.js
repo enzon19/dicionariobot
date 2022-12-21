@@ -2,7 +2,6 @@
 
 // packages
 const fs = require('fs');
-const requireFromString = require('require-from-string');
 
 const users = global.users;
 const botUsername = process.env.BOT_USERNAME;
@@ -40,7 +39,7 @@ async function parseMessageAndSaveUser (message) {
 
 function findCommand (command, args, chatType, message) {
   // get all commands
-  const commandsList = JSON.parse(fs.readFileSync('./src/assets/json/commandsList.json', 'utf-8'));
+  const commandsList = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8'));
 
   // all possible variables
   const variablesNamesWithValues = {
@@ -56,7 +55,7 @@ function findCommand (command, args, chatType, message) {
     // get all elements in parameters array that are in the JSON, and replace with the values of 'variablesNamesWithValues'
     const parameters = commandUsed.parameters.map(value => typeof value == 'number' || typeof value == 'boolean' ? value : variablesNamesWithValues[value]);
     // use function that are in the JSON and pass the parameters
-    const module = requireFromString(fs.readFileSync('./src/commands' + commandUsed.modulePath, "utf8"));
+    const module = require('../commands/' + commandUsed.modulePath);
     module[commandUsed.function](...parameters);
     return commandUsed;
   } else {

@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const path = require('path');
 
-const requireFromString = require("require-from-string");
-const fs = require("fs");
 const motherFolder = __dirname.slice(0, -2);
 
 // Get static files

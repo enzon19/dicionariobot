@@ -2,14 +2,15 @@
 
 // packages
 const axios = require("axios");
-const logError = require('./src/commands/core/error.js');
-const markdownEscaper = require('./src/commands/core/markdownEscaper.js');
+const logError = require('./error');
+const markdownEscaper = require('./markdownEscaper');
+const apiProviderUrl = process.env.API_PROVIDER_URL;
 
 function define (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.herokuapp.com/v2/${encodeURIComponent(word)}`)
+        await axios.get(`https://significado.${apiProviderUrl}/v2/${encodeURIComponent(word)}`)
       ).data;
       const definitionText = transformStructureToHumanReadable(responseWithJustData);
       const syllables = await getSyllables(word);
@@ -28,7 +29,7 @@ function getSyllables (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.herokuapp.com/v2/syllables/${encodeURIComponent(word)}`)
+        await axios.get(`https://significado.${apiProviderUrl}/v2/syllables/${encodeURIComponent(word)}`)
       ).data;
       resolve(responseWithJustData);
     } catch (e) {

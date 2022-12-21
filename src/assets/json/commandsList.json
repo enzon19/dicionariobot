@@ -19,7 +19,7 @@
     "saveUserData": true,
     "parameters": ["message", "args", 0],
     "function": "chooseMessage",
-    "modulePath": "/messages.js"
+    "modulePath": "messages.js"
   },
   {
     "name": "Sinônimos de Palavras",
@@ -32,7 +32,7 @@
     "saveUserData": true,
     "parameters": ["message", "args", 1],
     "function": "chooseMessage",
-    "modulePath": "/messages.js"
+    "modulePath": "messages.js"
   },
   {
     "name": "Exemplos para Palavras",
@@ -45,7 +45,7 @@
     "saveUserData": true,
     "parameters": ["message", "args", 2],
     "function": "chooseMessage",
-    "modulePath": "/messages.js"
+    "modulePath": "messages.js"
   },
   {
     "name": "Introdução",
@@ -58,7 +58,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "start",
-    "modulePath": "/about.js"
+    "modulePath": "about.js"
   },
   {
     "name": "Ajuda",
@@ -71,7 +71,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "helpMessage",
-    "modulePath": "/help.js"
+    "modulePath": "help.js"
   },
   {
     "name": "Ajustes",
@@ -84,7 +84,7 @@
     "saveUserData": true,
     "parameters": ["message", "dicionarioDB"],
     "function": "settings",
-    "modulePath": "/_general.js"
+    "modulePath": "_general.js"
   },
   {
     "name": "Privacidade",
@@ -97,7 +97,7 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "privacy",
-    "modulePath": "/_general.js"
+    "modulePath": "_general.js"
   },
   {
     "name": "Ping",
@@ -110,6 +110,6 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "ping",
-    "modulePath": "/_general.js"
+    "modulePath": "ping.js"
   }
 ]

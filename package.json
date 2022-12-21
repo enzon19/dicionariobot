@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/enzon19/dicionariobot/issues"
   },
-  "main": "src/main/index.js",
+  "main": "src/index.js",
   "keywords": [
     "nodejs",
     "bot",
@@ -30,7 +30,6 @@
     "express": "^4.18.1",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.58.0",
-    "path": "^0.12.7",
-    "require-from-string": "^2.0.2"
+    "path": "^0.12.7"
   }
 }

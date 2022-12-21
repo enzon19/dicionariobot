@@ -2,17 +2,15 @@
 
 // packages
 const fs = require('fs');
-const requireFromString = require('require-from-string');
-const markdownEscaper = require('./src/commands/core/markdownEscaper.js');
+const markdownEscaper = require('../core/markdownEscaper');
 
 const bot = global.bot;
-const corePath = './src/commands/core';
 
 async function chooseMessage (message, args, typeNumber) {
   const coreFileAndFunctionName = ['define', 'synonyms', 'examples'][typeNumber];
   const noArgsTerm = ['definir', 'sinônimos', 'exemplos'][typeNumber];
 
-  const typeCore = requireFromString(fs.readFileSync(`${corePath}/${coreFileAndFunctionName}.js`, 'utf-8'));
+  const typeCore = require('../core/' + coreFileAndFunctionName);
   const chatID = message.chat.id;
 
   if (!args) {
