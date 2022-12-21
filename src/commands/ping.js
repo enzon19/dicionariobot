@@ -1,3 +1,5 @@
+'use strict';
+
 const bot = global.bot;
 const botUsername = process.env.BOT_USERNAME;
 

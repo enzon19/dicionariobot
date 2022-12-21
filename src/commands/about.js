@@ -5,17 +5,17 @@ const markdownEscaper = require('../core/markdownEscaper');
 const bot = global.bot;
 const botUsername = process.env.BOT_USERNAME;
 
-function start (message) {
+function start (message, groupAdd) {
   const chatID = message.chat.id;
-  const aboutText = `*Dicionário Bot \\(dicionariobot\\)*
+  const startText = `*Dicionário Bot \\(dicionariobot\\)*
 Um dicionário da língua portuguesa brasileira no Telegram\\. 
 
-Para começar envie /definir, /sinonimos ou /exemplos\\. Você também pode usar o modo inline ao digitar @${botUsername} no campo de mensagem em qualquer bate\\-papo e escrever alguma palavra\\. Quando adicionado em algum grupo, pode corrigir alguns erros gramaticais\\.
+Para começar envie /definir, /sinonimos ou /exemplos\\. Você também pode usar o modo inline ao digitar @${botUsername} no campo de mensagem em qualquer bate\\-papo e escrever alguma palavra\\. ${groupAdd ? 'Cometa um erro gramatical e o bot pode te corrigir\\. Essa função só funciona [com essa a lista completa de palavras](dicionariobot.enzon19.com/lista) e se o administrador do grupo permitir o bot ter acesso às mensagens\\.' : 'Quando adicionado em algum grupo, pode corrigir alguns erros gramaticais\\.'}
 
 _Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%ADtica-de-Privacidade-do-Dicion%C3%A1rio-Bot-09-16)\\, além de [ver o código\\-fonte do bot](https://github.com/enzon19/dicionariobot)\\._`;
 
   //console.log(markdownEscaper(aboutText))
-  bot.sendMessage(chatID, aboutText, {
+  bot.sendMessage(chatID, startText, {
     parse_mode: "MarkdownV2",
     reply_to_message_id: message.message_id,
     disable_notification: true, disable_web_page_preview: true, 
@@ -26,5 +26,31 @@ _Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%
   });
 }
 
+function about (message) {
+  const chatID = message.chat.id;
+  const aboutText = `*Versão:* 3\\.0\\.0 \\| [Registo de Alterações](https://dicionariobot.enzon19.com/novidades)
+*Desenvolvedor:* @enzon19 \\| [Site](https://enzon19.com) \\| [GitHub](https://github.com/enzon19)`;
 
-module.exports = {start} //, groupAdd, about
+  bot.sendMessage(chatID, aboutText, {
+    parse_mode: "MarkdownV2",
+    reply_to_message_id: message.message_id,
+    disable_notification: true, 
+    disable_web_page_preview: true
+  });
+}
+
+function privacy (message) {
+  const chatID = message.chat.id;
+  const privacyText = `Veja a [política de privacidade](https://dicionariobot.enzon19.com/privacidade)\\.
+Confira o código do bot no [GitHub](https://github.com/enzon19/dicionariobot)\\.
+Gerencie os dados que o bot tem sobre você no comando de configurações \\(/settings\\)\\.`;
+
+  bot.sendMessage(chatID, privacyText, {
+    parse_mode: "MarkdownV2",
+    reply_to_message_id: message.message_id,
+    disable_notification: true, 
+    disable_web_page_preview: true
+  });
+}
+
+module.exports = {start, about, privacy}

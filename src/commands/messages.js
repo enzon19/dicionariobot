@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // packages
 const fs = require('fs');

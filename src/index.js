@@ -21,20 +21,8 @@ const users = database.from('users');
 global.users = users;
 global.bot = bot;
 
-// command handler
-bot.on('message', async (message) => {
-  // any message
-  if (message.text || message.caption) {
-    const commandsHandler = require('./core/handler');
-    commandsHandler.parseMessageAndSaveUser(message);
-  }
-
-  // commands using reply
-  if (message.reply_to_message?.text && message.reply_to_message?.from?.username == process.env.BOT_USERNAME) {
-    const commandsHandler = require('./core/handler');
-    commandsHandler.parseReply(message);
-  }
-});
+// events
+require('./core/events').deployEvents();
 
 // error
 const logError = require('./core/error');

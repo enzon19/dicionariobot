@@ -97,7 +97,20 @@
     "saveUserData": true,
     "parameters": ["message"],
     "function": "privacy",
-    "modulePath": "_general.js"
+    "modulePath": "about.js"
+  },
+  {
+    "name": "Sobre",
+    "command": "/about",
+    "description": "Mais informações sobre o bot.",
+    "example": "",
+    "alternatives": ["/sobre"],
+    "args": "",
+    "admin": false,
+    "saveUserData": true,
+    "parameters": ["message"],
+    "function": "about",
+    "modulePath": "about.js"
   },
   {
     "name": "Ping",
