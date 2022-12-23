@@ -4,7 +4,7 @@
 const axios = require("axios");
 const logError = require('./error');
 const markdownEscaper = require('./markdownEscaper');
-const apiProviderUrl = process.env.API_PROVIDER_URL;
+const apiProviderUrl = 'enzon19.repl.co'//process.env.API_PROVIDER_URL;
 
 function define (word) {
   return new Promise(async (resolve) => {
@@ -19,7 +19,7 @@ function define (word) {
       
       resolve(`__*DEFINIÇÃO DE ${rightWordSpelling.toUpperCase()}*__\n\n${syllablesText}\n\n${definitionText}`);
     } catch (e) {
-      //logError(e);
+      // logError(e);
       resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]);
     }
   });

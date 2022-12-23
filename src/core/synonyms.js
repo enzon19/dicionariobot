@@ -4,7 +4,7 @@
 const axios = require("axios");
 const logError = require('./error');
 const markdownEscaper = require('./markdownEscaper');
-const apiProviderUrl = process.env.API_PROVIDER_URL;
+const apiProviderUrl = 'enzon19.repl.co'//process.env.API_PROVIDER_URL;
 
 function synonyms (word) {
   return new Promise(async (resolve) => {

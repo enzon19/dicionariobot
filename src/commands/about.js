@@ -28,7 +28,7 @@ _Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%
 
 function about (message) {
   const chatID = message.chat.id;
-  const aboutText = `*Versão:* 3\\.0\\.0 \\| [Registo de Alterações](https://dicionariobot.enzon19.com/novidades)
+  const aboutText = `*Versão:* 3\\.0\\.0 \\| [Notas de atualização](https://dicionariobot.enzon19.com/notas)
 *Desenvolvedor:* @enzon19 \\| [Site](https://enzon19.com) \\| [GitHub](https://github.com/enzon19)`;
 
   bot.sendMessage(chatID, aboutText, {
@@ -41,9 +41,9 @@ function about (message) {
 
 function privacy (message) {
   const chatID = message.chat.id;
-  const privacyText = `Veja a [política de privacidade](https://dicionariobot.enzon19.com/privacidade)\\.
-Confira o código do bot no [GitHub](https://github.com/enzon19/dicionariobot)\\.
-Gerencie os dados que o bot tem sobre você no comando de configurações \\(/settings\\)\\.`;
+  const privacyText = `• Veja a [política de privacidade](https://dicionariobot.enzon19.com/privacidade)\\.
+• Confira o código do bot no [GitHub](https://github.com/enzon19/dicionariobot)\\.
+• Gerencie os dados que o bot tem sobre você no comando de configurações \\(/settings\\)\\.`;
 
   bot.sendMessage(chatID, privacyText, {
     parse_mode: "MarkdownV2",
