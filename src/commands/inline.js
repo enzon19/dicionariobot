@@ -1,9 +1,9 @@
 "use strict";
 
+const markdownEscaperReverse = require('../core/markdownEscaperReverse');
+
 const bot = global.bot;
 const users = global.users;
-
-// FAZER UM MARKDOWN ESCAPER REVERSO
 
 async function parseInlineAndSaveUser(inline) {
   const nowFormatted = (new Date()).toISOString();
@@ -68,14 +68,14 @@ function makeDefinitionPeek (text) {
   const rawDefinition = definitions[0].replace('• ', '');
   let definition = rawDefinition.substr(0, 99);
   if (definitions.length > 1 || rawDefinition.length > 99) definition += ' [...]';
-  return definition;
+  return markdownEscaperReverse(definition);
 }
 
 function makeSynonymsPeek (text) {
   const rawSynonyms = text.split('__\n\n')[1];
   let synonym = rawSynonyms.substr(0, 99);
   if (rawSynonyms.length > 99) synonym += ' [...]';
-  return synonym;
+  return markdownEscaperReverse(synonym);
 }
 
 function makeExemplesPeek (text) {
@@ -83,7 +83,7 @@ function makeExemplesPeek (text) {
   const rawDefinition = examples[0].replace(/^_(.*?)_ — (.*)/, '$1 — $2');
   let example = rawDefinition.substr(0, 99);
   if (examples.length > 1 || rawDefinition.length > 99) example += ' [...]';
-  return example;
+  return markdownEscaperReverse(example);
 }
 
 module.exports = { parseInlineAndSaveUser }

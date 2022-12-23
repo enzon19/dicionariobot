@@ -1,7 +1,7 @@
 module.exports = function markdownEscaper(text, additional) {
   // initial
-  text = text.replace(/(\[|\]|\(|\)|\~|\`|\>|\#|\+|\-|\=|\||\{|\}|\.|\!|\\)/g, '\\$1');
+  text = text.replace(/([\[\]\(\)\~`<>#\+\-=|{}\.!\\])/g, '\\$1');
   // additional
-  text = additional ? text.replace(additional, '\\$1'): text;
+  if (additional) text = text.replace(additional, '\\$1');
   return text;
 }
