@@ -28,8 +28,8 @@ async function parseInlineAndSaveUser(inline) {
 }
 
 async function generateInlineResponse (inline) {
-  const word = inline.query;
-  const args = word.split(' ')[0];
+  const text = inline.query;
+  const word = text.split(' ')[0];
 
   const coreFileAndFunctionNames = ['define', 'synonyms', 'examples'];
   const titleTerms = ['DEFINIÇÃO DE ', 'SINÔNIMOS PARA ', 'EXEMPLOS PARA '];
@@ -41,7 +41,7 @@ async function generateInlineResponse (inline) {
     const currentType = coreFileAndFunctionNames[index];
     
     const typeCore = require('../core/' + currentType);
-    const response = await typeCore[currentType](args);
+    const response = await typeCore[currentType](word);
 
     if (response[0]) {
       inlineResponse.push({
@@ -49,6 +49,7 @@ async function generateInlineResponse (inline) {
         id: inline.from.id + `_${index}_` + word,
         title: titleTerms[index] + word.toUpperCase(),
         description: peekMakersFunctions[index](response),
+        thumb_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/preview/images/inline/${index}-${word}.png`,
         input_message_content: { message_text: response, parse_mode: 'MarkdownV2' }
       });
     } else if (response[1] == 400) {
@@ -79,7 +80,7 @@ function makeSynonymsPeek (text) {
 }
 
 function makeExemplesPeek (text) {
-  const examples = text.split('__\n\n')[1].match(/(_.*)/g);
+  const examples = text.split('__\n\n')[1].match(/(_.*)|(Esta palavra não tem exemplos cadastrados\\\.)/g);
   const rawDefinition = examples[0].replace(/^_(.*?)_ — (.*)/, '$1 — $2');
   let example = rawDefinition.substr(0, 99);
   if (examples.length > 1 || rawDefinition.length > 99) example += ' [...]';

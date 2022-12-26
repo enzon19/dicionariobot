@@ -35,7 +35,7 @@ function transformStructureToHumanReadable (wordExamples) {
 
     return wordExamplesHumanReadable.join('\n\n');
   } else {
-    return 'Esta palavra não tem exemplos cadastrados.';
+    return 'Esta palavra não tem exemplos cadastrados\\.';
   }
 }
 
