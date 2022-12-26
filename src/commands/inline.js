@@ -49,7 +49,7 @@ async function generateInlineResponse (inline) {
         id: inline.from.id + `_${index}_` + word,
         title: titleTerms[index] + word.toUpperCase(),
         description: peekMakersFunctions[index](response),
-        thumb_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/preview/images/inline/${index}-${word}.png`,
+        thumb_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/preview/images/inline/${index}_${word[0]}.png`,
         input_message_content: { message_text: response, parse_mode: 'MarkdownV2' }
       });
     } else if (response[1] == 400) {
