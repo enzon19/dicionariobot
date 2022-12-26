@@ -1,7 +1,5 @@
 'use strict';
 
-const markdownEscaper = require('../core/markdownEscaper');
-
 const bot = global.bot;
 const botUsername = process.env.BOT_USERNAME;
 
@@ -18,7 +16,7 @@ _Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%
   bot.sendMessage(chatID, startText, {
     parse_mode: "MarkdownV2",
     reply_to_message_id: message.message_id,
-    disable_notification: true, disable_web_page_preview: true, 
+    disable_web_page_preview: true, 
     reply_markup: {
       inline_keyboard: 
       [[{text: "Usar modo inline", switch_inline_query: ""}]]
@@ -34,7 +32,6 @@ function about (message) {
   bot.sendMessage(chatID, aboutText, {
     parse_mode: "MarkdownV2",
     reply_to_message_id: message.message_id,
-    disable_notification: true, 
     disable_web_page_preview: true
   });
 }
@@ -48,7 +45,6 @@ function privacy (message) {
   bot.sendMessage(chatID, privacyText, {
     parse_mode: "MarkdownV2",
     reply_to_message_id: message.message_id,
-    disable_notification: true, 
     disable_web_page_preview: true
   });
 }

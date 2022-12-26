@@ -18,6 +18,7 @@ const database = supabase.createClient('https://sjsnyindtfhstuxyznot.supabase.co
 const users = database.from('users');
 
 // global variables
+global.database = database;
 global.users = users;
 global.bot = bot;
 

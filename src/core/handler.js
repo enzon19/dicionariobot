@@ -6,6 +6,7 @@ const fs = require('fs');
 const users = global.users;
 const botUsername = process.env.BOT_USERNAME;
 const bot = global.bot;
+const database = global.database;
 
 async function parseMessageAndSaveUser (message) {
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
@@ -22,7 +23,7 @@ async function parseMessageAndSaveUser (message) {
 
     commandReturned = findCommand(command, args, chatType, message);
   } else if (chatType == 'private' && !message.reply_to_message) {
-    userShortcut();
+    userShortcut(message);
   } else if (chatType != 'private' && message.reply_to_message?.from?.username != botUsername) {
     checkGrammar();
   }
@@ -60,7 +61,7 @@ function findCommand (command, args, chatType, message) {
     return commandUsed;
   } else {
     // if it's private, then it's a shortcut. If it's a group, then do nothing
-    if (chatType == 'private') userShortcut();
+    if (chatType == 'private') userShortcut(message);
     return undefined;
   }
 }
@@ -81,8 +82,15 @@ function parseReply (message) {
   }
 }
 
-function userShortcut () {
-  console.log('atalho')
+async function userShortcut (message) {
+  const chatID = message.chat.id;
+  const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
+  const word = messageText[0] == '/' ? messageText.slice(1) : messageText;
+
+  const users = database.from('users');
+  const userData = (await users.select('shortcut').eq('id', chatID)).data[0];
+
+  require('../commands/messages').sendType(message, word, userData.shortcut);
 }
 
 function checkGrammar () {

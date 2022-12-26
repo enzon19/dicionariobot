@@ -82,9 +82,9 @@
     "args": "",
     "admin": false,
     "saveUserData": true,
-    "parameters": ["message", "dicionarioDB"],
-    "function": "settings",
-    "modulePath": "_general.js"
+    "parameters": ["message"],
+    "function": "settingsMainMenu",
+    "modulePath": "settings.js"
   },
   {
     "name": "Privacidade",
@@ -111,6 +111,19 @@
     "parameters": ["message"],
     "function": "about",
     "modulePath": "about.js"
+  },
+  {
+    "name": "Doação",
+    "command": "/doar",
+    "description": "Se você gosta do bot e apoia o desenvolvimento dele, me ajude realizando uma doação!",
+    "example": "",
+    "alternatives": ["/apoiar", "/donate"],
+    "args": "",
+    "admin": false,
+    "saveUserData": true,
+    "parameters": ["message"],
+    "function": "donate",
+    "modulePath": "donate.js"
   },
   {
     "name": "Ping",
