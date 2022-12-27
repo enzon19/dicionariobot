@@ -24,7 +24,7 @@ async function parseInlineAndSaveUser(inline) {
   }
 
   const inlineResponse = await generateInlineResponse(inline);
-  bot.answerInlineQuery(inline.id, inlineResponse);
+  bot.answerInlineQuery(inline.id, inlineResponse, {cache_time: 1200});
 }
 
 async function generateInlineResponse (inline) {

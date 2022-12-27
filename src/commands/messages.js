@@ -19,9 +19,10 @@ async function sendType (message, args, typeNumber) {
     // Se response[0] existe, então ele achou a palavra
     bot.sendMessage(chatID, response, 
       {
-      parse_mode: "MarkdownV2",
-      reply_to_message_id: message.message_id,
-      disable_notification: true
+        parse_mode: "MarkdownV2",
+        reply_to_message_id: message.message_id,
+        disable_notification: true,
+        reply_markup: { "remove_keyboard": true }
       }
     );
   // REVISITAR --- PRECISA ADICIONAR MOTOR DE BUSCA NAS OPÇÕES ABAIXO. Erros
@@ -30,7 +31,8 @@ async function sendType (message, args, typeNumber) {
       {
         parse_mode: "MarkdownV2",
         reply_to_message_id: message.message_id,
-        disable_notification: true
+        disable_notification: true,
+        reply_markup: { "remove_keyboard": true }
       }
     );
   } else if (response[1] == 503) {
@@ -38,7 +40,8 @@ async function sendType (message, args, typeNumber) {
       {
         parse_mode: "MarkdownV2",
         reply_to_message_id: message.message_id,
-        disable_notification: true
+        disable_notification: true,
+        reply_markup: { "remove_keyboard": true }
       }
     );
   } else {
@@ -46,7 +49,8 @@ async function sendType (message, args, typeNumber) {
       {
         parse_mode: "MarkdownV2",
         reply_to_message_id: message.message_id,
-        disable_notification: true
+        disable_notification: true,
+        reply_markup: { "remove_keyboard": true }
       }
     );
   }
@@ -74,4 +78,9 @@ async function chooseMessage (message, args, typeNumber) {
   }
 }
 
-module.exports = { chooseMessage, sendType };
+function cancel (message) {
+  const chatID = message.chat.id;
+  bot.sendMessage(chatID, 'Operação cancelada.', {reply_markup: { "remove_keyboard": true }});
+}
+
+module.exports = { chooseMessage, sendType, cancel };

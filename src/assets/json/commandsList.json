@@ -126,6 +126,19 @@
     "modulePath": "donate.js"
   },
   {
+    "name": "Cancelar",
+    "command": "/cancelar",
+    "description": "Cancelar uma operação do bot.",
+    "example": "",
+    "alternatives": ["/cancel", "/close", "/fechar", "/quit", "/sair"],
+    "args": "",
+    "admin": false,
+    "saveUserData": true,
+    "parameters": ["message"],
+    "function": "cancel",
+    "modulePath": "messages.js"
+  },
+  {
     "name": "Ping",
     "command": "/ping",
     "description": "Teste de conexão do bot.",
