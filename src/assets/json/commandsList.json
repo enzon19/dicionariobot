@@ -48,17 +48,17 @@
     "modulePath": "messages.js"
   },
   {
-    "name": "Introdução",
-    "command": "/start",
-    "description": "Seja introduzido ao bot.",
+    "name": "Ajustes",
+    "command": "/settings",
+    "description": "Configure o atalho no chat privado e saiba quais dados são armazenados pelo bot.",
     "example": "",
-    "alternatives": [],
+    "alternatives": ["/ajustes", "/configuracoes", "/configurações"],
     "args": "",
     "admin": false,
     "saveUserData": true,
     "parameters": ["message"],
-    "function": "start",
-    "modulePath": "about.js"
+    "function": "settingsMainMenu",
+    "modulePath": "settings.js"
   },
   {
     "name": "Ajuda",
@@ -74,17 +74,43 @@
     "modulePath": "help.js"
   },
   {
-    "name": "Ajustes",
-    "command": "/settings",
-    "description": "Configure o atalho no chat privado e saiba quais dados são armazenados pelo bot.",
+    "name": "Introdução",
+    "command": "/start",
+    "description": "Seja introduzido ao bot.",
     "example": "",
-    "alternatives": ["/ajustes", "/configuracoes", "/configurações"],
+    "alternatives": [],
     "args": "",
     "admin": false,
     "saveUserData": true,
     "parameters": ["message"],
-    "function": "settingsMainMenu",
-    "modulePath": "settings.js"
+    "function": "start",
+    "modulePath": "about.js"
+  },
+  {
+    "name": "Cancelar",
+    "command": "/cancelar",
+    "description": "Cancelar uma operação do bot.",
+    "example": "",
+    "alternatives": ["/cancel", "/close", "/fechar", "/quit", "/sair"],
+    "args": "",
+    "admin": false,
+    "saveUserData": true,
+    "parameters": ["message"],
+    "function": "cancel",
+    "modulePath": "messages.js"
+  },
+  {
+    "name": "Doação",
+    "command": "/doar",
+    "description": "Se você gosta do bot e apoia o desenvolvimento dele, me ajude realizando uma doação!",
+    "example": "",
+    "alternatives": ["/apoiar", "/donate"],
+    "args": "",
+    "admin": false,
+    "saveUserData": true,
+    "parameters": ["message"],
+    "function": "donate",
+    "modulePath": "donate.js"
   },
   {
     "name": "Privacidade",
@@ -111,32 +137,6 @@
     "parameters": ["message"],
     "function": "about",
     "modulePath": "about.js"
-  },
-  {
-    "name": "Doação",
-    "command": "/doar",
-    "description": "Se você gosta do bot e apoia o desenvolvimento dele, me ajude realizando uma doação!",
-    "example": "",
-    "alternatives": ["/apoiar", "/donate"],
-    "args": "",
-    "admin": false,
-    "saveUserData": true,
-    "parameters": ["message"],
-    "function": "donate",
-    "modulePath": "donate.js"
-  },
-  {
-    "name": "Cancelar",
-    "command": "/cancelar",
-    "description": "Cancelar uma operação do bot.",
-    "example": "",
-    "alternatives": ["/cancel", "/close", "/fechar", "/quit", "/sair"],
-    "args": "",
-    "admin": false,
-    "saveUserData": true,
-    "parameters": ["message"],
-    "function": "cancel",
-    "modulePath": "messages.js"
   },
   {
     "name": "Ping",

@@ -365,7 +365,7 @@ function setDefaultSearchEngines (callback) {
   }];
 
   users.update({ 'searchEngines': defaultSearchEngines }).eq('id', chatID).then(e => {
-    bot.sendMessage(chatID, `*Pronto\\!* Mecanismos de busca restaurados para o padrão.\\.`, {
+    bot.sendMessage(chatID, `*Pronto\\!* Mecanismos de busca restaurados para o padrão\\.`, {
       parse_mode: "MarkdownV2",
       reply_markup: {
         remove_keyboard: true
