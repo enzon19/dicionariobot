@@ -79,13 +79,17 @@ function parseReply (message) {
     const newMessageText = `/${command[1]} ${messageText}`;
     message.text = newMessageText;
     parseMessageAndSaveUser(message);
+  } else if (replyMessageText == 'Respondendo esta mensagem, envie o nome e o link seguindo as instruções anteriores.') {
+    require('../commands/settings').addSearchEngine(message);
+  } else if (replyMessageText == 'Respondendo esta mensagem, clique em um dos mecanismos para remover.') {
+    require('../commands/settings').removeSearchEngine(message);
   }
 }
 
 async function userShortcut (message) {
   const chatID = message.chat.id;
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
-  const word = messageText[0] == '/' ? messageText.slice(1) : messageText;
+  const word = messageText[0] == '/' ? messageText.slice(1).split(' ')[0] : messageText.split(' ')[0];
 
   const users = database.from('users');
   const userData = (await users.select('shortcut').eq('id', chatID)).data[0];

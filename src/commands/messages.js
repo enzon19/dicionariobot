@@ -1,10 +1,21 @@
 'use strict';
 
 // packages
-const fs = require('fs');
 const markdownEscaper = require('../core/markdownEscaper');
 
 const bot = global.bot;
+
+async function getUserSearchEngines(searchEngines, word, chatID) {
+  if (!searchEngines) {
+    const database = global.database;
+    const users = database.from('users');
+    const userData = (await users.select('searchEngines').eq('id', chatID)).data[0];
+    searchEngines = userData.searchEngines;
+  }
+
+  const searchEnginesURLs = searchEngines.length == 0 ? 'Sem mecanismos de busca\\.' : searchEngines.map(searchEngine => `[${searchEngine.name}](${searchEngine.url.replace('$', word)})`).join(' • ');
+  return searchEnginesURLs;
+}
 
 async function sendType (message, args, typeNumber) {
   const coreFileAndFunctionName = ['define', 'synonyms', 'examples'][typeNumber];
@@ -21,35 +32,34 @@ async function sendType (message, args, typeNumber) {
       {
         parse_mode: "MarkdownV2",
         reply_to_message_id: message.message_id,
-        disable_notification: true,
         reply_markup: { "remove_keyboard": true }
       }
     );
-  // REVISITAR --- PRECISA ADICIONAR MOTOR DE BUSCA NAS OPÇÕES ABAIXO. Erros
+  // Erros
   } else if (response[1] == 400) {
-    bot.sendMessage(chatID, markdownEscaper(`Infelizmente, a palavra *"${args}"* não está cadastrada no dicionário.`),
+    bot.sendMessage(chatID, `Infelizmente, a palavra *"${args}"* não está cadastrada no dicionário\\.\n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}`,
       {
         parse_mode: "MarkdownV2",
+        disable_web_page_preview: true,
         reply_to_message_id: message.message_id,
-        disable_notification: true,
         reply_markup: { "remove_keyboard": true }
       }
     );
   } else if (response[1] == 503) {
-    bot.sendMessage(chatID, markdownEscaper(`Eita. Parece que *o servidor* que serve as informações do bot (banco de dados do dicionário) *está fora do ar temporariamente*. Infelizmente o Dicionário Bot não administra esse banco de dados e por isso não tem controle sobre o servidor. Tudo que podemos fazer no momento é esperar.`),
+    bot.sendMessage(chatID, `Eita\\. Parece que *o servidor* que serve as informações do bot \\(banco de dados do dicionário\\) *está fora do ar temporariamente*\\. Infelizmente o Dicionário Bot não administra esse banco de dados e por isso não tem controle sobre o servidor\\. Tudo que podemos fazer no momento é esperar\\.\n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}`,
       {
         parse_mode: "MarkdownV2",
+        disable_web_page_preview: true,
         reply_to_message_id: message.message_id,
-        disable_notification: true,
         reply_markup: { "remove_keyboard": true }
       }
     );
   } else {
-    bot.sendMessage(chatID, markdownEscaper(`Eita. Houve um *erro* ao procurar por esta palavra no dicionário.`),
+    bot.sendMessage(chatID, `Eita\\. Houve um *erro* ao procurar por esta palavra no dicionário\\.\n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}`,
       {
         parse_mode: "MarkdownV2",
+        disable_web_page_preview: true,
         reply_to_message_id: message.message_id,
-        disable_notification: true,
         reply_markup: { "remove_keyboard": true }
       }
     );
@@ -83,4 +93,4 @@ function cancel (message) {
   bot.sendMessage(chatID, 'Operação cancelada.', {reply_markup: { "remove_keyboard": true }});
 }
 
-module.exports = { chooseMessage, sendType, cancel };
+module.exports = { chooseMessage, sendType, cancel, getUserSearchEngines };
