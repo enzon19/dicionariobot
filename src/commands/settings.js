@@ -70,6 +70,7 @@ async function cancelAndBackToMainMenu (callback) {
 async function shortcutMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
+  const chatType = message.chat.type;
 
   const users = database.from('users');
   const userData = (await users.select('shortcut').eq('id', chatID)).data[0];
@@ -84,7 +85,7 @@ async function shortcutMenu (callback) {
   ]);
   buttons.splice(shortcut, 1);
 
-  bot.editMessageText(`__*CONFIGURAÇÕES \\> ATALHO*__\n\n*Atalho atual:* ${shortcutLabel}\nEscolha abaixo qual será seu atalho\\. Saiba mais no comando /ajuda\\.`, {
+  bot.editMessageText(`__*CONFIGURAÇÕES \\> ATALHO*__\n\n*Atalho atual:* ${shortcutLabel}\n${chatType == 'private' ? 'Escolha abaixo qual será seu atalho\\.' : 'Atalhos não funcionam em grupos\\.'} Saiba mais no comando /ajuda\\.`, {
     parse_mode: "MarkdownV2",
     chat_id: chatID,
     message_id: message.message_id,
@@ -387,7 +388,7 @@ async function dataStoredMenu (callback) {
 *Tipo de chat do Telegram:* ${userData.type}
 *Atalho:* ${['Definição', 'Sinônimos', 'Exemplos'][userData.shortcut]}
 *Mecanismos de busca:* ${await getUserSearchEngines(userData.searchEngines, "")}
-*Data de criação no bot:* ${moment(userData.createdAt).format('DD/MM/YYYY HH:mm:ss')}
+*Data do cadastro no bot:* ${moment(userData.createdAt).format('DD/MM/YYYY HH:mm:ss')}
 *Data do último uso do bot:* ${moment(userData.lastUseAt).format('DD/MM/YYYY HH:mm:ss')}`
 
   bot.editMessageText(`__*CONFIGURAÇÕES \\> DADOS*__\n\n${dataText}`, {
@@ -397,8 +398,26 @@ async function dataStoredMenu (callback) {
     disable_web_page_preview: true,
     reply_markup: {
       inline_keyboard: [
-        [{ text: "Apagar dados", callback_data: 'settings_deleteData' }],
+        [{ text: "Apagar dados", callback_data: 'settings_deleteDataMenu' }],
         [{ text: "⬅️ Voltar", callback_data: 'settings_backToMainMenu' }]
+      ]
+    }
+  });
+}
+
+async function deleteDataMenu (callback) {
+  const message = callback.message;
+  const chatID = message.chat.id;
+
+  bot.editMessageText(`__*CONFIGURAÇÕES \\> DADOS \\> APAGAR*__\n\nTem certeza de que deseja apagar seus dados?`, {
+    parse_mode: "MarkdownV2",
+    chat_id: chatID,
+    message_id: message.message_id,
+    disable_web_page_preview: true,
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: "Não", callback_data: 'settings_dataStoredMenu' }, { text: "Sim", callback_data: 'settings_deleteData' }],
+        [{ text: '❌ Cancelar', callback_data: 'settings_backToMainMenu' }]
       ]
     }
   });
@@ -410,12 +429,12 @@ async function deleteData (callback) {
 
   database.from('users')
     .delete()
-    .eq('id', chatID).then(() => bot.editMessageText('*Seus dados foram deletados!* Se você enviar uma nova mensagem para o bot seu cadastro será feito novamente.', {parse_mode: 'Markdown', chat_id: chatID, message_id: message.message_id}));
+    .eq('id', chatID).then(() => bot.editMessageText('*Seus dados foram apagados\\!* Se você enviar uma nova mensagem para o bot seu cadastro será feito novamente\\.', {parse_mode: 'MarkdownV2', chat_id: chatID, message_id: message.message_id}));
 }
 
 module.exports = { 
   settingsMainMenu, backToMainMenu, cancelAndBackToMainMenu, 
   shortcutMenu, setShortcut, 
   searchEngineMenu, addSearchEngineMenu, addSearchEngine, removeSearchEngineMenu, removeSearchEngine, defaultSearchEnginesMenu, setDefaultSearchEngines,
-  dataStoredMenu, deleteData 
+  dataStoredMenu, deleteDataMenu, deleteData 
 };

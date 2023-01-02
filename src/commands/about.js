@@ -12,7 +12,6 @@ Para começar envie /definir, /sinonimos ou /exemplos\\. Você também pode usar
 
 _Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%ADtica-de-Privacidade-do-Dicion%C3%A1rio-Bot-09-16)\\, além de [ver o código\\-fonte do bot](https://github.com/enzon19/dicionariobot)\\._`;
 
-  //console.log(markdownEscaper(aboutText))
   bot.sendMessage(chatID, startText, {
     parse_mode: "MarkdownV2",
     reply_to_message_id: message.message_id,

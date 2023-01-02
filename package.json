@@ -31,6 +31,10 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "node-telegram-bot-api": "^0.58.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
   }
 }

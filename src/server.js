@@ -1,19 +1,27 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const favicon = require('serve-favicon');
 
-const motherFolder = __dirname.slice(0, -2);
+app.use(favicon(__dirname + '/front/static/favicon/favicon.ico'));
 
 // Get static files
-app.use('/front', express.static(path.join(motherFolder + "/front")));
+app.use('/static', express.static(path.join(__dirname + '/front/static')));
+app.use('/css', express.static(path.join(__dirname + '/front/css')));
+app.use('/js', express.static(path.join(__dirname + '/front/js')));
 
-// Get index.html or response with news.html if the password is right
+// Pages
 app.get("/", (req, res) => {
-  if (req.query.newsPassword == process.env.NEWS_PASSWORD) {
-    res.sendFile(motherFolder + "/front/html/news.html");
-  } else {
-    res.sendFile(motherFolder + "/front/html/index.html");
-  }
+  res.sendFile(__dirname + "/front/html/index.html");
+});
+
+app.get('*', (req, res) => {
+  const filePath = __dirname + '/front/html' + req.path + '.html';
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      res.status(404).sendFile(__dirname + "/front/html/404.html")
+    }
+  });
 });
 
 // Send messages using news.html

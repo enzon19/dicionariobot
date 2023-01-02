@@ -1,15 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dicionário Bot</title>
-    <meta name="description" content="">
+    <title>Criador de Notícias</title>
+    <meta name="description"
+      content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/front/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/tailwind.css" rel="stylesheet">
+    <link href="/css/tgMessage.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>Dicionário Bot: News</h1>
-    <!-- <script src="" async defer></script> -->
+  <body class="bg-blood text-white">
+    <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center z-10">
+      <a class="flex items-center" href="/">
+        <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
+        <h3 class="ml-2 text-xl font-semibold">Dicionário Bot</h3>
+      </a>
+      <div class="flex items-center">
+        <a href="https://t.me/dicionariobot"
+          class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Iniciar</a>
+      </div>
+    </header>
+    <div class="px-4 pt-4">
+      <h2 class="container mx-auto text-center text-2xl font-bold">Criador de Notícias</h2>
+      <div class="container mx-auto justify-center lg:flex lg:flex-row lg:gap-6">
+        <div class="basis-1/2">
+          <form>
+            <h2 class="font-medium text-lg mb-2">Dados</h2>
+            <input type="radio" id="r1" name="Type" value="Rascunho">
+            <label for="r1" class="mr-2">Rascunho</label>
+            <input type="radio" id="r2" name="Type" value="Oficial">
+            <label for="r2" class="mr-2">Oficial</label>
+            <hr class="mt-2 mb-4">
+            <textarea id="text" oninput="previewText()" name="text" rows="19" cols="73" class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato">*Atualização v.0 do Dicionário Bot!*&#10;&#10;> Novidades e Mudanças&#10;• _*NOVO!*_&#10;&#10;> Correções de bugs</textarea>
+            <hr class="mt-2 mb-2">
+            <input type="text" oninput="photoURL()" id="photoURL" placeholder="URL da foto" name="photoURL" class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato">
+            <hr class="mt-2 mb-3">
+            <textarea id="ntgOptions" name="text" rows="05" cols="71"
+            class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato font-mono">{"reply_markup": {"inline_keyboard": [[{"text": "Usar o bot", "switch_inline_query": ""}]]}}</textarea>
+            <br>
+            <input class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full cursor-pointer mb-4" type="submit" value="Enviar">
+          </form>
+        </div>
+        <div class="tgme_widget_message js-widget_message no_userpic basis-1/2">
+          <h2 class="font-medium text-lg mb-2">Pré-visualização</h2>
+          <div class="tgme_widget_message_bubble">
+            <i class="tgme_widget_message_bubble_tail">
+              <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+                <g fill="none">
+                  <path class="background" fill="#ffffff"
+                    d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z">
+                  </path>
+                  <path class="border_1x" fill="#d7e3ec"
+                    d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z">
+                  </path>
+                  <path class="border_2x"
+                    d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z">
+                  </path>
+                  <path class="border_3x"
+                    d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z">
+                  </path>
+                </g>
+              </svg>
+            </i>
+            <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name"
+                href="https://t.me/dicionariobot"><span dir="auto">Dicionário Bot</span></a></div>
+            <img class="tgme_widget_message_photo_wrap" id="photoPreview"
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhttp2.mlstatic.com%2Fdicionario-escolar-oxford-ingls-portugus-4-oxford-readers-D_NQ_NP_875556-MLB27074092728_032018-F.jpg&f=1&nofb=1">
+            <div class="tgme_widget_message_text js-message_text" id="previewText"
+              style="text-align: left !important; color: black;" dir="auto"><strong>Atualização v2.1 do Dicionário
+                Bot!</strong><br><br>
+
+              > Novidades e Mudanças<br>
+              • <strong><i>NOVO!</i></strong> Comando \exemplos. Veja frases exemplificando o uso de uma palavra.<br>
+              • Veja uma imagem da palavra usando o modo inline.<br><br>
+
+              > Correções de bugs<br>
+              • Clique do botão no modo inline ao não ter respostas agora funciona.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

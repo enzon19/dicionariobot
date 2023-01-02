@@ -43,7 +43,7 @@
     "args": "[palavra ou frase]",
     "admin": false,
     "saveUserData": true,
-    "parameters": ["message", "args", 2],
+    "parameters": ["message", "args"],
     "function": "chooseMessage",
     "modulePath": "messages.js"
   },
@@ -81,7 +81,7 @@
     "alternatives": [],
     "args": "",
     "admin": false,
-    "saveUserData": true,
+    "saveUserData": false,
     "parameters": ["message"],
     "function": "start",
     "modulePath": "about.js"
@@ -120,7 +120,7 @@
     "alternatives": ["/privacidade"],
     "args": "",
     "admin": false,
-    "saveUserData": true,
+    "saveUserData": false,
     "parameters": ["message"],
     "function": "privacy",
     "modulePath": "about.js"

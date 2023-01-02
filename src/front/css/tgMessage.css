@@ -1,0 +1,171 @@
+.tgme_widget_message_bubble {
+  position: relative;
+  border: 1px solid #d7e3ec;
+  border-radius: 0 10px 10px 10px;
+  background: #fff;
+  padding: 12px 17px;
+}
+.tgme_widget_message_bubble,
+.tgme_widget_message_inline_keyboard {
+  margin-left: 45px;
+}
+.no_userpic .tgme_widget_message_user {
+  display: none;
+}
+.no_userpic .tgme_widget_message_bubble,
+.no_userpic .tgme_widget_message_inline_keyboard {
+  margin-left: 7px;
+}
+.tgme_widget_message_bubble_tail {
+  pointer-events: none;
+  position: absolute;
+  left: -8px;
+  top: -1px;
+}
+.tgme_widget_message_bubble_tail .background {
+  pointer-events: auto;
+  fill: #fff;
+}
+.tgme_widget_message_bubble_tail .border_1x {
+  fill: #d7e3ec;
+}
+.tgme_widget_message_author,
+.tgme_widget_message_forwarded_from {
+  font-size: 16px;
+  line-height: 23px;
+  margin: -2px 0;
+  color: #2481CC;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-flex;
+  display: flex;
+}
+.widget_frame_base .tgme_widget_message_author a,
+.widget_frame_base .tgme_widget_message_author a:hover,
+.widget_frame_base .tgme_widget_message_forwarded_from a,
+.widget_frame_base .tgme_widget_message_forwarded_from a:hover {
+  color: inherit;
+}
+.tgme_widget_message_forwarded_from {
+  margin-top: 0;
+}
+.tgme_widget_message_author_name,
+.tgme_widget_message_owner_name,
+.tgme_widget_message_via_bot,
+.tgme_widget_message_forwarded_from_name,
+.tgme_widget_message_forwarded_from_author {
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 500;
+}
+.tgme_widget_message_author_labels,
+.tgme_widget_message_owner_labels,
+.tgme_widget_message_forwarded_from_labels {
+  text-decoration: none !important;
+  font-weight: 500;
+}
+.tgme_widget_message_photo_wrap {
+  display: block;
+  background: no-repeat -10000px -10000px;
+  background-size: 0 0;
+  margin: 12px -17px;
+  min-width: calc(100% + 34px) !important;
+  max-width: calc(100% + 34px) !important;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.tgme_widget_message_photo_wrap:hover {
+  text-decoration: none;
+}
+.tgme_widget_message_photo {
+  display: block;
+  position: relative;
+  background: no-repeat center;
+  background-size: cover;
+  background-image: inherit;
+  margin: 0 auto;
+}
+.tgme_widget_message_photo_wrap.blured:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -30px;
+  right: -30px;
+  top: -30px;
+  bottom: -30px;
+  background: no-repeat center;
+  background-size: cover;
+  background-image: inherit;
+  -webkit-filter: blur(15px);
+  filter: blur(15px);
+}
+.tgme_widget_message_photo_wrap.blured:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  bottom: -1px;
+  background: #fff;
+  opacity: .3;
+}
+.tgme_widget_message_text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  word-break: break-word;
+  margin-top: 6px;
+}
+.tgme_widget_message_text b {
+  font-weight: 500;
+}
+.tgme_widget_message_text code,
+.tgme_widget_message_text pre {
+  font-family: monospace;
+  white-space: normal;
+  /*color: #4e7391;*/
+}
+.tgme_widget_message_text pre {
+  padding: 0;
+  margin: 0;
+}
+.tgme_widget_message_reply .tgme_widget_message_author,
+.tgme_widget_message_reply .tgme_widget_message_text,
+.tgme_widget_message_reply .tgme_widget_message_metatext {
+  font-size: 14px;
+  line-height: 20px;
+  margin: -2px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 1px;
+}
+.tgme_widget_message_info {
+  text-align: right;
+}
+.tgme_widget_message_from_author {
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+.widget_frame_base a.tgme_widget_message_date,
+.widget_frame_base a.tgme_widget_message_date:hover,
+body.dark.widget_frame_base a.tgme_widget_message_date,
+body.dark.widget_frame_base a.tgme_widget_message_date:hover {
+  vertical-align: top;
+  white-space: nowrap;
+  color: inherit;
+}
+body.name_nocolor .tgme_widget_message_author_name > .name {
+  color: #2481CC;
+}

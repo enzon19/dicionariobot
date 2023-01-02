@@ -7,6 +7,7 @@ const users = global.users;
 const botUsername = process.env.BOT_USERNAME;
 const bot = global.bot;
 const database = global.database;
+const mistakesList = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/mistakes.json'));
 
 async function parseMessageAndSaveUser (message) {
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
@@ -25,7 +26,7 @@ async function parseMessageAndSaveUser (message) {
   } else if (chatType == 'private' && !message.reply_to_message) {
     userShortcut(message);
   } else if (chatType != 'private' && message.reply_to_message?.from?.username != botUsername) {
-    checkGrammar();
+    checkMistakes(messageText, message);
   }
 
   // update or add user data. Only allowed if the command have the saveUserData == true or it's a shortcut (command inexistent)
@@ -88,6 +89,7 @@ function parseReply (message) {
 
 async function userShortcut (message) {
   const chatID = message.chat.id;
+
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
   const word = messageText[0] == '/' ? messageText.slice(1).split(' ')[0] : messageText.split(' ')[0];
 
@@ -97,8 +99,13 @@ async function userShortcut (message) {
   require('../commands/messages').sendType(message, word, userData.shortcut);
 }
 
-function checkGrammar () {
-  console.log('ver se tem erros gramáticos')
+function checkMistakes (text, message) {
+  const chatID = message.chat.id;
+  const checkMistakes = require('./checkMistakes');
+
+  bot.sendMessage(chatID, checkMistakes.check(checkMistakes.removePunctuation(text), mistakesList), {
+    reply_to_message_id: message.message_id
+  });
 }
 
 module.exports = {parseMessageAndSaveUser, parseReply};
