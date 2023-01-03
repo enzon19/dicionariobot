@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/tailwind.css" rel="stylesheet">
     <link href="/css/tgMessage.css" rel="stylesheet">
+    <script src="/js/news.js"></script>
   </head>
   <body class="bg-blood text-white">
     <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center z-10">
@@ -28,18 +29,18 @@
       <h2 class="container mx-auto text-center text-2xl font-bold">Criador de Notícias</h2>
       <div class="container mx-auto justify-center lg:flex lg:flex-row lg:gap-6">
         <div class="basis-1/2">
-          <form>
+          <form action="/sendNews" method="post" enctype="application/x-www-form-urlencoded">
             <h2 class="font-medium text-lg mb-2">Dados</h2>
-            <input type="radio" id="r1" name="Type" value="Rascunho">
+            <input type="radio" id="r1" name="type" value="Rascunho">
             <label for="r1" class="mr-2">Rascunho</label>
-            <input type="radio" id="r2" name="Type" value="Oficial">
+            <input type="radio" id="r2" name="type" value="Oficial">
             <label for="r2" class="mr-2">Oficial</label>
             <hr class="mt-2 mb-4">
             <textarea id="text" oninput="previewText()" name="text" rows="19" cols="73" class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato">*Atualização v.0 do Dicionário Bot!*&#10;&#10;> Novidades e Mudanças&#10;• _*NOVO!*_&#10;&#10;> Correções de bugs</textarea>
             <hr class="mt-2 mb-2">
-            <input type="text" oninput="photoURL()" id="photoURL" placeholder="URL da foto" name="photoURL" class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato">
+            <input type="text" oninput="document.getElementById('photoPreview').src = document.getElementById('photoURL').value" id="photoURL" placeholder="URL da foto" name="photoURL" class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato">
             <hr class="mt-2 mb-3">
-            <textarea id="ntgOptions" name="text" rows="05" cols="71"
+            <textarea id="tgOptions" name="tgOptions" rows="05" cols="71"
             class="form-control block w-full p-2 text-base text-black bg-white border-solid border border-gray-300 rounded-xl transition ease-in-out m-0 focus:border-clear-red focus:outline-none hover:border-dry-tomato font-mono">{"reply_markup": {"inline_keyboard": [[{"text": "Usar o bot", "switch_inline_query": ""}]]}}</textarea>
             <br>
             <input class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full cursor-pointer mb-4" type="submit" value="Enviar">

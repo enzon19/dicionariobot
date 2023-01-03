@@ -169,3 +169,6 @@ body.dark.widget_frame_base a.tgme_widget_message_date:hover {
 body.name_nocolor .tgme_widget_message_author_name > .name {
   color: #2481CC;
 }
+.tg-link {
+  color: #2481CC;
+}

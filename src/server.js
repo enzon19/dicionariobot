@@ -16,7 +16,10 @@ app.get("/", (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  const filePath = __dirname + '/front/html' + req.path + '.html';
+  let path = req.path;
+  if (req.path == '/news' && req.query.newspassword != process.env.NEWS_PASSWORD) path = '';
+  const filePath = __dirname + '/front/html' + path + '.html';
+
   res.sendFile(filePath, (err) => {
     if (err) {
       res.status(404).sendFile(__dirname + "/front/html/404.html")
@@ -27,18 +30,13 @@ app.get('*', (req, res) => {
 // Send messages using news.html
 app.use(require("body-parser").urlencoded({ extended: false }));
 app.post("*", (req, res) => {
-  // if (req.query.password == process.env.NEWS_PASSWORD && req.query.type && req.query.sentType && req.body.text) {
-  //   const news = requireFromString(fs.readFileSync("./commands/news.js", "utf8"));
-  //   [news.draft, news.publish][parseInt(req.query.sentType)](
-  //     req.query.type,
-  //     req.body.text,
-  //     req.body.photo,
-  //     req.body.tgOptions,
-  //     botReference,
-  //     db,
-  //     res
-  //   );
-  // }
+  console.log(req.body)
+  const sendType = req.body.type;
+  const messageText = req.body.text;
+  const messagePhoto = req.body.photo;
+  const tgOptions = req.body.tgOptions.toString();
+
+  if (sendType && (messageText || messagePhoto)) require('./core/news').sendNews(sendType, messageText, messagePhoto, tgOptions, res);
 });
 
 module.exports = () => {
