@@ -4,6 +4,7 @@ const bot = global.bot;
 const database = global.database;
 
 const moment = require('moment');
+const fs = require('fs');
 const markdownEscaper = require('../core/markdownEscaper').normal;
 const getUserSearchEngines = require('../commands/messages.js').getUserSearchEngines;
 const cancel = require('../commands/messages.js').cancel;
@@ -156,6 +157,7 @@ async function addSearchEngineMenu (callback) {
 
     bot.sendMessage(chatID, 'Respondendo *esta mensagem*, envie o nome e o link seguindo as instruções anteriores\\.', {
       parse_mode: "MarkdownV2",
+      reply_to_message_id: message.reply_to_message.message_id,
       reply_markup: {
         input_field_placeholder: 'Exemplo - https://exemplo.com/pesquisa?q=$',
         force_reply: true, 
@@ -178,11 +180,15 @@ async function addSearchEngineMenu (callback) {
 
 async function addSearchEngine (message) {
   const chatID = message.chat.id;
+  const messageText = message.text;
+  const messageParsed = messageText.match(/(.*) - (.*)/);
 
   const users = database.from('users');
   const userData = (await users.select().eq('id', chatID)).data[0];
   let searchEngines = userData.searchEngines;
-  const messageParsed = message.text.match(/(.*) - (.*)/);
+  
+  const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
+  const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
   if (searchEngines.length < 10 && messageParsed) {
     const searchEngineName = messageParsed[1].substring(0, 35);
@@ -199,7 +205,7 @@ async function addSearchEngine (message) {
         }
       });
     });
-  } else if (!messageParsed) {
+  } else if (!messageParsed && !cancelCommands.includes(messageText.toLowerCase())) {
     bot.sendMessage(chatID, `Você *não formatou* corretamente\\.`, {
       parse_mode: "MarkdownV2",
       reply_markup: {
@@ -209,7 +215,7 @@ async function addSearchEngine (message) {
         ]
       }
     });
-  } else {
+  } else if (!cancelCommands.includes(messageText.toLowerCase())) {
     bot.sendMessage(chatID, 'Você já *atingiu o limite* de 10 mecanismos de busca\\.', {
       parse_mode: "MarkdownV2",
       reply_markup: {
@@ -269,11 +275,15 @@ async function removeSearchEngineMenu (callback) {
 
 async function removeSearchEngine (message) {
   const chatID = message.chat.id;
+  const messageText = message.text;
+  const messageParsed = messageText.match(/(.*) - (.*)/);
 
   const users = database.from('users');
   const userData = (await users.select().eq('id', chatID)).data[0];
   let searchEngines = userData.searchEngines;
-  const messageParsed = message.text.match(/(.*) - (.*)/);
+
+  const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
+  const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
   if (searchEngines.length > 0 && messageParsed) {
     const searchEngineName = messageParsed[1].substring(0, 35);
@@ -302,7 +312,7 @@ async function removeSearchEngine (message) {
         }
       });
     }
-  } else if (!messageParsed) {
+  } else if (!messageParsed && !cancelCommands.includes(messageText.toLowerCase())) {
     bot.sendMessage(chatID, `Você *não formatou* corretamente\\.`, {
       parse_mode: "MarkdownV2",
       reply_markup: {
@@ -312,7 +322,7 @@ async function removeSearchEngine (message) {
         ]
       }
     });
-  } else {
+  } else if (!cancelCommands.includes(messageText.toLowerCase())) {
     bot.sendMessage(chatID, 'Você *não tem* mecanismos de busca\\.', {
       parse_mode: "MarkdownV2",
       reply_markup: {
@@ -373,6 +383,7 @@ function setDefaultSearchEngines (callback) {
         remove_keyboard: true
       }
     });
+    backToMainMenu(callback);
   });
 }
 

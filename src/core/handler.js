@@ -13,9 +13,6 @@ async function parseMessageAndSaveUser (message) {
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
   const chatType = message.chat.type;
   let commandReturned;
-
-  // current date and time for lastUseAt column
-  const nowFormatted = (new Date()).toISOString();
   
   // check if there's command on the text
   if (messageText.startsWith('/')) {
@@ -29,8 +26,10 @@ async function parseMessageAndSaveUser (message) {
     checkMistakes(messageText, message);
   }
 
-  // update or add user data. Only allowed if the command have the saveUserData == true or it's a shortcut (command inexistent)
+  // update or add user data. Only allowed if the command have the saveUserData == true or it's a shortcut or mistake check (command inexistent)
   if (commandReturned == undefined || commandReturned.saveUserData) {
+    const nowFormatted = (new Date()).toISOString();
+
     await users.upsert({
       id: message.chat.id,
       type: chatType,
@@ -101,11 +100,11 @@ async function userShortcut (message) {
 
 function checkMistakes (text, message) {
   const chatID = message.chat.id;
-  const checkMistakes = require('./checkMistakes');
 
-  bot.sendMessage(chatID, checkMistakes.check(checkMistakes.removePunctuation(text), mistakesList), {
-    reply_to_message_id: message.message_id
-  });
+  const checkMistakes = require('./checkMistakes');
+  const mistakesMessage = checkMistakes.check(checkMistakes.removePunctuation(text), mistakesList);
+
+  if (mistakesMessage) bot.sendMessage(chatID, mistakesMessage, { reply_to_message_id: message.message_id });
 }
 
 module.exports = {parseMessageAndSaveUser, parseReply};

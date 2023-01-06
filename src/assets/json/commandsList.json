@@ -43,7 +43,7 @@
     "args": "[palavra ou frase]",
     "admin": false,
     "saveUserData": true,
-    "parameters": ["message", "args"],
+    "parameters": ["message", "args", 2],
     "function": "chooseMessage",
     "modulePath": "messages.js"
   },
