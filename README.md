@@ -17,9 +17,9 @@ Um dicionário da língua portuguesa brasileira no Telegram. Receba definições
 
 Este projeto utiliza a [Dicio API](https://github.com/ThiagoNelsi/dicio-api) criada pelo [ThiagoNelsi](https://github.com/ThiagoNelsi) como a fonte do dicionário. O bot está hospedado no [Replit](https://replit.com) e as informações do usuário são armazenadas em um banco de dados usando o [Supabase](https://supabase.com). A biblioteca [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api) também foi utilizada para facilitar a interação com a API do Telegram. Por último, o site de apresentação do bot usa [Tailwind CSS](https://tailwindcss.com).
 
-# Variáveis de ​Ambiente (.env)
+# Variáveis de Ambiente (.env)
 
-```env
+```
 TG_TOKEN=Token que o @BotFather informa ao criar bot
 SUPABASE_TOKEN=Anon
 OWNER_ID=ID do Telegram do dono do bot
