@@ -1,7 +1,7 @@
 'use strict';
 
 // packages
-const markdownEscaper = require('../core/markdownEscaper');
+const markdownEscaper = require('../core/markdownEscaper').normal;
 
 const bot = global.bot;
 
@@ -13,7 +13,7 @@ async function getUserSearchEngines(searchEngines, word, chatID) {
     searchEngines = userData.searchEngines;
   }
 
-  const searchEnginesURLs = searchEngines.length == 0 ? 'Sem mecanismos de busca\\.' : searchEngines.map(searchEngine => `[${searchEngine.name}](${searchEngine.url.replace('$', word)})`).join(' • ');
+  const searchEnginesURLs = searchEngines.length == 0 ? 'Sem mecanismos de busca\\.' : searchEngines.map(searchEngine => `[${markdownEscaper(searchEngine.name)}](${searchEngine.url.replace('$', word)})`).join(' • ');
   return searchEnginesURLs;
 }
 

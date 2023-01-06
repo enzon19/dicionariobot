@@ -3,7 +3,7 @@
 // packages
 const axios = require("axios");
 const logError = require('./error');
-const markdownEscaper = require('./markdownEscaper');
+const markdownEscaper = require('./markdownEscaper').normal;
 const apiProviderUrl = 'enzon19.repl.co'//process.env.API_PROVIDER_URL;
 
 function define (word) {

@@ -1,6 +1,6 @@
 "use strict";
 
-const markdownEscaperReverse = require('../core/markdownEscaperReverse');
+const markdownEscaperReverse = require('../core/markdownEscaper').reverse;
 
 const bot = global.bot;
 const users = global.users;

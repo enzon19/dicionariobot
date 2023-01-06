@@ -4,6 +4,7 @@ const bot = global.bot;
 const database = global.database;
 
 const moment = require('moment');
+const markdownEscaper = require('../core/markdownEscaper').normal;
 const getUserSearchEngines = require('../commands/messages.js').getUserSearchEngines;
 const cancel = require('../commands/messages.js').cancel;
 
@@ -384,7 +385,7 @@ async function dataStoredMenu (callback) {
   const users = database.from('users');
   const userData = (await users.select().eq('id', chatID)).data[0];
 
-  const dataText = `*ID do chat do Telegram:* ${userData.id}
+  const dataText = `*ID do chat do Telegram:* ${markdownEscaper(userData.id)}
 *Tipo de chat do Telegram:* ${userData.type}
 *Atalho:* ${['Definição', 'Sinônimos', 'Exemplos'][userData.shortcut]}
 *Mecanismos de busca:* ${await getUserSearchEngines(userData.searchEngines, "")}
