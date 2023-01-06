@@ -192,7 +192,8 @@ async function addSearchEngine (message) {
 
   if (searchEngines.length < 10 && messageParsed) {
     const searchEngineName = messageParsed[1].substring(0, 35);
-    let searchEngineURL = messageParsed[2].substring(0, 80);
+    let searchEngineURL = messageParsed[2].substring(0, 85).replace(/^(https?:\/\/)?/, "https://");
+    console.log(searchEngineURL)
     if (!searchEngineURL.includes('$')) searchEngineURL += '$';
     
     searchEngines.push({"name": searchEngineName, "url": searchEngineURL});
@@ -286,8 +287,8 @@ async function removeSearchEngine (message) {
   const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
   if (searchEngines.length > 0 && messageParsed) {
-    const searchEngineName = messageParsed[1].substring(0, 35);
-    let searchEngineURL = messageParsed[2].substring(0, 80);
+    const searchEngineName = messageParsed[1];
+    const searchEngineURL = messageParsed[2];
     const selectedEngineIndex = searchEngines.findIndex(searchEngine => searchEngine.name == searchEngineName & searchEngine.url == searchEngineURL);
 
     if (selectedEngineIndex >= 0) {

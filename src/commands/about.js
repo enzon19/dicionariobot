@@ -3,8 +3,10 @@
 const bot = global.bot;
 const botUsername = process.env.BOT_USERNAME;
 
-function start (message, groupAdd) {
+function start (message) {
   const chatID = message.chat.id;
+  const groupAdd = message.chat.type != 'private';
+  
   const startText = `*Dicionário Bot \\(dicionariobot\\)*
 Um dicionário da língua portuguesa brasileira no Telegram\\. 
 

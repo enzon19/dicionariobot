@@ -30,7 +30,6 @@ app.get('*', (req, res) => {
 // Send messages using news.html
 app.use(require("body-parser").urlencoded({ extended: false }));
 app.post("*", (req, res) => {
-  console.log(req.body)
   const sendType = req.body.type;
   const messageText = req.body.text;
   const messagePhoto = req.body.photo;
