@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/tailwind.css" rel="stylesheet">
   </head> 
-  <body class="bg-blood text-white">
+  <body class="bg-blood text-white flex flex-col h-screen">
     <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center">
       <a class="flex items-center" href="/">
         <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
@@ -25,7 +25,7 @@
       </div>
     </header>
     <!-- Hero -->
-    <div class="px-4 pt-4 mx-4 mt-4">
+    <div class="px-4 pt-4 mx-4 mt-4 flex-grow justify-end">
       <div class="container mx-auto justify-center lg:flex lg:flex-row lg:gap-32 lg:items-center">
         <div class="mx-auto max-w-md text-center lg:text-left basis-1/2">
           <h1 class="text-4xl font-bold mb-2">Um dicionário da língua portuguesa brasileira no Telegram</h1>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- Recursos -->
-    <div class="py-4 mb-4 bg-bulgarian-rose">
+    <div class="py-4 bg-bulgarian-rose flex-grow">
       <div class="px-4">
         <h2 class="text-center text-2xl mb-4 font-semibold">Recursos</h2>
         <!-- grid grid-cols-auto gap-4 col-min-w-64 col-max-w-128 -->
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <footer class="container text-center mx-auto pb-4">
+    <footer class="container text-center mx-auto pb-4 mt-4">
       <span class="text-center text-base">
         <a class="link-as-underline" href="/novidades">Novidades</a> •
         <a class="link-as-underline" href="/privacidade">Privacidade</a> •

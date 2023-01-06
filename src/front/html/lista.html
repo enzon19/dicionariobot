@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Privacidade - Dicionário Bot</title>
+    <title>Lista - Dicionário Bot</title>
     <meta name="description" content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,23 +21,22 @@
     </header>
     <div class="px-4 pt-4 flex-grow">
       <div class="container mx-auto">
-        <h1 class="text-3xl font-bold mb-2">Política de Privacidade</h1>
+        <h1 class="text-3xl font-bold mb-2">Lista de Palavras</h1>
 
-        <h3 class="text-xl font-bold">Dados recebidos</h3>
-        <p class="text-base">Todas as mensagens trocadas, seu nome e pedidos feitos via inline são recebidos e analisados pelo bot, porém não são armazenados.</p>
-        <h3 class="text-xl font-bold">Dados armazenados</h3>
-        <p class="text-base">O bot armazena: seu ID do Telegram (são apenas números); Tipo de chat (privado, grupo, supergrupo); Configurações, como: atalho (definição, sinônimos ou exemplos), mecanismos de busca, data da primeira e da última interação com o bot. Essas informações só são realmente salvas ao usar o bot com qualquer comando diferente do /start ou do /privacy. Gerencie os dados que o bot tem sobre você no comando de configurações (/settings).</p>
-
-        <hr class="my-2">
-
-        <h3 class="text-xl font-bold">Notas de atualização</h3>
-        <p class="text-base">As notas de atualização do bot são novos recursos, mudanças feitas e correções do bot, ou seja, atualizações. Inclui apenas novidades do bot utilizado (Dicionário Bot).</p>
-        <h3 class="text-xl font-bold">Anúncios e divulgações</h3>
-        <p class="text-base">Qualquer anunciante pode utilizar o Dicionário Bot como canal de anúncios. Esses anúncios não estão vinculados à você e podem ser enviados ao usar os seguintes comandos: /definir, /sinonimos ou /exemplos, além dos atalhos.</p>
-
-        <hr class="my-2">
-        <p class="text-base">Alterações na política de privacidade do bot serão avisadas pelo recurso "Notas de atualização" do bot que não pode ser desativado.</p>
-        <p class="text-base">Última modificação na política de privacidade do bot: 01/01/2023 às 22:06</p>
+        <table class="w-full table-fixed border-collapse">
+          <thead>
+            <tr>
+              <th class="w-1/2 border border-pain p-2 bg-more-dry-tomato">Errado</th>
+              <th class="w-1/2 border border-pain p-2 bg-more-dry-tomato">Certo</th>
+            </tr>
+          </thead>
+          <tbody id="mistakesList">
+            <tr class="tableRow">
+              <td class="tableCell">Carregando...</td>
+              <td class="tableCell">Carregando...</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <footer class="bg-blood container text-center mx-auto pb-4 mt-4">
@@ -57,5 +56,6 @@
         <a target="blank" class="link-as-underline" href="https://enzon19.com/#donate">aqui</a>.
       </span>
     </footer> 
+    <script src="/js/list.js"></script>
   </body>
 </html>

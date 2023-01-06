@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/tailwind.css" rel="stylesheet">
   </head> 
-  <body class="bg-blood text-white">
+  <body class="bg-blood text-white flex flex-col h-screen">
     <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center">
       <a class="flex items-center" href="/">
         <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
@@ -19,7 +19,7 @@
         <a href="https://t.me/dicionariobot" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Iniciar</a>
       </div>
     </header>
-    <div class="px-4 pt-4">
+    <div class="px-4 pt-4 flex-grow">
       <div class="container mx-auto text-center">
         <span class="text-6xl font-extrabold">404</span>
         <h1 class="text-3xl font-bold mb-2">Essa página não existe!</h1>
@@ -27,5 +27,22 @@
         <a href="/" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Voltar para o início</a>
       </div>
     </div>
+    <footer class="container text-center mx-auto pb-4 mt-4">
+      <span class="text-center text-base">
+        <a class="link-as-underline" href="/novidades">Novidades</a> •
+        <a class="link-as-underline" href="/privacidade">Privacidade</a> •
+        <a class="link-as-underline" href="/lista">Lista</a> •
+        <a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
+      </span>
+      <br>
+      <span class="text-center text-sm">
+        Desenvolvido por
+        <a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>.
+        Veja esse projeto no
+        <a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>.
+        Faça uma doação
+        <a target="blank" class="link-as-underline" href="https://enzon19.com/#donate">aqui</a>.
+      </span>
+    </footer>   
   </body>
 </html> 

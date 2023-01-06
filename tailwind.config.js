@@ -13,8 +13,10 @@ module.exports = {
         // Define your custom color palette here
         'red': '#ee2919',
         'dry-tomato': '#8e190f',
+        'more-dry-tomato': '#7a160d',
         'blood': '#661008',
         'hurt': '#420903',
+        'pain': '#2d0804',
         'bulgarian-rose': '#500c06',
         'clear-red': '#ff3826'
       },
