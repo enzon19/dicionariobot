@@ -2,6 +2,10 @@
 
 // packages
 const markdownEscaper = require('../core/markdownEscaper').normal;
+const fs = require('fs');
+
+const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
+const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
 const bot = global.bot;
 
@@ -36,7 +40,7 @@ async function sendType (message, args, typeNumber) {
       }
     );
   // Erros
-  } else if (response[1] == 400) {
+  } else if (response[1] == 400 && !cancelCommands.includes(args.toLowerCase())) {
     bot.sendMessage(chatID, `Infelizmente, a palavra *"${args}"* não está cadastrada no dicionário\\.\n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}`,
       {
         parse_mode: "MarkdownV2",
@@ -54,7 +58,7 @@ async function sendType (message, args, typeNumber) {
         reply_markup: { "remove_keyboard": true }
       }
     );
-  } else {
+  } else if (!cancelCommands.includes(args.toLowerCase())) {
     bot.sendMessage(chatID, `Eita\\. Houve um *erro* ao procurar por esta palavra no dicionário\\.\n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}`,
       {
         parse_mode: "MarkdownV2",

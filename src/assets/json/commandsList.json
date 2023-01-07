@@ -48,7 +48,7 @@
     "modulePath": "messages.js"
   },
   {
-    "name": "Ajustes",
+    "name": "Configurações",
     "command": "/settings",
     "description": "Configure o atalho no chat privado e saiba quais dados são armazenados pelo bot.",
     "example": "",
@@ -70,7 +70,7 @@
     "admin": false,
     "saveUserData": true,
     "parameters": ["message"],
-    "function": "helpMessage",
+    "function": "helpMainMenu",
     "modulePath": "help.js"
   },
   {

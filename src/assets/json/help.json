@@ -1,0 +1,37 @@
+[
+  {
+    "categoryName": "Modo Inline",
+    "questions": [
+      {
+        "question": "O que é e como usar o modo inline?",
+        "answer": "O modo inline é um recurso do Telegram que permite usar um bot para pesquisar conteúdo e enviar mensagens em qualquer chat, sem a necessidade de adicionar o bot ao chat.\n\nPara usar o modo inline, você precisará digitar \"@dicionariobot\" e sua consulta no campo de mensagem de qualquer chat. Depois, o Telegram mostrará uma lista com definição, sinônimos e exemplos, que você pode selecionar e enviar para o chat.\n\nTeste essa função agora mesmo! Digite \"@dicionariobot palavra\" no campo de mensagem dessa conversa."
+      }
+    ]
+  },
+  {
+    "categoryName": "Atalhos",
+    "questions": [
+      {
+        "question": "O que são atalhos?",
+        "answer": "Os atalhos são uma maneira conveniente para os usuários acessarem as definições, sinônimos e exemplos de palavras sem precisar digitar o comando para cada função. Esses atalhos podem ser personalizados nas configurações do bot (//settings), para que você possa escolher aqueles que funcionam melhor para você.\n\nTeste essa função agora mesmo! Digamos que nas configurações do bot você tenha escolhido \"Exemplos\" como seu atalho. Ao simplesmente enviar \"palavra\" no chat do bot, você receberá exemplos para a palavra \"palavra\"."
+      }
+    ]
+  },
+  {
+    "categoryName": "Mecanismos de Busca",
+    "questions": [
+      {
+        "question": "O que são mecanismos de busca?",
+        "answer": "Um mecanismo de busca é uma ferramenta que ajuda você a encontrar informações na Internet. Ele funciona examinando todas as páginas da web indexadas e retornando uma lista de páginas da web relacionadas à sua consulta de pesquisa.\n\nPor exemplo, digamos que você queira encontrar informações sobre gatos. Você pode acessar um mecanismo de busca como o Google, digitar \"gatos\" como sua consulta de pesquisa e o mecanismo de busca retornará uma lista de páginas da Web relevantes para gatos.\n\nQuando o bot não encontrar uma palavra ou um erro acontecer, ele te dará links para você pesquisar diretamente em mecanismos de busca e sites. Por padrão, os mecanismos são: Google, Bing, DuckDuckGo, Wikipédia e Dicionário Informal. Porém, você pode adicionar (até 10) e remover qualquer mecanismo que você quiser!"
+      },
+      {
+        "question": "Como adicionar um mecanismo de busca?",
+        "answer": "Para adicionar um mecanismo de busca personalizado, você precisará seguir estas etapas:\n\n1. Use o comando de configurações (/settings).\n2. Clique em \"Mecanismos de busca\". Depois, clique em \"Adicionar\".\n3. Envie as informações respondendo a nova mensagem, com esse padrão: `Nome para o mecanismo de busca - URL para o mecanismo de busca`.\n\nPor exemplo, se você deseja adicionar um mecanismo de busca chamado \"Exemplo\" com a URL \"https://www.exemplo.com/pesquisa?q=$\", a formatação será essa: `Exemplo - https://exemplo.com/pesquisa?q=$`."
+      },
+      {
+        "question": "O que é o \"$\"? Como descobrir onde devo colocá-lo?",
+        "answer": "O espaço reservado \"$\" será substituído pela palavra que o bot não encontrou ou que sofreu um erro. A localização exata do espaço reservado pode variar dependendo do mecanismo de busca. Para descobrir onde o espaço reservado \"$\" deve estar em uma URL, você pode tentar o seguinte:\n\n1. Acesse o site do mecanismo de busca e faça algumas pesquisas usando algumas palavras-chave diferentes.\n2. Veja e note o padrão da URL da página de resultados de pesquisa. O espaço reservado \"$\" deve estar localizado onde a consulta sempre aparece na URL.\n\nPor exemplo, se você pesquisar \"gatos\" no Google, a URL da página de resultados da pesquisa pode ser \"https://www.google.com/search?q=gatos\". Assim como quando você pesquisa \"cachorros\", a URL é \"https://www.google.com/search?q=cachorros\". Nesse caso, o marcador de posição \"$\" deve estar localizado onde \"gatos\" e \"cachorros\" aparece na URL, assim: \"https://www.google.com/search?q=$\"."
+      }
+    ]
+  }
+]

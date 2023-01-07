@@ -8,6 +8,9 @@ const fs = require('fs');
 const markdownEscaper = require('../core/markdownEscaper').normal;
 const getUserSearchEngines = require('../commands/messages.js').getUserSearchEngines;
 const cancel = require('../commands/messages.js').cancel;
+  
+const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
+const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
 // MAIN MENU
 
@@ -44,7 +47,7 @@ async function mainMenu(chatID) {
 async function settingsMainMenu (message) {
   const chatID = message.chat.id;
 
-  const mainMenuData = await mainMenu(chatID);
+  let mainMenuData = await mainMenu(chatID);
   if (mainMenuData) {
     mainMenuData.options.reply_to_message_id = message.message_id;
     bot.sendMessage(chatID, mainMenuData.text, mainMenuData.options);
@@ -55,7 +58,7 @@ async function backToMainMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
 
-  const mainMenuData = await mainMenu(chatID);
+  let mainMenuData = await mainMenu(chatID);
   mainMenuData.options.message_id = message.message_id;
   mainMenuData.options.chat_id = chatID;
 
@@ -186,9 +189,6 @@ async function addSearchEngine (message) {
   const users = database.from('users');
   const userData = (await users.select().eq('id', chatID)).data[0];
   let searchEngines = userData.searchEngines;
-  
-  const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
-  const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
   if (searchEngines.length < 10 && messageParsed) {
     const searchEngineName = messageParsed[1].substring(0, 35);
@@ -282,9 +282,6 @@ async function removeSearchEngine (message) {
   const users = database.from('users');
   const userData = (await users.select().eq('id', chatID)).data[0];
   let searchEngines = userData.searchEngines;
-
-  const cancelCommandData = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/commandsList.json', 'utf-8')).find(value => value.name == 'Cancelar');
-  const cancelCommands = [...cancelCommandData.command, ...cancelCommandData.alternatives];
 
   if (searchEngines.length > 0 && messageParsed) {
     const searchEngineName = messageParsed[1];
