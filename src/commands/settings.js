@@ -3,7 +3,7 @@
 const bot = global.bot;
 const database = global.database;
 
-const moment = require('moment');
+const moment = require('moment-timezone');
 const fs = require('fs');
 const markdownEscaper = require('../core/markdownEscaper').normal;
 const getUserSearchEngines = require('../commands/messages.js').getUserSearchEngines;
@@ -398,8 +398,8 @@ async function dataStoredMenu (callback) {
 *Tipo de chat do Telegram:* ${userData.type}
 *Atalho:* ${['Definição', 'Sinônimos', 'Exemplos'][userData.shortcut]}
 *Mecanismos de busca:* ${await getUserSearchEngines(userData.searchEngines, '')}
-*Data do cadastro no bot:* ${moment(userData.createdAt).format('DD/MM/YYYY HH:mm:ss')}
-*Data do último uso do bot:* ${moment(userData.lastUseAt).format('DD/MM/YYYY HH:mm:ss')}`
+*Data do cadastro no bot:* ${moment.tz(moment(userData.createdAt), 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}
+*Data do último uso do bot:* ${moment.tz(moment(userData.lastUseAt), 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}`
 
   bot.editMessageText(`__*CONFIGURAÇÕES \\> DADOS*__\n\n${dataText}`, {
     parse_mode: 'MarkdownV2',

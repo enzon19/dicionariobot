@@ -2,6 +2,7 @@
 
 // packages
 const fs = require('fs');
+const moment = require('moment-timezone');
 
 const users = global.users;
 const botUsername = process.env.BOT_USERNAME;
@@ -28,7 +29,7 @@ async function parseMessageAndSaveUser (message) {
 
   // update or add user data. Only allowed if the command have the saveUserData == true or it's a shortcut or mistake check (command inexistent)
   if (commandReturned == undefined || commandReturned.saveUserData) {
-    const nowFormatted = (new Date()).toISOString();
+    const nowFormatted = moment();
 
     await users.upsert({
       id: message.chat.id,
