@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dicionário Bot para Telegram</title>
+    <meta name="description" content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/tailwind.css" rel="stylesheet">
+  </head> 
+  <body class="bg-blood text-white flex flex-col h-screen">
+    <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center">
+      <a class="flex items-center" href="/">
+        <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
+        <h3 class="ml-2 text-xl font-semibold">Dicionário Bot</h3>
+      </a>
+      <div class="flex items-center">
+        <a href="https://t.me/dicionariobot" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Iniciar</a>
+      </div>
+    </header>
+    <!-- Hero -->
+    <div class="px-4 pt-4 mx-4 mt-4 flex-grow justify-end">
+      <div class="container mx-auto justify-center lg:flex lg:flex-row lg:gap-32 lg:items-center">
+        <div class="mx-auto max-w-md text-center lg:text-left basis-1/2">
+          <h1 class="text-4xl font-bold mb-2">Um dicionário da língua portuguesa brasileira no Telegram</h1>
+          <p class="text-lg mb-2">Receba definições, sinônimos e exemplos de 
+            qualquer palavra. Use o modo inline em qualquer bate-papo. Corrija erros gramaticais em grupos.</p>
+          <a href="https://t.me/dicionariobot" class="text-lg inline-block px-4 py-2 bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full font-semibold">Iniciar</a>
+        </div>
+        <div class="mx-auto pt-2 lg:pt-0 max-w-md basis-1/2">
+          <img src="/static/hero_phone_screenshot.png" alt="Uma captura de tela mostrando o funcionamento do bot no Telegram">
+        </div>
+      </div>
+    </div>
+    <!-- Recursos -->
+    <div class="py-4 bg-bulgarian-rose flex-grow">
+      <div class="px-4">
+        <h2 class="text-center text-2xl mb-4 font-semibold">Recursos</h2>
+        <!-- grid grid-cols-auto gap-4 col-min-w-64 col-max-w-128 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 container mx-auto items-center">
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Definições</span>
+            <p class="text-base">Veja a separação silábica, as definições de acordo com as várias classes de palavras que uma palavra pode exercer e, por último, uma pequena etimologia.</p>
+          </div>
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Sinônimos e Exemplos</span>
+            <p class="text-base">Receba uma lista de sinônimos e alguns exemplos de uso de uma palavra.</p>
+          </div>
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Inline</span>
+            <p class="text-base">Use o modo inline ao digitar @dicionariobot no campo de mensagem de qualquer bate-papo e escrever alguma palavra.</p>
+          </div>
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Correções</span>
+            <p class="text-base">Quando adicionado em algum grupo, o bot pode corrigir alguns erros gramaticais. <a class="link-as-underline" href="/lista">Veja a lista de palavras que serão corrigidas aqui.</a></p>
+          </div>
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Atalhos</span>
+            <p class="text-base">Não é necessário enviar /definir, /sinônimos ou /exemplos toda vez. Basta enviar uma palavra solta e receber um dos três com base nos seus ajustes.</p>
+          </div>
+          <div class="bg-hurt rounded-xl p-4 h-full">
+            <span class="text-lg font-semibold">Mecanismos de busca</span>
+            <p class="text-base">Caso o bot não ache a definição de uma palavra, ele te dará um link para pesquisar diretamente no Google ou em qualquer outro mecanismo que você cadastrar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="container text-center mx-auto pb-4 mt-4">
+      <span class="text-center text-base">
+        <a class="link-as-underline" href="/novidades">Novidades</a> •
+        <a class="link-as-underline" href="/privacidade">Privacidade</a> •
+        <a class="link-as-underline" href="/lista">Lista</a> •
+        <a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
+      </span>
+      <br>
+      <span class="text-center text-sm">
+        Desenvolvido por
+        <a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>.
+        Veja esse projeto no
+        <a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>.
+        Faça uma doação
+        <a target="blank" class="link-as-underline" href="https://enzon19.com/#donate">aqui</a>.
+      </span>
+    </footer>    
+  </body>
+</html>
