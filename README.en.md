@@ -1,9 +1,7 @@
 <p align="center">
-  <img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/resources/Botpic.png" alt="Dicionário Bot" width="187" height="187">
+  <img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/images/logo/favicon.png" alt="Dicionário Bot" width="187" height="187">
   <br><br>
-    <a href="https://github.com/enzon19/dicionariobot/blob/main/README.pt-BR.md#20">
-        <img height="20px" src="https://img.shields.io/badge/Current%20version-v3.0-ee2919">
-    </a>
+    <img height="20px" src="https://img.shields.io/badge/Current%20version-v3.0-ee2919">
 </p>
 
 # Dicionário Bot

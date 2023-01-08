@@ -105,3 +105,7 @@ dist
 
 # Test file
 test.js
+
+# Replit
+.replit
+replit.nix
