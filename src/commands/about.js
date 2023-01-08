@@ -12,7 +12,7 @@ Um dicionário da língua portuguesa brasileira no Telegram\\.
 
 Para começar envie /definir, /sinonimos ou /exemplos\\. Você também pode usar o modo inline ao digitar @${botUsername} no campo de mensagem em qualquer bate\\-papo e escrever alguma palavra\\. ${groupAdd ? 'Cometa um erro gramatical e o bot pode te corrigir\\. Essa função só funciona [com essa a lista de palavras](dicionariobot.enzon19.com/lista) e se o administrador do grupo permitir o bot ter acesso às mensagens\\.' : 'Quando adicionado em algum grupo, pode corrigir alguns erros gramaticais\\.'}
 
-_Você pode ler a [política de privacidade informal](https://telegra.ph/Pol%C3%ADtica-de-Privacidade-do-Dicion%C3%A1rio-Bot-09-16)\\, além de [ver o código\\-fonte do bot](https://github.com/enzon19/dicionariobot)\\._`;
+_Você pode ler a [política de privacidade informal](https://dicionariobot.enzon19.com/privacidade)\\, além de [ver o código\\-fonte do bot](https://github.com/enzon19/dicionariobot)\\._`;
 
   bot.sendMessage(chatID, startText, {
     parse_mode: 'MarkdownV2',
