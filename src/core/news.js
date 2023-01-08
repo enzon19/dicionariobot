@@ -18,13 +18,13 @@ async function sendNews (sendType, messageText, messagePhoto, tgOptions, res) {
     try {
       if (messagePhoto) {
         await bot.sendPhoto(currentUser, messagePhoto, {
-          parse_mode: 'Markdown',
-          caption: messageText,
+          parse_mode: 'HTML',
+          caption: mdToHTML(messageText),
           ...JSON.parse(tgOptions),
         });
       } else {
-        await bot.sendMessage(currentUser, messageText, {
-          parse_mode: 'Markdown', 
+        await bot.sendMessage(currentUser, mdToHTML(messageText), {
+          parse_mode: 'HTML', 
           ...JSON.parse(tgOptions) 
         });
       }
@@ -35,6 +35,15 @@ async function sendNews (sendType, messageText, messagePhoto, tgOptions, res) {
   }
 
   console.log('\n' + JSON.stringify(usersToRemove));
+}
+
+function mdToHTML (text) {
+  return text.replace(/&/g, '&amp;')
+  .replace(/>/g, '&gt;')
+  .replace(/</g, '&lt;')
+  .replace(/_([^_]+)_/g, '<em>$1</em>')
+  .replace(/\*([^\*]+)\*/g, '<strong>$1</strong>')
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class="tg-link" href="$2">$1</a>');
 }
 
 module.exports = {sendNews}
