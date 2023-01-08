@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -11,8 +11,8 @@ app.use('/css', express.static(path.join(__dirname + '/front/css')));
 app.use('/js', express.static(path.join(__dirname + '/front/js')));
 
 // Pages
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/front/html/index.html");
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/front/html/index.html');
 });
 
 app.get('*', (req, res) => {
@@ -22,14 +22,14 @@ app.get('*', (req, res) => {
 
   res.sendFile(filePath, (err) => {
     if (err) {
-      res.status(404).sendFile(__dirname + "/front/html/404.html")
+      res.status(404).sendFile(__dirname + '/front/html/404.html')
     }
   });
 });
 
 // Send messages using news.html
-app.use(require("body-parser").urlencoded({ extended: false }));
-app.post("*", (req, res) => {
+app.use(require('body-parser').urlencoded({ extended: false }));
+app.post('*', (req, res) => {
   const sendType = req.body.type;
   const messageText = req.body.text;
   const messagePhoto = req.body.photo;
@@ -39,5 +39,5 @@ app.post("*", (req, res) => {
 });
 
 module.exports = () => {
-  app.listen(2608, () => console.log("Dicionário Bot 3.0.0\n\nO servidor está supimpa."));
+  app.listen(2608, () => console.log('Dicionário Bot 3.0.0\n\nO servidor está supimpa.'));
 };

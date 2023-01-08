@@ -12,7 +12,7 @@ function check(string, mistakesList) {
   // Check each word in the array against the list of correct spellings
   for (const word of words) {
     const mistake = mistakesList.find(mistake => mistake.wrong == word);
-    if (mistake) corrections.push(mistake.right + "*");
+    if (mistake) corrections.push(mistake.right + '*');
   }
 
   return corrections.join('\n');

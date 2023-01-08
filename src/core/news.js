@@ -18,18 +18,18 @@ async function sendNews (sendType, messageText, messagePhoto, tgOptions, res) {
     try {
       if (messagePhoto) {
         await bot.sendPhoto(currentUser, messagePhoto, {
-          parse_mode: "Markdown",
+          parse_mode: 'Markdown',
           caption: messageText,
           ...JSON.parse(tgOptions),
         });
       } else {
         await bot.sendMessage(currentUser, messageText, {
-          parse_mode: "Markdown", 
+          parse_mode: 'Markdown', 
           ...JSON.parse(tgOptions) 
         });
       }
     } catch (error) {
-      console.log("Eita. - " + i + " - " + currentUser + " - " + error);
+      console.log('Eita. - ' + i + ' - ' + currentUser + ' - ' + error);
       usersToRemove.push(currentUser);
     }
   }

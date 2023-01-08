@@ -13,7 +13,11 @@
     "questions": [
       {
         "question": "O que são atalhos?",
-        "answer": "Os atalhos são uma maneira conveniente para os usuários acessarem as definições, sinônimos e exemplos de palavras sem precisar digitar o comando para cada função. Esses atalhos podem ser personalizados nas configurações do bot (//settings), para que você possa escolher aqueles que funcionam melhor para você.\n\nTeste essa função agora mesmo! Digamos que nas configurações do bot você tenha escolhido \"Exemplos\" como seu atalho. Ao simplesmente enviar \"palavra\" no chat do bot, você receberá exemplos para a palavra \"palavra\"."
+        "answer": "Os atalhos são uma maneira conveniente para os usuários acessarem as definições, sinônimos e exemplos de palavras sem precisar digitar o comando para cada função. Esses atalhos podem ser personalizados nas configurações do bot (/settings), para que você possa escolher aqueles que funcionam melhor para você.\n\nTeste essa função agora mesmo no chat privado com o bot! Digamos que nas configurações do bot você tenha escolhido \"Exemplos\" como seu atalho. Ao simplesmente enviar \"palavra\" no chat do bot, você receberá exemplos para a palavra \"palavra\"."
+      },
+      {
+        "question": "Por que atalhos não funcionam em grupos?",
+        "answer": "Os atalhos só funcionam no chat privado com o bot. Isso porque se funcionassem em grupos seria uma total bagunça. Ao enviar qualquer mensagem ou usar comando de outros bots, o Dicionário Bot interpretaria como um atalho e responderia tudo, seria um spam."
       }
     ]
   },

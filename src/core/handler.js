@@ -44,8 +44,8 @@ function findCommand (command, args, chatType, message) {
 
   // all possible variables
   const variablesNamesWithValues = {
-    "message": message, 
-    "args": args
+    'message': message, 
+    'args': args
   };
 
   // get the command used in the user message

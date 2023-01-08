@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const markdownEscaperReverse = require('../core/markdownEscaper').reverse;
 
@@ -14,10 +14,10 @@ async function parseInlineAndSaveUser(inline) {
     lastUseAt: nowFormatted
   });
 
-  if (!inline.query || inline.query == " ") {
+  if (!inline.query || inline.query == ' ') {
     bot.answerInlineQuery(inline.id, [], {
-      switch_pm_text: "Escreva uma palavra para consultar",
-      switch_pm_parameter: "byInline",
+      switch_pm_text: 'Escreva uma palavra para consultar',
+      switch_pm_parameter: 'byInline',
       cache_time: 1200
     });
     return;
@@ -49,7 +49,7 @@ async function generateInlineResponse (inline) {
         id: inline.from.id + `_${index}_` + word,
         title: titleTerms[index] + word.toUpperCase(),
         description: peekMakersFunctions[index](response),
-        thumb_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/preview/images/inline/${index}_${word[0].toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}.png`,
+        thumb_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/preview/images/inline/${index}_${word[0].toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}.png`,
         input_message_content: { message_text: response, parse_mode: 'MarkdownV2' }
       });
     } else if (response[1] == 400) {

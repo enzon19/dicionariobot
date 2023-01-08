@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 // packages
-const axios = require("axios");
+const axios = require('axios');
 const logError = require('./error');
 const markdownEscaper = require('./markdownEscaper').normal;
 const apiProviderUrl = 'enzon19.repl.co'//process.env.API_PROVIDER_URL;
@@ -17,7 +17,7 @@ function examples (word) {
       resolve(`__*EXEMPLOS PARA ${markdownEscaper(word.toUpperCase())}*__\n\n${examplesText}`);
     } catch (e) {
       //logError(e);
-      resolve([undefined, e.request.connection["_httpMessage"].res.statusCode]);
+      resolve([undefined, e.request.connection['_httpMessage'].res.statusCode]);
     }
   });
 }
@@ -40,10 +40,10 @@ function transformStructureToHumanReadable (wordExamples) {
 }
 
 function fixAuthor (author) {
-  if (author.startsWith("- ")) { 
-    return author.replace("- ", "");
-  } else if (author == "") {
-    return "Autor desconhecido";
+  if (author.startsWith('- ')) { 
+    return author.replace('- ', '');
+  } else if (author == '') {
+    return 'Autor desconhecido';
   } else {
     return author;
   }
