@@ -35,7 +35,7 @@ function backToMainMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
 
-  let mainMenuData = mainMenu(chatID);
+  let mainMenuData = mainMenu();
   mainMenuData.options.message_id = message.message_id;
   mainMenuData.options.chat_id = chatID;
 
