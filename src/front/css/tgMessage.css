@@ -82,12 +82,3 @@
   padding: 0;
   margin: 0;
 }
-.tgme_widget_message_author, .tgme_widget_message_text {
-  font-size: 14px;
-  line-height: 20px;
-  margin: -2px 0;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-bottom: 1px;
-}
