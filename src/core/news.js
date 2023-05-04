@@ -1,8 +1,8 @@
 'use strict';
-const database = global.database;
+const xata = global.xata;
 
 async function getUsersIDs () {
-  const data = (await database.from('users').select('id')).data;
+  const data = await xata.db.users.select(["id"]).getMany();
   return data.map(user => user.id);
 }
 
@@ -34,7 +34,7 @@ async function sendNews (sendType, messageText, messagePhoto, tgOptions, res) {
     }
   }
 
-  console.log('\n' + JSON.stringify(usersToRemove));
+  console.log('\nTchau: ' + JSON.stringify(usersToRemove));
 }
 
 function mdToHTML (text) {

@@ -1,7 +1,7 @@
 'use strict';
 
 const bot = global.bot;
-const database = global.database;
+const xata = global.xata;
 
 const moment = require('moment-timezone');
 const fs = require('fs');
@@ -15,8 +15,7 @@ const cancelCommands = [cancelCommandData.command, ...cancelCommandData.alternat
 // MAIN MENU
 
 async function mainMenu(chatID) {
-  const users = database.from('users');
-  const userData = (await users.select('shortcut,searchEngines').eq('id', chatID)).data[0];
+  const userData = await xata.db.users.read(chatID.toString());
 
   if (userData) {
     const shortcut = userData.shortcut;
@@ -77,8 +76,7 @@ async function shortcutMenu (callback) {
   const chatID = message.chat.id;
   const chatType = message.chat.type;
 
-  const users = database.from('users');
-  const userData = (await users.select('shortcut').eq('id', chatID)).data[0];
+  const userData = await xata.db.users.read(chatID.toString());
 
   const shortcut = userData.shortcut;
   const shortcutLabel = ['Definição', 'Sinônimos', 'Exemplos'][shortcut];
@@ -108,9 +106,7 @@ async function setShortcut (callback) {
   const chatID = message.chat.id;
   const type = callback.data.slice(-1);
 
-  await database.from('users')
-    .update({ shortcut: type })
-    .eq('id', chatID);
+  await xata.db.users.update(chatID.toString(), { shortcut: Number(type) });
   
   shortcutMenu(callback);
 }
@@ -140,9 +136,8 @@ async function addSearchEngineMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
 
-  const users = database.from('users');
-  const userData = (await users.select('searchEngines').eq('id', chatID)).data[0];
-  const searchEngines = userData.searchEngines;
+  const userData = await xata.db.users.read(chatID.toString());
+  const searchEngines = JSON.parse(userData.searchEngines);
 
   if (searchEngines.length < 10) {
     bot.editMessageText(`__*CONFIGURAÇÕES \\> MECANISMOS DE BUSCA \\> ADICIONAR*__\n\nEnvie o nome e o link colocando um \`$\` onde deve entrar a palavra\\, desse jeito: \`Exemplo - https://exemplo.com/pesquisa?q=$\` \\(o formato do URL varia de site para site\\)\\. Saiba mais no comando /ajuda\\.`, {
@@ -186,9 +181,8 @@ async function addSearchEngine (message) {
   const messageText = message.text;
   const messageParsed = messageText.match(/(.*) - (.*)/);
 
-  const users = database.from('users');
-  const userData = (await users.select().eq('id', chatID)).data[0];
-  let searchEngines = userData.searchEngines;
+  const userData = await xata.db.users.read(chatID.toString());
+  let searchEngines = JSON.parse(userData.searchEngines);
 
   if (searchEngines.length < 10 && messageParsed) {
     const searchEngineName = messageParsed[1].substring(0, 35);
@@ -198,7 +192,7 @@ async function addSearchEngine (message) {
     
     searchEngines.push({'name': searchEngineName, 'url': searchEngineURL});
 
-    users.update({ 'searchEngines': searchEngines }).eq('id', chatID).then(e => {
+    xata.db.users.update(chatID.toString(), { 'searchEngines': JSON.stringify(searchEngines) }).then(e => {
       bot.sendMessage(chatID, `*Pronto\\!* Mecanismo adicionado\\.`, {
         parse_mode: 'MarkdownV2',
         reply_markup: {
@@ -230,9 +224,8 @@ async function removeSearchEngineMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
 
-  const users = database.from('users');
-  const userData = (await users.select('searchEngines').eq('id', chatID)).data[0];
-  const searchEngines = userData.searchEngines;
+  const userData = await xata.db.users.read(chatID.toString());
+  const searchEngines = JSON.parse(userData.searchEngines);
 
   if (searchEngines.length > 0) {
     bot.editMessageText(`__*CONFIGURAÇÕES \\> MECANISMOS DE BUSCA \\> REMOVER*__\n\nEscolha um dos mecanismos para remover respondendo a mensagem abaixo\\. Saiba mais no comando /ajuda\\.`, {
@@ -279,9 +272,8 @@ async function removeSearchEngine (message) {
   const messageText = message.text;
   const messageParsed = messageText.match(/(.*) - (.*)/);
 
-  const users = database.from('users');
-  const userData = (await users.select().eq('id', chatID)).data[0];
-  let searchEngines = userData.searchEngines;
+  const userData = await xata.db.users.read(chatID.toString());
+  let searchEngines = JSON.parse(userData.searchEngines);
 
   if (searchEngines.length > 0 && messageParsed) {
     const searchEngineName = messageParsed[1];
@@ -291,7 +283,7 @@ async function removeSearchEngine (message) {
     if (selectedEngineIndex >= 0) {
       searchEngines.splice(selectedEngineIndex, 1);
 
-      users.update({ 'searchEngines': searchEngines }).eq('id', chatID).then(e => {
+      xata.db.users.update(chatID.toString(), { 'searchEngines': JSON.stringify(searchEngines) }).then(e => {
         bot.sendMessage(chatID, `*Pronto\\!* Mecanismo removido\\.`, {
           parse_mode: 'MarkdownV2',
           reply_markup: {
@@ -352,7 +344,6 @@ function setDefaultSearchEngines (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
   
-  const users = database.from('users');
   const defaultSearchEngines = [{
     'name': 'Google',
     'url': 'https://www.google.com/search?q=$'
@@ -374,7 +365,7 @@ function setDefaultSearchEngines (callback) {
     'url': 'https://pt.wikipedia.org/wiki/Special:Search?search=$'
   }];
 
-  users.update({ 'searchEngines': defaultSearchEngines }).eq('id', chatID).then(e => {
+  xata.db.users.update(chatID.toString(), { 'searchEngines': JSON.stringify(defaultSearchEngines) }).then(e => {
     bot.sendMessage(chatID, `*Pronto\\!* Mecanismos de busca restaurados para o padrão\\.`, {
       parse_mode: 'MarkdownV2',
       reply_markup: {
@@ -391,15 +382,15 @@ async function dataStoredMenu (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
   
-  const users = database.from('users');
-  const userData = (await users.select().eq('id', chatID)).data[0];
+  const userData = await xata.db.users.read(chatID.toString());
 
   const dataText = `*ID do chat do Telegram:* ${markdownEscaper(userData.id)}
 *Tipo de chat do Telegram:* ${userData.type}
 *Atalho:* ${['Definição', 'Sinônimos', 'Exemplos'][userData.shortcut]}
 *Mecanismos de busca:* ${await getUserSearchEngines(userData.searchEngines, '')}
-*Data do cadastro no bot:* ${moment.tz(moment(userData.createdAt), 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}
 *Data do último uso do bot:* ${moment.tz(moment(userData.lastUseAt), 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}`
+
+// *Data do cadastro no bot:* ${moment.tz(moment(userData.createdAt), 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}
 
   bot.editMessageText(`__*CONFIGURAÇÕES \\> DADOS*__\n\n${dataText}`, {
     parse_mode: 'MarkdownV2',
@@ -437,9 +428,7 @@ async function deleteData (callback) {
   const message = callback.message;
   const chatID = message.chat.id;
 
-  database.from('users')
-    .delete()
-    .eq('id', chatID).then(() => bot.editMessageText('*Seus dados foram apagados\\!* Se você enviar uma nova mensagem para o bot seu cadastro será feito novamente\\.', {parse_mode: 'MarkdownV2', chat_id: chatID, message_id: message.message_id}));
+  xata.db.users.delete(chatID.toString()).then(() => bot.editMessageText('*Seus dados foram apagados\\!* Se você enviar uma nova mensagem para o bot seu cadastro será feito novamente\\.', {parse_mode: 'MarkdownV2', chat_id: chatID, message_id: message.message_id}));
 }
 
 module.exports = { 

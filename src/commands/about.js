@@ -27,7 +27,7 @@ _Você pode ler a [política de privacidade informal](https://dicionariobot.enzo
 
 function about (message) {
   const chatID = message.chat.id;
-  const aboutText = `*Versão:* 3\\.0\\.0 \\| [Notas de atualização](https://dicionariobot.enzon19.com/novidades)
+  const aboutText = `*Versão:* 3\\.1\\.0 \\| [Notas de atualização](https://dicionariobot.enzon19.com/novidades)
 *Desenvolvedor:* @enzon19 \\| [Site](https://enzon19.com) \\| [GitHub](https://github.com/enzon19)`;
 
   bot.sendMessage(chatID, aboutText, {

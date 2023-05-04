@@ -1,6 +1,6 @@
 {
   "name": "dicionariobot",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Dicionário Bot is a Brazilian Portuguese dictionary on Telegram that works normally or through inline mode.",
   "author": {
     "name": "enzon19",
@@ -24,6 +24,8 @@
   ],
   "dependencies": {
     "@supabase/supabase-js": "^1.35.6",
+    "@xata.io/cli": "^0.12.0",
+    "@xata.io/client": "^0.23.5",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",

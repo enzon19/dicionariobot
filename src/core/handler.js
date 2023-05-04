@@ -7,7 +7,7 @@ const moment = require('moment-timezone');
 const users = global.users;
 const botUsername = process.env.BOT_USERNAME;
 const bot = global.bot;
-const database = global.database;
+const xata = global.xata;
 const mistakesList = JSON.parse(fs.readFileSync(__dirname + '/../assets/json/mistakes.json'));
 
 async function parseMessageAndSaveUser (message) {
@@ -28,11 +28,9 @@ async function parseMessageAndSaveUser (message) {
   }
 
   // update or add user data. Only allowed if the command have the saveUserData == true or it's a shortcut or mistake check (command inexistent)
-  if (commandReturned == undefined || commandReturned.saveUserData) {
+  if (commandReturned == undefined && chatType == 'private' || commandReturned?.saveUserData) {
     const nowFormatted = moment();
-
-    await users.upsert({
-      id: message.chat.id,
+    xata.db.users.createOrUpdate(message.chat.id.toString(), {
       type: chatType,
       lastUseAt: nowFormatted
     });
@@ -93,8 +91,7 @@ async function userShortcut (message) {
   const messageText = message.text?.toLowerCase() || message.caption?.toLowerCase();
   const word = messageText[0] == '/' ? messageText.slice(1).split(' ')[0] : messageText.split(' ')[0];
 
-  const users = database.from('users');
-  const userData = (await users.select('shortcut').eq('id', chatID)).data[0];
+  const userData = await xata.db.users.read(chatID.toString());
 
   require('../commands/messages').sendType(message, word, userData.shortcut);
 }
@@ -105,7 +102,15 @@ function checkMistakes (text, message) {
   const checkMistakes = require('./checkMistakes');
   const mistakesMessage = checkMistakes.check(checkMistakes.removePunctuation(text), mistakesList);
 
-  if (mistakesMessage) bot.sendMessage(chatID, mistakesMessage, { reply_to_message_id: message.message_id });
+  if (mistakesMessage) {
+    bot.sendMessage(chatID, mistakesMessage, { reply_to_message_id: message.message_id });
+    
+    const nowFormatted = moment();
+    xata.db.users.createOrUpdate(chatID.toString(), {
+      type: message.chat.type,
+      lastUseAt: nowFormatted
+    });
+  }
 }
 
 module.exports = {parseMessageAndSaveUser, parseReply};
