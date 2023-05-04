@@ -11,13 +11,12 @@ const bot = global.bot;
 
 async function getUserSearchEngines(searchEngines, word, chatID) {
   if (!searchEngines) {
-    const database = global.database;
-    const users = database.from('users');
-    const userData = (await users.select('searchEngines').eq('id', chatID)).data[0];
+    const xata = global.xata;
+    const userData = await xata.db.users.read(chatID.toString());
     searchEngines = userData.searchEngines;
   }
 
-  const searchEnginesURLs = searchEngines.length == 0 ? 'Sem mecanismos de busca\\.' : searchEngines.map(searchEngine => `[${markdownEscaper(searchEngine.name)}](${searchEngine.url.replace('$', word)})`).join(' • ');
+  const searchEnginesURLs = JSON.parse(searchEngines).length == 0 ? 'Sem mecanismos de busca\\.' : JSON.parse(searchEngines).map(searchEngine => `[${markdownEscaper(searchEngine.name)}](${searchEngine.url.replace('$', word)})`).join(' • ');
   return searchEnginesURLs;
 }
 

@@ -1,0 +1,7 @@
+{
+  "databaseURL": "https://Enzo-s-workspace-8gl6tj.us-east-1.xata.sh/db/dicionariobot",
+  "codegen": {
+    "output": "src/xata.js",
+    "moduleType": "cjs"
+  }
+}

@@ -3,13 +3,12 @@
 const markdownEscaperReverse = require('../core/markdownEscaper').reverse;
 
 const bot = global.bot;
-const users = global.users;
+const xata = global.xata;
 
 async function parseInlineAndSaveUser(inline) {
   const nowFormatted = (new Date()).toISOString();
 
-  users.upsert({
-    id: inline.from.id,
+  xata.db.users.createOrUpdate(inline.from.id.toString(), {
     type: 'private',
     lastUseAt: nowFormatted
   });

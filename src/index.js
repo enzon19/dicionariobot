@@ -13,13 +13,11 @@ const token = process.env.TG_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 // database
-const supabase = require('@supabase/supabase-js');
-const database = supabase.createClient('https://sjsnyindtfhstuxyznot.supabase.co', process.env.SUPABASE_TOKEN);
-const users = database.from('users');
+const { getXataClient } = require("./xata");
+const xata = getXataClient();
 
 // global variables
-global.database = database;
-global.users = users;
+global.xata = xata;
 global.bot = bot;
 
 // events
