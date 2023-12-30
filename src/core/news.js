@@ -2,7 +2,7 @@
 const xata = global.xata;
 
 async function getUsersIDs () {
-  const data = await xata.db.users.select(["id"]).getMany();
+  const data = await xata.db.users.select(["id"]).getAll();
   return data.map(user => user.id);
 }
 
