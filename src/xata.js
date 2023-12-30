@@ -10,7 +10,7 @@ const tables = [{ name: "users", columns: [] }];
 const DatabaseClient = (0, client_1.buildClient)();
 const defaultOptions = {
   databaseURL:
-    "https://Enzo-s-workspace-8gl6tj.us-east-1.xata.sh/db/dicionariobot",
+    process.env.XATA_URL,
 };
 /** @typedef { import('./types').DatabaseSchema } DatabaseSchema */
 /** @extends DatabaseClient<DatabaseSchema> */

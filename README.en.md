@@ -16,11 +16,14 @@ This project uses the [Dicio API](https://github.com/ThiagoNelsi/dicio-api) crea
 
 ```
 TG_TOKEN=Token that @BotFather informs when creating a bot
-SUPABASE_TOKEN=Anon
-OWNER_ID=Bot owner's Telegram ID
 NEWS_PASSWORD=Password to access the news maker
 BOT_USERNAME=Bot username
+OWNER_ID=Bot owner's Telegram ID
 API_PROVIDER_URL=Dictionary provider URL (significado.herokuapp.com)
+SUPABASE_TOKEN=Anon
+XATA_URL=Database's URL
+XATA_API_KEY=Database's token
+XATA_BRANCH=main
 ```
 
 ## Updates
