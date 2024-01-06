@@ -10,7 +10,7 @@ function examples (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.${apiProviderUrl}/v2/sentences/${encodeURIComponent(word)}`)
+        await axios.get(`https://${apiProviderUrl}/v2/sentences/${encodeURIComponent(word)}`)
       ).data;
       const examplesText = transformStructureToHumanReadable(responseWithJustData);
 

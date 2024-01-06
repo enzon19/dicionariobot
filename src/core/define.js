@@ -10,7 +10,7 @@ function define (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.${apiProviderUrl}/v2/${encodeURIComponent(word)}`)
+        await axios.get(`https://${apiProviderUrl}/v2/${encodeURIComponent(word)}`)
       ).data;
       const definitionText = transformStructureToHumanReadable(responseWithJustData);
       const syllables = await getSyllables(word);
@@ -29,7 +29,7 @@ function getSyllables (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.${apiProviderUrl}/v2/syllables/${encodeURIComponent(word)}`)
+        await axios.get(`https://${apiProviderUrl}/v2/syllables/${encodeURIComponent(word)}`)
       ).data;
       resolve(responseWithJustData);
     } catch (e) {

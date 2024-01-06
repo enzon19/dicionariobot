@@ -10,7 +10,7 @@ function synonyms (word) {
   return new Promise(async (resolve) => {
     try {
       const responseWithJustData = (
-        await axios.get(`https://significado.${apiProviderUrl}/v2/synonyms/${encodeURIComponent(word)}`)
+        await axios.get(`https://${apiProviderUrl}/v2/synonyms/${encodeURIComponent(word)}`)
       ).data;
       const synonymsText = transformStructureToHumanReadable(responseWithJustData);
 
