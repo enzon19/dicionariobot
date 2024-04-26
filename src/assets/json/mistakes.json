@@ -1,138 +1,218 @@
 [
   {
-      "wrong": "toraxico",
-      "right": "torácico"
+    "wrong": "toraxico",
+    "right": "torácico"
   },
   {
-      "wrong": "asteristico",
-      "right": "asterisco"
+    "wrong": "asteristico",
+    "right": "asterisco"
   },
   {
-      "wrong": "superfulo",
-      "right": "supérfluo"
+    "wrong": "superfulo",
+    "right": "supérfluo"
   },
   {
-      "wrong": "bicabornato",
-      "right": "bicarbonato"
+    "wrong": "bicabornato",
+    "right": "bicarbonato"
   },
   {
-      "wrong": "beneficiente",
-      "right": "beneficente"
+    "wrong": "beneficiente",
+    "right": "beneficente"
   },
   {
-      "wrong": "metereologia",
-      "right": "meteorologia"
+    "wrong": "metereologia",
+    "right": "meteorologia"
   },
   {
-      "wrong": "previlegio",
-      "right": "privilégio"
+    "wrong": "previlegio",
+    "right": "privilégio"
   },
   {
-      "wrong": "losangulo",
-      "right": "losango"
+    "wrong": "losangulo",
+    "right": "losango"
   },
   {
-      "wrong": "triologia",
-      "right": "trilogia"
+    "wrong": "triologia",
+    "right": "trilogia"
   },
   {
-      "wrong": "reinvindicar",
-      "right": "reivindicar"
+    "wrong": "reinvindicar",
+    "right": "reivindicar"
   },
   {
-      "wrong": "conhecidencia",
-      "right": "coincidência"
+    "wrong": "conhecidencia",
+    "right": "coincidência"
   },
   {
-      "wrong": "compania",
-      "right": "companhia"
+    "wrong": "compania",
+    "right": "companhia"
   },
   {
-      "wrong": "madastra",
-      "right": "madrasta"
+    "wrong": "madastra",
+    "right": "madrasta"
   },
   {
-      "wrong": "milhonario",
-      "right": "milionário"
+    "wrong": "milhonario",
+    "right": "milionário"
   },
   {
-      "wrong": "degladiar",
-      "right": "digladiar"
+    "wrong": "degladiar",
+    "right": "digladiar"
   },
   {
-      "wrong": "impecilho",
-      "right": "empecilho"
+    "wrong": "impecilho",
+    "right": "empecilho"
   },
   {
-      "wrong": "estrupo",
-      "right": "estupro"
+    "wrong": "estrupo",
+    "right": "estupro"
   },
   {
-      "wrong": "sombrancelha",
-      "right": "sobrancelha"
+    "wrong": "sombrancelha",
+    "right": "sobrancelha"
   },
   {
-      "wrong": "mortandela",
-      "right": "mortadela"
+    "wrong": "mortandela",
+    "right": "mortadela"
   },
   {
-      "wrong": "iorgute",
-      "right": "iogurte"
+    "wrong": "iorgute",
+    "right": "iogurte"
   },
   {
-      "wrong": "largata",
-      "right": "lagarta"
+    "wrong": "largata",
+    "right": "lagarta"
   },
   {
-      "wrong": "esposto",
-      "right": "exposto"
+    "wrong": "esposto",
+    "right": "exposto"
   },
   {
-      "wrong": "ebolicao",
-      "right": "ebulição"
+    "wrong": "ebolicao",
+    "right": "ebulição"
   },
   {
-      "wrong": "azuleijos",
-      "right": "azulejos"
+    "wrong": "azuleijos",
+    "right": "azulejos"
   },
   {
-      "wrong": "tempeiros",
-      "right": "temperos"
+    "wrong": "tempeiros",
+    "right": "temperos"
   },
   {
-      "wrong": "simplismente",
-      "right": "simplesmente"
+    "wrong": "simplismente",
+    "right": "simplesmente"
   },
   {
-      "wrong": "bandeija",
-      "right": "bandeja"
+    "wrong": "bandeija",
+    "right": "bandeja"
   },
   {
-      "wrong": "bandeijas",
-      "right": "bandejas"
+    "wrong": "bandeijas",
+    "right": "bandejas"
   },
   {
-      "wrong": "tempeiro",
-      "right": "tempero"
+    "wrong": "tempeiro",
+    "right": "tempero"
   },
   {
-      "wrong": "tijela",
-      "right": "tigela"
+    "wrong": "tijela",
+    "right": "tigela"
   },
   {
-      "wrong": "tijelinha",
-      "right": "tigelinha"
+    "wrong": "tijelinha",
+    "right": "tigelinha"
   },
   {
-      "wrong": "indentidade",
-      "right": "identidade"
+    "wrong": "indentidade",
+    "right": "identidade"
   },
   {
-      "wrong": "indentindade",
-      "right": "identidade"
+    "wrong": "indentindade",
+    "right": "identidade"
   },
   {
-      "wrong": "mantega",
-      "right": "manteiga"
+    "wrong": "mantega",
+    "right": "manteiga"
+  },
+  {
+    "wrong": "imprecionante",
+    "right": "impressionante"
+  },
+  {
+    "wrong": "jente",
+    "right": "gente"
+  },
+  {
+    "wrong": "geito",
+    "right": "jeito"
+  },
+  {
+    "wrong": "è",
+    "right": "é"
+  },
+  {
+    "wrong": "subil",
+    "right": "subiu"
+  },
+  {
+    "wrong": "bayle",
+    "right": "baile"
+  },
+  {
+    "wrong": "preção",
+    "right": "pressão"
+  },
+  {
+    "wrong": "intretenimento",
+    "right": "entretenimento"
+  },
+  {
+    "wrong": "construil",
+    "right": "construiu"
+  },
+  {
+    "wrong": "menas",
+    "right": "menos"
+  },
+  {
+    "wrong": "fasso",
+    "right": "faço"
+  },
+  {
+    "wrong": "nada aver",
+    "right": "nada a ver"
+  },
+  {
+    "wrong": "nada haver",
+    "right": "nada a ver"
+  },
+  {
+    "wrong": "concerteza",
+    "right": "com certeza"
+  },
+  {
+    "wrong": "excessão",
+    "right": "exceção"
+  },
+  {
+    "wrong": "derrepente",
+    "right": "de repente"
+  },
+  {
+    "wrong": "amorsinho",
+    "right": "amorzinho"
+  },
+  {
+    "wrong": "encima",
+    "right": "em cima"
+  },
+  {
+    "wrong": "mecher",
+    "right": "mexer"
+  },
+  {
+    "wrong": "mecheu",
+    "right": "mexeu"
   }
 ]
