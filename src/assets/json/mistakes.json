@@ -214,5 +214,53 @@
   {
     "wrong": "mecheu",
     "right": "mexeu"
+  },
+  {
+    "wrong": "homen",
+    "right": "homem"
+  },
+  {
+    "wrong": "idro",
+    "right": "hidro"
+  },
+  {
+    "wrong": "concertar",
+    "right": "consertar"
+  },
+  {
+    "wrong": "chow",
+    "right": "show"
+  },
+  {
+    "wrong": "surgil",
+    "right": "surgiu"
+  },
+  {
+    "wrong": "axo",
+    "right": "acho"
+  },
+  {
+    "wrong": "siguino",
+    "right": "signo"
+  },
+  {
+    "wrong": "ária",
+    "right": "área"
+  },
+  {
+    "wrong": "árias",
+    "right": "áreas"
+  },
+  {
+    "wrong": "foçe",
+    "right": "fosse"
+  },
+  {
+    "wrong": "voçes",
+    "right": "vocês"
+  },
+  {
+    "wrong": "denovo",
+    "right": "de novo"
   }
 ]
