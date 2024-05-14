@@ -262,5 +262,29 @@
   {
     "wrong": "denovo",
     "right": "de novo"
+  },
+  {
+    "wrong": "vês",
+    "right": "vez"
+  },
+  {
+    "wrong": "sucego",
+    "right": "sossego"
+  },
+  {
+    "wrong": "hontem",
+    "right": "ontem"
+  },
+  {
+    "wrong": "acustuma",
+    "right": "acostuma"
+  },
+  {
+    "wrong": "acustumar",
+    "right": "acostumar"
+  },
+  {
+    "wrong": "demas",
+    "right": "demais"
   }
 ]
