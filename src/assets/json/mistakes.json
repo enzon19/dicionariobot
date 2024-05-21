@@ -286,5 +286,33 @@
   {
     "wrong": "demas",
     "right": "demais"
+  },
+  {
+    "wrong": "deicha",
+    "right": "deixa"
+  },
+  {
+    "wrong": "deichar",
+    "right": "deixar"
+  },
+  {
+    "wrong": "foce",
+    "right": "fosse"
+  },
+  {
+    "wrong": "sastifazer",
+    "right": "satisfazer"
+  },
+  {
+    "wrong": "hotem",
+    "right": "ontem"
+  },
+  {
+    "wrong": "chefrudo",
+    "right": "chifrudo"
+  },
+  {
+    "wrong": "guando",
+    "right": "quando"
   }
 ]
