@@ -314,5 +314,33 @@
   {
     "wrong": "guando",
     "right": "quando"
+  },
+  {
+    "wrong": "confeço",
+    "right": "confesso"
+  },
+  {
+    "wrong": "tivece",
+    "right": "tivesse"
+  },
+  {
+    "wrong": "puchado",
+    "right": "puxado"
+  },
+  {
+    "wrong": "puchar",
+    "right": "puxar"
+  },
+  {
+    "wrong": "iludio",
+    "right": "iludiu"
+  },
+  {
+    "wrong": "agrecivo",
+    "right": "agressivo"
+  },
+  {
+    "wrong": "imagrecer",
+    "right": "emagrecer"
   }
 ]
