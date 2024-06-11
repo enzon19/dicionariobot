@@ -350,5 +350,21 @@
   {
     "wrong": "perssebemos",
     "right": "percebemos"
+  },
+  {
+    "wrong": "omenagiar",
+    "right": "homenagear"
+  },
+  {
+    "wrong": "omenagem",
+    "right": "homenagem"
+  },
+  {
+    "wrong": "facsao",
+    "right": "facção"
+  },
+  {
+    "wrong": "imprecionado",
+    "right": "impressionado"
   }
 ]
