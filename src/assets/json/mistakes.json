@@ -366,5 +366,13 @@
   {
     "wrong": "imprecionado",
     "right": "impressionado"
+  },
+  {
+    "wrong": "indguinado",
+    "right": "indignado"
+  },
+  {
+    "wrong": "agrecividade",
+    "right": "agressividade"
   }
 ]
