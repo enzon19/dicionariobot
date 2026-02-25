@@ -6,11 +6,11 @@ export abstract class Command {
 	abstract name: string;
 	abstract commands: string[];
 	abstract description: string;
-	abstract admin: boolean;
 	abstract saveUserData: boolean;
 	abstract handle(ctx: Context): void;
 
-	menu?: Menu;
+	admin?: boolean;
+	menus?: () => Menu[];
 	args?: string;
 	example?: string;
 
@@ -25,7 +25,7 @@ export abstract class Command {
 
 			if (this.saveUserData) {
 				try {
-					// salvar dados
+					console.log('Salvar dados');
 				} catch (err) {
 					console.error('Erro ao salvar dados do usuário:', err);
 				}
