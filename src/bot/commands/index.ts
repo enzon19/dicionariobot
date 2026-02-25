@@ -2,9 +2,15 @@ import type { Bot, Context } from 'grammy';
 import type { Command } from '../../models/Command';
 import { StartCommand } from './Start';
 import { MeaningCommand } from './Meaning';
+import { AboutCommand } from './About';
 import { PingCommand } from './Ping';
 
-const commands: Command[] = [new StartCommand(), new MeaningCommand(), new PingCommand()];
+const commands: Command[] = [
+	new StartCommand(),
+	new MeaningCommand(),
+	new AboutCommand(),
+	new PingCommand()
+];
 
 export function registerCommands(bot: Bot<Context>): void {
 	for (const command of commands) {
