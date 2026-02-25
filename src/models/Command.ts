@@ -10,7 +10,7 @@ export abstract class Command {
 	abstract handle(ctx: Context): void;
 
 	admin?: boolean;
-	menus?: () => Menu[];
+	menus?: (...args: any[]) => Menu[];
 	args?: string;
 	example?: string;
 
