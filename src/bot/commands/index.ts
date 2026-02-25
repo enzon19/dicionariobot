@@ -2,6 +2,7 @@ import type { Bot, Context } from 'grammy';
 import type { Command } from '../../models/Command';
 import { StartCommand } from './Start';
 import { MeaningCommand } from './Meaning';
+import { CancelCommand } from './Cancel';
 import { DonateCommand } from './Donate';
 import { AboutCommand } from './About';
 import { PingCommand } from './Ping';
@@ -9,6 +10,7 @@ import { PingCommand } from './Ping';
 const commands: Command[] = [
 	new StartCommand(),
 	new MeaningCommand(),
+	new CancelCommand(),
 	new DonateCommand(),
 	new AboutCommand(),
 	new PingCommand()
