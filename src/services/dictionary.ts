@@ -4,6 +4,8 @@ import type { Syllables } from "../models/Syllables";
 import type { Sentence } from "../models/Sentence";
 import {
   meaningsURL,
+  synonymsURL,
+  syllablesURL,
   sentencesURL,
   type ApiMeaningsResponse,
   type ApiSentencesResponse,
@@ -37,7 +39,7 @@ export async function getMeanings(word: string): Promise<Meaning[]> {
 }
 
 export async function geSynonyms(word: string): Promise<Synonyms> {
-  const url = sentencesURL + encodeURIComponent(word);
+  const url = synonymsURL + encodeURIComponent(word);
 
   try {
     const result = (await fetchApi(url)) as ApiSynonymsResponse;
@@ -50,7 +52,7 @@ export async function geSynonyms(word: string): Promise<Synonyms> {
 }
 
 export async function getSyllables(word: string): Promise<Syllables> {
-  const url = sentencesURL + encodeURIComponent(word);
+  const url = syllablesURL + encodeURIComponent(word);
 
   try {
     const result = (await fetchApi(url)) as ApiSyllablesResponse;
