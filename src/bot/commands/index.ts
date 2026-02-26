@@ -1,8 +1,8 @@
 import type { Bot, Context } from 'grammy';
 import type { Command } from '../../models/Command';
 import { StartCommand } from './Start';
-import { MeaningCommand } from './Meaning';
-import { SynonymsCommand } from './Synonym';
+import { MeaningCommand } from './Meanings';
+import { SynonymsCommand } from './Synonyms';
 import { CancelCommand } from './Cancel';
 import { DonateCommand } from './Donate';
 import { AboutCommand } from './About';

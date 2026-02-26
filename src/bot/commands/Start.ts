@@ -1,7 +1,7 @@
 import type { Context } from 'grammy';
 import { Menu } from '@grammyjs/menu';
 import { Command } from '../../models/Command';
-import { MeaningCommand } from './Meaning';
+import { MeaningCommand } from './Meanings';
 const BOT_USERNAME = process.env.BOT_USERNAME;
 
 export class StartCommand extends Command {
