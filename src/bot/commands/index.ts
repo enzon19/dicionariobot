@@ -3,6 +3,7 @@ import type { Command } from '../../models/Command';
 import { StartCommand } from './Start';
 import { MeaningCommand } from './Meanings';
 import { SynonymsCommand } from './Synonyms';
+import { SentencesCommand } from './Sentences';
 import { CancelCommand } from './Cancel';
 import { DonateCommand } from './Donate';
 import { AboutCommand } from './About';
@@ -12,6 +13,7 @@ const commands: Command[] = [
 	new StartCommand(),
 	new MeaningCommand(),
 	new SynonymsCommand(),
+	new SentencesCommand(),
 	new CancelCommand(),
 	new DonateCommand(),
 	new AboutCommand(),
