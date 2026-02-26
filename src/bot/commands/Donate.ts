@@ -3,7 +3,7 @@ import { Command } from '../../models/Command';
 
 export class DonateCommand extends Command {
 	name = 'Doação';
-	commands = ['donate', 'doar', '/apoiar'];
+	commands = ['donate', 'doar', 'apoiar'];
 	description =
 		'Se você gosta do bot e gostaria de apoiar o desenvolvimento dele, ajude realizando uma doação!';
 	saveUserData = true;

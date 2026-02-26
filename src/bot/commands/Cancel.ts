@@ -3,7 +3,7 @@ import { Command } from '../../models/Command';
 
 export class CancelCommand extends Command {
 	name = 'Cancelar';
-	commands = ['cancelar', '/cancel', '/close', '/fechar', '/quit', '/sair'];
+	commands = ['cancelar', 'cancel', 'close', 'fechar', 'quit', 'sair'];
 	description = 'Cancele uma operação do bot.';
 	saveUserData = false;
 
