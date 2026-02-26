@@ -31,9 +31,9 @@ export class SynonymsCommand extends Command {
 			const word = ctx.match.toString();
 
 			ctx.replyWithChatAction('typing');
-			const meanings = await getSynonymsMessage(word);
+			const synonyms = await getSynonymsMessage(word);
 
-			ctx.reply(meanings, {
+			ctx.reply(synonyms, {
 				parse_mode: 'HTML',
 				reply_parameters: message && {
 					message_id: message?.message_id
