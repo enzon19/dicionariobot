@@ -38,7 +38,7 @@ export async function getMeanings(word: string): Promise<Meaning[]> {
   }
 }
 
-export async function geSynonyms(word: string): Promise<Synonyms> {
+export async function getSynonyms(word: string): Promise<Synonyms> {
   const url = synonymsURL + encodeURIComponent(word);
 
   try {
