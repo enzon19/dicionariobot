@@ -1,10 +1,10 @@
 import { GrammyError, HttpError } from 'grammy';
 import { bot } from './bot/bot';
-import { server as createServer } from './server';
+import { server as createWebServer } from './web/server';
 const PORT = process.env.PORT;
 
 async function main() {
-	const server = await createServer();
+	const server = await createWebServer();
 	server.listen({ port: Number(PORT) || 2608 }, (err, address) => {
 		if (err) console.error(err);
 		console.info(`Dicionário Bot funcionando em ${address}.`);
