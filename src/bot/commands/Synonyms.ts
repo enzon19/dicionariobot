@@ -24,7 +24,7 @@ export class SynonymsCommand extends Command {
 				reply_markup: {
 					force_reply: true,
 					selective: true,
-					input_field_placeholder: 'Escrever palavra...'
+					input_field_placeholder: 'Escrever uma palavra...'
 				}
 			});
 		} else {
