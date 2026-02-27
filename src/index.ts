@@ -7,10 +7,14 @@ async function main() {
 	const server = await createWebServer();
 	server.listen({ port: Number(PORT) || 2608 }, (err, address) => {
 		if (err) console.error(err);
-		console.info(`Dicionário Bot funcionando em ${address}.`);
+		console.info(`Site do Dicionário Bot funcionando em ${address}.`);
 	});
 
-	bot.start();
+	bot.start({
+		onStart: () => {
+			console.info('Dicionário Bot online no Telegram.');
+		}
+	});
 	process.once('SIGINT', () => bot.stop());
 	process.once('SIGTERM', () => bot.stop());
 
