@@ -10,12 +10,10 @@ export class StartCommand extends Command {
 	description = 'Introdução do bot.';
 	saveUserData = false;
 
-	menus = () => [
-		new Menu('menu-cta')
-			.text('Definir uma palavra', (ctx) => new MeaningCommand().handle(ctx))
-			.text('Usar modo inline')
-			.switchInline('')
-	];
+	menus = new Menu('menu-cta')
+		.text('Definir uma palavra', (ctx) => new MeaningCommand().handle(ctx))
+		.text('Usar modo inline')
+		.switchInline('');
 
 	handle(ctx: Context): void {
 		const message = ctx.message;
@@ -31,7 +29,7 @@ export class StartCommand extends Command {
 			reply_parameters: message && {
 				message_id: message?.message_id
 			},
-			reply_markup: this.menus()[0]
+			reply_markup: this.menus
 		});
 	}
 }
