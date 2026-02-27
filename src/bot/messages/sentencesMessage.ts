@@ -1,9 +1,9 @@
 import type { Sentence } from '../../models/Sentence';
 import { getSentences, getSyllables } from '../../services/dictionary';
-import { buildEmptyMessage, buildHeader, getWordFromSyllables } from '../../utils/messagesBuilders';
+import { buildGenericResourceMessage } from '../../utils/messagesBuilders';
 import normalizeWord from '../../utils/normalizeWord';
 
-function buildMeaningBlock({ sentence, author }: Sentence) {
+function buildSentencesBlock({ sentence, author }: Sentence) {
 	let block = '';
 	if (sentence) {
 		block += `<blockquote>${sentence}\n\n<i>${author.replace('- ', '— ') || 'Autor desconhecido'}</i></blockquote>`;
@@ -11,18 +11,21 @@ function buildMeaningBlock({ sentence, author }: Sentence) {
 	return block.trim();
 }
 
-export default async function getSentencesMessage(word: string) {
-	const resource = 'exemplos';
+export default async function getSentencesMessage(word: string, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
+	const resource = 'exemplos';
 	const syllables = await getSyllables(word);
 	const sentences = await getSentences(word);
-	const correctWordSpelling = getWordFromSyllables(syllables, word);
+	const sentencesBlock = sentences.map(buildSentencesBlock);
 
-	if (sentences.length == 0)
-		return await buildEmptyMessage(resource, 'masculine', correctWordSpelling);
+	const message = await buildGenericResourceMessage(
+		word,
+		resource,
+		'masculine',
+		sentences,
+		sentencesBlock,
+		syllables
+	);
 
-	const header = buildHeader(resource, correctWordSpelling);
-	const sentencesBlock = sentences.map(buildMeaningBlock);
-
-	return [header, ...sentencesBlock].filter((e) => e).join('\n\n');
+	return returnAsArray ? message : message.join('\n\n');
 }

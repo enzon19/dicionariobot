@@ -20,3 +20,20 @@ export async function buildEmptyMessage(
 	const suffix = gender == 'feminine' ? 'cadastradas' : 'cadastrados';
 	return `Infelizmente, a palavra <b>"${word}"</b> não possui ${resource} ${suffix} no dicionário.`; // \n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}"`
 }
+
+export async function buildGenericResourceMessage(
+	word: string,
+	resource: string,
+	gender: 'masculine' | 'feminine',
+	resourceData: any[],
+	blocks: string[],
+	syllables?: string[]
+) {
+	const correctWordSpelling = syllables ? getWordFromSyllables(syllables, word) : word;
+
+	if (resourceData.length == 0)
+		return [await buildEmptyMessage(resource, gender, correctWordSpelling)];
+
+	const header = buildHeader(resource, correctWordSpelling);
+	return [header, ...blocks].filter((e) => e);
+}

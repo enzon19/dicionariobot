@@ -1,6 +1,6 @@
 import type { Meaning } from '../../models/Meaning';
 import { getMeanings, getSyllables } from '../../services/dictionary';
-import { buildEmptyMessage, buildHeader, getWordFromSyllables } from '../../utils/messagesBuilders';
+import { buildGenericResourceMessage } from '../../utils/messagesBuilders';
 import normalizeWord from '../../utils/normalizeWord';
 
 function buildSyllablesBlock(syllables: string[]) {
@@ -16,19 +16,22 @@ function buildMeaningBlock({ partOfSpeech, meanings, etymology }: Meaning) {
 	return block.trim();
 }
 
-export default async function getMeaningMessage(word: string) {
-	const resource = 'definições';
+export default async function getMeaningMessage(word: string, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
+	const resource = 'definições';
 	const syllables = await getSyllables(word);
 	const meanings = await getMeanings(word);
-	const correctWordSpelling = getWordFromSyllables(syllables, word);
-
-	if (meanings.length == 0)
-		return await buildEmptyMessage(resource, 'feminine', correctWordSpelling);
-
-	const header = buildHeader(resource, correctWordSpelling);
 	const syllablesBlock = buildSyllablesBlock(syllables);
 	const meaningsBlock = meanings.map(buildMeaningBlock);
 
-	return [header, syllablesBlock, ...meaningsBlock].filter((e) => e).join('\n\n');
+	const message = await buildGenericResourceMessage(
+		word,
+		resource,
+		'feminine',
+		meanings,
+		[syllablesBlock, ...meaningsBlock],
+		syllables
+	);
+
+	return returnAsArray ? message : message.join('\n\n');
 }
