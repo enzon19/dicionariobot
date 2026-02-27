@@ -25,7 +25,9 @@ export const commands: Command[] = [
 export function registerCommands(bot: Bot<Context>): void {
 	for (const command of commands) {
 		if (command.menus) {
-			for (const menu of command.menus()) {
+			const menus = typeof command.menus === 'function' ? command.menus() : command.menus;
+			const menuArray = Array.isArray(menus) ? menus : [menus];
+			for (const menu of menuArray) {
 				bot.use(menu);
 			}
 		}
