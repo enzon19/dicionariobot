@@ -16,6 +16,8 @@ function buildMeaningBlock({ partOfSpeech, meanings, etymology }: Meaning) {
 	return block.trim();
 }
 
+export default async function getMeaningMessage(word: string, returnAsArray: true): Promise<string[]>;
+export default async function getMeaningMessage(word: string, returnAsArray?: false): Promise<string>;
 export default async function getMeaningMessage(word: string, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
 	const resource = 'definições';

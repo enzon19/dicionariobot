@@ -2,6 +2,8 @@ import { getSyllables, getSynonyms } from '../../services/dictionary';
 import { buildGenericResourceMessage } from '../../utils/messagesBuilders';
 import normalizeWord from '../../utils/normalizeWord';
 
+export default async function getSynonymsMessage(word: string, returnAsArray: true): Promise<string[]>;
+export default async function getSynonymsMessage(word: string, returnAsArray?: false): Promise<string>;
 export default async function getSynonymsMessage(word: string, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
 	const resource = 'sinônimos';
@@ -9,14 +11,7 @@ export default async function getSynonymsMessage(word: string, returnAsArray: bo
 	const synonyms = await getSynonyms(word);
 	const synonymsBlock = synonyms.join(', ');
 
-	const message = await buildGenericResourceMessage(
-		word,
-		resource,
-		'masculine',
-		synonyms,
-		[synonymsBlock],
-		syllables
-	);
+	const message = await buildGenericResourceMessage(word, resource, 'masculine', synonyms, [synonymsBlock], syllables);
 
 	return returnAsArray ? message : message.join('\n\n');
 }

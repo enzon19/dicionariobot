@@ -11,6 +11,8 @@ function buildSentencesBlock({ sentence, author }: Sentence) {
 	return block.trim();
 }
 
+export default async function getSentencesMessage(word: string, returnAsArray: true): Promise<string[]>;
+export default async function getSentencesMessage(word: string, returnAsArray?: false): Promise<string>;
 export default async function getSentencesMessage(word: string, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
 	const resource = 'exemplos';
@@ -18,14 +20,7 @@ export default async function getSentencesMessage(word: string, returnAsArray: b
 	const sentences = await getSentences(word);
 	const sentencesBlock = sentences.map(buildSentencesBlock);
 
-	const message = await buildGenericResourceMessage(
-		word,
-		resource,
-		'masculine',
-		sentences,
-		sentencesBlock,
-		syllables
-	);
+	const message = await buildGenericResourceMessage(word, resource, 'masculine', sentences, sentencesBlock, syllables);
 
 	return returnAsArray ? message : message.join('\n\n');
 }
