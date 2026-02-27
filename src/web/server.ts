@@ -1,7 +1,7 @@
-import Fastify from "fastify";
+import Fastify from 'fastify';
 
 export async function server() {
-  const fastify = Fastify();
+	const fastify = Fastify();
 
-  return fastify;
+	return fastify;
 }

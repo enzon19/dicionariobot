@@ -1,5 +1,5 @@
 const API_URL = process.env.API_URL;
-if (!API_URL) throw new Error("API_URL não definida");
+if (!API_URL) throw new Error('API_URL não definida');
 
 export const meaningsURL = `https://${API_URL}/v2/meanings/`;
 export const sentencesURL = `https://${API_URL}/v2/sentences/`;

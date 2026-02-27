@@ -30,23 +30,15 @@ function buildCommandsMenus(commands: Command[]) {
 				`<b>Comando:</b> /${command.commands[0] + ((command.args && ' ' + command.args) || '')}`
 			];
 
-			const alternativeCommands = command.commands.slice(1); 
+			const alternativeCommands = command.commands.slice(1);
 			if (alternativeCommands.length > 0)
-				aboutCommandTextBuilder.push(
-					`<b>Alternativas:</b> ${alternativeCommands.map((e) => '/' + e).join(', ')}`
-				);
-			if (command.example)
-				aboutCommandTextBuilder.push(`<b>Exemplo:</b> <code>${command.example}</code>`);
+				aboutCommandTextBuilder.push(`<b>Alternativas:</b> ${alternativeCommands.map((e) => '/' + e).join(', ')}`);
+			if (command.example) aboutCommandTextBuilder.push(`<b>Exemplo:</b> <code>${command.example}</code>`);
 
-			ctx.editMessageText(
-				aboutCommandHeader + aboutCommandTextBuilder.join('\n'),
-				editMessageOptions
-			);
+			ctx.editMessageText(aboutCommandHeader + aboutCommandTextBuilder.join('\n'), editMessageOptions);
 		});
-		const commandSubmenu = new Menu(commandOpenMenuID).submenu(
-			'⬅️ Voltar',
-			'commands-menu',
-			(ctx) => ctx.editMessageText(commandsMenuText(commands.length), editMessageOptions)
+		const commandSubmenu = new Menu(commandOpenMenuID).submenu('⬅️ Voltar', 'commands-menu', (ctx) =>
+			ctx.editMessageText(commandsMenuText(commands.length), editMessageOptions)
 		);
 		allCommandsSubmenus.push(commandSubmenu);
 
@@ -55,9 +47,7 @@ function buildCommandsMenus(commands: Command[]) {
 
 	commandsMenu
 		.row()
-		.submenu('⬅️ Voltar', 'help-main-menu', (ctx) =>
-			ctx.editMessageText(mainMenuText, editMessageOptions)
-		);
+		.submenu('⬅️ Voltar', 'help-main-menu', (ctx) => ctx.editMessageText(mainMenuText, editMessageOptions));
 
 	return { commandsMenu, allCommandsSubmenus };
 }
@@ -78,9 +68,7 @@ function buildFaqMenus() {
 		const faqSubmenuID = 'faq-submenu-' + sectionID;
 
 		faqMenu
-			.submenu(section, faqSubmenuID, (ctx) =>
-				ctx.editMessageText(faqSubmenuText(section), editMessageOptions)
-			)
+			.submenu(section, faqSubmenuID, (ctx) => ctx.editMessageText(faqSubmenuText(section), editMessageOptions))
 			.row();
 
 		const faqSubmenu = new Menu(faqSubmenuID);
@@ -88,39 +76,30 @@ function buildFaqMenus() {
 		for (const question of questions) {
 			const questionOpenMenuID = 'faq-question-' + sectionID + '-' + question.id;
 
-			const faqQuestionOpenMenu = new Menu(questionOpenMenuID).submenu(
-				'⬅️ Voltar',
-				faqSubmenuID,
-				(ctx) => ctx.editMessageText(faqSubmenuText(section), editMessageOptions)
+			const faqQuestionOpenMenu = new Menu(questionOpenMenuID).submenu('⬅️ Voltar', faqSubmenuID, (ctx) =>
+				ctx.editMessageText(faqSubmenuText(section), editMessageOptions)
 			);
 
 			faqSubmenu
 				.submenu(question.question, questionOpenMenuID, (ctx) =>
-					ctx.editMessageText(
-						faqQuestionOpenHeader(section) + `<b>${question.question}</b>\n${question.answer}`,
-						{
-							...editMessageOptions,
-							link_preview_options: {
-								is_disabled: true
-							}
+					ctx.editMessageText(faqQuestionOpenHeader(section) + `<b>${question.question}</b>\n${question.answer}`, {
+						...editMessageOptions,
+						link_preview_options: {
+							is_disabled: true
 						}
-					)
+					})
 				)
 				.row();
 
 			allFaqSubmenus.push(faqQuestionOpenMenu);
 		}
 
-		faqSubmenu.submenu('⬅️ Voltar', 'faq-menu', (ctx) =>
-			ctx.editMessageText(faqMenuText, editMessageOptions)
-		);
+		faqSubmenu.submenu('⬅️ Voltar', 'faq-menu', (ctx) => ctx.editMessageText(faqMenuText, editMessageOptions));
 
 		allFaqSubmenus.push(faqSubmenu);
 	}
 
-	faqMenu.submenu('⬅️ Voltar', 'help-main-menu', (ctx) =>
-		ctx.editMessageText(mainMenuText, editMessageOptions)
-	);
+	faqMenu.submenu('⬅️ Voltar', 'help-main-menu', (ctx) => ctx.editMessageText(mainMenuText, editMessageOptions));
 
 	return { faqMenu, allFaqSubmenus };
 }
@@ -137,9 +116,7 @@ export class HelpCommand extends Command {
 			.submenu('Comandos', 'commands-menu', (ctx) =>
 				ctx.editMessageText(commandsMenuText(publicCommands.length), editMessageOptions)
 			)
-			.submenu('Perguntas Frequentes', 'faq-menu', (ctx) =>
-				ctx.editMessageText(faqMenuText, editMessageOptions)
-			);
+			.submenu('Perguntas Frequentes', 'faq-menu', (ctx) => ctx.editMessageText(faqMenuText, editMessageOptions));
 		if (short) return main;
 
 		const { faqMenu, allFaqSubmenus } = buildFaqMenus();

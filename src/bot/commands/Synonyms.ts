@@ -6,8 +6,7 @@ import getSynonymsMessage from '../messages/synonymsMessage';
 export class SynonymsCommand extends Command {
 	name = 'Sinônimos de Palavras';
 	commands = ['sinonimos', 'sinônimo', 'sinônimos', 'sinonimo'];
-	description =
-		'Receba uma lista de sinônimos de uma palavra.';
+	description = 'Receba uma lista de sinônimos de uma palavra.';
 	args = '[palavra]';
 	example = '/sinonimos dicionário';
 	saveUserData = true;

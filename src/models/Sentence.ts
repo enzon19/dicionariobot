@@ -1,4 +1,4 @@
 export interface Sentence {
-  sentence: string;
-  author: string;
+	sentence: string;
+	author: string;
 }

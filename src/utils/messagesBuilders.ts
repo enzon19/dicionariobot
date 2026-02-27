@@ -12,11 +12,7 @@ export function buildWaitingReplyMessage(resource: string) {
 	return `Respondendo <b>esta mensagem</b>, envie a palavra que você quer ${resource}.`;
 }
 
-export async function buildEmptyMessage(
-	resource: string,
-	gender: 'masculine' | 'feminine',
-	word: string
-) {
+export async function buildEmptyMessage(resource: string, gender: 'masculine' | 'feminine', word: string) {
 	const suffix = gender == 'feminine' ? 'cadastradas' : 'cadastrados';
 	return `Infelizmente, a palavra <b>"${word}"</b> não possui ${resource} ${suffix} no dicionário.`; // \n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}"`
 }
@@ -31,8 +27,7 @@ export async function buildGenericResourceMessage(
 ) {
 	const correctWordSpelling = syllables ? getWordFromSyllables(syllables, word) : word;
 
-	if (resourceData.length == 0)
-		return [await buildEmptyMessage(resource, gender, correctWordSpelling)];
+	if (resourceData.length == 0) return [await buildEmptyMessage(resource, gender, correctWordSpelling)];
 
 	const header = buildHeader(resource, correctWordSpelling);
 	return [header, ...blocks].filter((e) => e);
