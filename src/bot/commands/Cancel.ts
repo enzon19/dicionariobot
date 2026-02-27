@@ -5,7 +5,7 @@ export class CancelCommand extends Command {
 	name = 'Cancelar';
 	commands = ['cancelar', 'cancel', 'close', 'fechar', 'quit', 'sair'];
 	description = 'Cancele uma operação do bot.';
-	saveUserData = false;
+	saveUserData = true;
 
 	handle(ctx: Context): void {
 		ctx.reply('Operação cancelada.', {

@@ -5,7 +5,7 @@ export class PingCommand extends Command {
 	name = 'Ping';
 	commands = ['ping'];
 	description = 'Pong! 🏓';
-	saveUserData = false;
+	saveUserData = true;
 
 	handle(ctx: Context): void {
 		const message = ctx.message;
