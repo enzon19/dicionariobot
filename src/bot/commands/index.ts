@@ -4,16 +4,18 @@ import { StartCommand } from './Start';
 import { MeaningCommand } from './Meanings';
 import { SynonymsCommand } from './Synonyms';
 import { SentencesCommand } from './Sentences';
+import { HelpCommand } from './Help';
 import { CancelCommand } from './Cancel';
 import { DonateCommand } from './Donate';
 import { AboutCommand } from './About';
 import { PingCommand } from './Ping';
 
-const commands: Command[] = [
+export const commands: Command[] = [
 	new StartCommand(),
 	new MeaningCommand(),
 	new SynonymsCommand(),
 	new SentencesCommand(),
+	new HelpCommand(),
 	new CancelCommand(),
 	new DonateCommand(),
 	new AboutCommand(),
