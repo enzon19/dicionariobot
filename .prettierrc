@@ -4,5 +4,6 @@
 	"trailingComma": "none",
 	"printWidth": 120,
 	"bracketSameLine": true,
-	"plugins": ["prettier-plugin-tailwindcss"]
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"endOfLine": "crlf"
 }
