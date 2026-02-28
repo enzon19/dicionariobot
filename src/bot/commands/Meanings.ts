@@ -35,10 +35,10 @@ export class MeaningCommand extends Command {
 		} else {
 			const word = ctx.match.toString();
 
-			ctx.replyWithChatAction('typing');
+			await ctx.replyWithChatAction('typing');
 			const meanings = await getMeaningMessage(word);
 
-			ctx.reply(meanings, {
+			await ctx.reply(meanings, {
 				parse_mode: 'HTML'
 			});
 		}

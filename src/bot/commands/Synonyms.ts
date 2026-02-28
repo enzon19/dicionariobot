@@ -24,10 +24,10 @@ export class SynonymsCommand extends Command {
 		} else {
 			const word = ctx.match.toString();
 
-			ctx.replyWithChatAction('typing');
+			await ctx.replyWithChatAction('typing');
 			const synonyms = await getSynonymsMessage(word);
 
-			ctx.reply(synonyms, {
+			await ctx.reply(synonyms, {
 				parse_mode: 'HTML'
 			});
 		}

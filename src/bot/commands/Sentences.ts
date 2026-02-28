@@ -24,10 +24,10 @@ export class SentencesCommand extends Command {
 		} else {
 			const word = ctx.match.toString();
 
-			ctx.replyWithChatAction('typing');
+			await ctx.replyWithChatAction('typing');
 			const sentences = await getSentencesMessage(word);
 
-			ctx.reply(sentences, {
+			await ctx.reply(sentences, {
 				parse_mode: 'HTML'
 			});
 		}
