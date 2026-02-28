@@ -65,7 +65,7 @@ async function handleWordRequest(ctx: Context, text: string, repliedMessageText:
 		exemplos: getSentencesMessage
 	};
 
-	ctx.replyWithChatAction('typing');
+	await ctx.replyWithChatAction('typing');
 
 	const result = await handlers[action](text);
 	ctx.reply(result, {
