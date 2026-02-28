@@ -14,7 +14,7 @@ export function buildWaitingReplyMessage(resource: string) {
 
 export async function buildEmptyMessage(resource: string, gender: 'masculine' | 'feminine', word: string) {
 	const suffix = gender == 'feminine' ? 'cadastradas' : 'cadastrados';
-	return `Infelizmente, a palavra <b>"${word}"</b> não possui ${resource} ${suffix} no dicionário.`; // \n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}"`
+	return `Infelizmente, a palavra <b>"${word}"</b> não possui <b>${resource}</b> ${suffix} no dicionário.`; // \n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}"`
 }
 
 export async function buildGenericResourceMessage(
