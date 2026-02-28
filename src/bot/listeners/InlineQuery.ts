@@ -67,8 +67,10 @@ async function buildInlineResults(word: string): Promise<InlineQueryResult[]> {
 
 		const result = InlineQueryResultBuilder.article(type + '-' + word, title, {
 			description: buildArticleDescription(message, type),
-			thumbnail_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/fc983d0c7a21c81da600a2102048d234219d6b80/public/inline/${type}_${correctWordSpelling[0]
-				?.toLowerCase()
+			thumbnail_url: `https://raw.githubusercontent.com/enzon19/dicionariobot/fc983d0c7a21c81da600a2102048d234219d6b80/public/inline/${type}_${(
+				correctWordSpelling[0] || 'a'
+			)
+				.toLowerCase()
 				.normalize('NFD')
 				.replace(/[\u0300-\u036f]/g, '')}.png`
 		}).text(message.join('\n\n'), {
