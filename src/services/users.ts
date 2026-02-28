@@ -1,5 +1,6 @@
+import { eq } from 'drizzle-orm';
 import { db } from '../db/db';
-import { events, users } from '../db/schema';
+import { events, shortcutEnum, users, type Shortcut } from '../db/schema';
 
 export async function saveLastUse(
 	userID: number,
@@ -18,4 +19,24 @@ export async function saveLastUse(
 		});
 
 	if (event) await db.insert(events).values({ user_id: userID, ...event });
+}
+
+export async function getUserShortcuts(
+	userID: number,
+	type?: 'both'
+): Promise<Record<'shortcut' | 'slash_shortcut', Shortcut>>;
+export async function getUserShortcuts(userID: number, type?: 'regular' | 'slash'): Promise<Shortcut>;
+export async function getUserShortcuts(userID: number, type: 'regular' | 'slash' | 'both' = 'both') {
+	const userShortcuts = await db
+		.select({
+			shortcut: users.shortcut,
+			slash_shortcut: users.slash_shortcut
+		})
+		.from(users)
+		.where(eq(users.id, userID))
+		.limit(1)
+		.then((rows) => rows[0]);
+
+	if (type == 'both') return userShortcuts ?? { shortcut: 'meanings', slash_shortcut: 'meanings' };
+	return type == 'slash' ? (userShortcuts?.slash_shortcut ?? 'meanings') : (userShortcuts?.shortcut ?? 'meanings');
 }

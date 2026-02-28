@@ -6,10 +6,8 @@ import removeTelegramHTML from '../../utils/removeTelegramHTML';
 import getMeaningMessage from '../messages/meaningMessage';
 import getSynonymsMessage from '../messages/synonymsMessage';
 import getSentencesMessage from '../messages/sentencesMessage';
-import { saveLastUse } from '../../services/users';
-import { shortcutEnum, users } from '../../db/schema';
-import { db } from '../../db/db';
-import { eq } from 'drizzle-orm';
+import { getUserShortcuts, saveLastUse } from '../../services/users';
+import { type Shortcut } from '../../db/schema';
 const BOT_USERNAME = process.env.BOT_USERNAME;
 
 export class TextListener extends Listener {
@@ -80,22 +78,15 @@ async function shortcut(ctx: Context, text: string, slash: boolean) {
 
 	await ctx.replyWithChatAction('typing');
 
-	const handlers: Record<(typeof shortcutEnum.enumValues)[number], (word: string) => Promise<string>> = {
+	const handlers: Record<Shortcut, (word: string) => Promise<string>> = {
 		meanings: getMeaningMessage,
 		synonyms: getSynonymsMessage,
 		sentences: getSentencesMessage
 	};
 
-	const userChosenShortcut = await db
-		.select({
-			shortcut: slash ? users.slash_shortcut : users.shortcut
-		})
-		.from(users)
-		.where(eq(users.id, ctx.from.id))
-		.limit(1)
-		.then((rows) => rows[0]);
+	const userChosenShortcut = await getUserShortcuts(ctx.from.id, slash ? 'slash' : 'regular');
 
-	const result = await handlers[userChosenShortcut?.shortcut || 'meanings'](text);
+	const result = await handlers[userChosenShortcut](text);
 	ctx.reply(result, {
 		parse_mode: 'HTML'
 	});

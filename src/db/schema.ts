@@ -7,6 +7,7 @@ const defaultSearchEngines = [
 	{ name: 'Dicionário Informal', url: 'https://www.dicionarioinformal.com.br/$' },
 	{ name: 'Wikipédia', url: 'https://pt.wikipedia.org/wiki/Special:Search?search=$' }
 ];
+export type Shortcut = (typeof shortcutEnum.enumValues)[number];
 export const shortcutEnum = pgEnum('shortcut', ['meanings', 'synonyms', 'sentences']);
 export const users = pgTable('users', {
 	id: bigint({ mode: 'number' }).primaryKey().notNull(),
