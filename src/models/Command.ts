@@ -1,5 +1,6 @@
 import type { Menu } from '@grammyjs/menu';
 import type { Bot, Context } from 'grammy';
+import { saveLastUse } from '../services/users';
 const ADMIN_IDS = process.env.ADMIN_IDS;
 
 export abstract class Command {
@@ -15,19 +16,19 @@ export abstract class Command {
 	example?: string;
 
 	register(bot: Bot<Context>): void {
-		bot.command(this.commands, (ctx) => {
+		bot.command(this.commands, async (ctx) => {
 			if (this.admin) {
 				const admins = ADMIN_IDS?.split(',') || [];
-				if (!admins.includes(ctx.message?.from.id.toString() || '')) return;
+				if (!admins.includes(ctx.from?.id.toString() || '')) return;
 			}
 
 			this.handle(ctx);
 
 			if (this.saveUserData) {
 				try {
-					console.log('Salvar dados');
+					if (ctx.from) await saveLastUse(ctx.from.id, { type: 'command:' + this.commands[0] });
 				} catch (err) {
-					console.error('Erro ao salvar dados do usuário:', err);
+					console.error('Error saving user data:', err);
 				}
 			}
 		});

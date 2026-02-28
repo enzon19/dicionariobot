@@ -6,23 +6,26 @@ import removeTelegramHTML from '../../utils/removeTelegramHTML';
 import getMeaningMessage from '../messages/meaningMessage';
 import getSynonymsMessage from '../messages/synonymsMessage';
 import getSentencesMessage from '../messages/sentencesMessage';
+import { saveLastUse } from '../../services/users';
 const BOT_USERNAME = process.env.BOT_USERNAME;
 
 export class TextListener extends Listener {
 	on: FilterQuery[] = ['message:text', 'message:caption'];
 	saveUserData = false;
 
-	handle = (ctx: Context) => {
+	handle = async (ctx: Context) => {
 		const message = ctx.message;
 		const text = message?.text || message?.caption;
 		if (!text) return;
 
 		if (message.reply_to_message?.text && message.reply_to_message.from?.username == BOT_USERNAME) {
 			// if it has reply_to_message from bot, so it could be the empty message from a command
-			handleReply(message, text, ctx);
+			await handleReply(message, text, ctx);
+			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
 		} else if (message.chat.type == 'private') {
 			// if it's from a private chat, it's a shortcut
 			console.log('shortcut');
+			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
 		} else if (message.chat.type == 'group' || message.chat.type == 'supergroup') {
 			// if it's from a group, check for mistakes
 			console.log('check for mistakes');
@@ -36,7 +39,7 @@ async function handleReply(message: Message, text: string, ctx: Context) {
 	// could be asking for a word for meanings, synonyms, sentences
 	const waitingReplyMessage = removeTelegramHTML(buildWaitingReplyMessage('').slice(0, -2));
 	if (repliedMessageText?.startsWith(waitingReplyMessage)) {
-		handleWordRequest(message, text, ctx, repliedMessageText, waitingReplyMessage.length + 1);
+		await handleWordRequest(message, text, ctx, repliedMessageText, waitingReplyMessage.length + 1);
 	}
 }
 
