@@ -2,6 +2,7 @@ import type { Bot, Context, FilterQuery } from 'grammy';
 import { saveLastUse } from '../services/users';
 
 export abstract class Listener {
+	abstract listenerName: string;
 	abstract on: FilterQuery[];
 	abstract saveUserData: boolean;
 	abstract handle(ctx: Context): void;

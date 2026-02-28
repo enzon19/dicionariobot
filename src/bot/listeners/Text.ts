@@ -10,6 +10,7 @@ import { saveLastUse } from '../../services/users';
 const BOT_USERNAME = process.env.BOT_USERNAME;
 
 export class TextListener extends Listener {
+	listenerName = 'text-message';
 	on: FilterQuery[] = ['message:text', 'message:caption'];
 	saveUserData = false;
 

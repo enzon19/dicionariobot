@@ -77,6 +77,7 @@ async function buildInlineResults(word: string): Promise<InlineQueryResult[]> {
 }
 
 export class InlineQueryListener extends Listener {
+	listenerName = 'inline-query';
 	on: FilterQuery[] = ['inline_query'];
 	saveUserData = true;
 
