@@ -13,7 +13,7 @@ export abstract class Listener {
 
 			if (this.saveUserData) {
 				try {
-					if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
+					if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
 				} catch (err) {
 					console.error('Error saving user data:', err);
 				}

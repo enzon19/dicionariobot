@@ -22,11 +22,16 @@ export class TextListener extends Listener {
 		if (message.reply_to_message?.text && message.reply_to_message.from?.username == BOT_USERNAME) {
 			// if it has reply_to_message from bot, so it could be the empty message from a command
 			await handleReply(message, text, ctx);
-			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
+			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName + ':reply' });
 		} else if (message.chat.type == 'private') {
 			// if it's from a private chat, it's a shortcut
-			console.log('shortcut');
-			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
+			const isSlashShortcut = text.startsWith('/');
+			// shortcut
+
+			if (ctx.from)
+				await saveLastUse(ctx.from.id, {
+					type: 'event:' + this.listenerName + (isSlashShortcut ? ':slash-shortcut' : ':shortcut')
+				});
 		} else if (message.chat.type == 'group' || message.chat.type == 'supergroup') {
 			// if it's from a group, check for mistakes
 			console.log('check for mistakes');

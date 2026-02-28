@@ -95,7 +95,7 @@ export class InlineQueryListener extends Listener {
 		const result = await buildInlineResults(query);
 		try {
 			await ctx.answerInlineQuery(result, { cache_time: 1800 });
-			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.on.join(',') });
+			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
 		} catch (e) {
 			console.error(e);
 		}
