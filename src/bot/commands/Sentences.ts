@@ -12,14 +12,9 @@ export class SentencesCommand extends Command {
 	saveUserData = true;
 
 	handle = async (ctx: Context) => {
-		const message = ctx.message;
-
 		if (!ctx.match) {
 			ctx.reply(buildWaitingReplyMessage('exemplos'), {
 				parse_mode: 'HTML',
-				reply_parameters: message && {
-					message_id: message?.message_id
-				},
 				reply_markup: {
 					force_reply: true,
 					selective: true,
@@ -33,10 +28,7 @@ export class SentencesCommand extends Command {
 			const sentences = await getSentencesMessage(word);
 
 			ctx.reply(sentences, {
-				parse_mode: 'HTML',
-				reply_parameters: message && {
-					message_id: message?.message_id
-				}
+				parse_mode: 'HTML'
 			});
 		}
 	};

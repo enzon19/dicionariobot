@@ -137,15 +137,10 @@ export class HelpCommand extends Command {
 	};
 
 	handle = (ctx: Context) => {
-		const message = ctx.message;
-
 		ctx.reply(mainMenuText, {
 			parse_mode: 'HTML',
 			link_preview_options: {
 				is_disabled: true
-			},
-			reply_parameters: message && {
-				message_id: message?.message_id
 			},
 			reply_markup: this.menus(true) as Menu
 		});

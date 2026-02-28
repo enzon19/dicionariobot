@@ -39,6 +39,8 @@ export class TextListener extends Listener {
 	};
 }
 
+// REPLY, WORD REQUEST
+
 async function handleReply(message: Message, text: string, ctx: Context) {
 	const repliedMessageText = message.reply_to_message?.text;
 
@@ -69,9 +71,8 @@ async function handleWordRequest(
 	const result = await handlers[action](text);
 
 	ctx.reply(result, {
-		parse_mode: 'HTML',
-		reply_parameters: message && {
-			message_id: message?.message_id
-		}
+		parse_mode: 'HTML'
 	});
 }
+
+// SHORTCUT

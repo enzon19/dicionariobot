@@ -26,9 +26,6 @@ export class StartCommand extends Command {
 			link_preview_options: {
 				is_disabled: true
 			},
-			reply_parameters: message && {
-				message_id: message?.message_id
-			},
 			reply_markup: this.menus
 		});
 	}
