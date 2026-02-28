@@ -34,27 +34,32 @@ function buildArticleDescription(message: string[], resourceType: ResourceType) 
 }
 
 async function buildInlineResults(word: string): Promise<InlineQueryResult[]> {
+	const [meanings, synonyms, sentences, syllables] = await Promise.all([
+		getMeaningMessage(word, true),
+		getSynonymsMessage(word, true),
+		getSentencesMessage(word, true),
+		getSyllables(word)
+	]);
 	const messagesResults: MessageResult[] = [
 		{
 			type: 'meanings',
 			resourceName: 'definições',
-			message: await getMeaningMessage(word, true)
+			message: meanings
 		},
 		{
 			type: 'synonyms',
 			resourceName: 'sinônimos',
-			message: await getSynonymsMessage(word, true)
+			message: synonyms
 		},
 		{
 			type: 'sentences',
 			resourceName: 'exemplos',
-			message: await getSentencesMessage(word, true)
+			message: sentences
 		}
 	];
 
 	let results: InlineQueryResult[] = [];
 
-	const syllables = await getSyllables(word);
 	const correctWordSpelling = getWordFromSyllables(syllables, word);
 
 	for (const { type, resourceName, message } of messagesResults) {
