@@ -40,3 +40,15 @@ export async function getUserShortcuts(userID: number, type: 'regular' | 'slash'
 	if (type == 'both') return userShortcuts ?? { shortcut: 'meanings', slash_shortcut: 'meanings' };
 	return type == 'slash' ? (userShortcuts?.slash_shortcut ?? 'meanings') : (userShortcuts?.shortcut ?? 'meanings');
 }
+
+export async function saveUserShortcuts(userID: number, slash: boolean, newValue: Shortcut) {
+	const valueToChange = slash ? { slash_shortcut: newValue } : { shortcut: newValue };
+
+	return await db
+		.insert(users)
+		.values({ id: userID, ...valueToChange })
+		.onConflictDoUpdate({
+			target: users.id,
+			set: valueToChange
+		});
+}

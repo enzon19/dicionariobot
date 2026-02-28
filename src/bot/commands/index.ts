@@ -4,6 +4,7 @@ import { StartCommand } from './Start';
 import { MeaningCommand } from './Meanings';
 import { SynonymsCommand } from './Synonyms';
 import { SentencesCommand } from './Sentences';
+import { SettingsCommand } from './Settings';
 import { HelpCommand } from './Help';
 import { CancelCommand } from './Cancel';
 import { DonateCommand } from './Donate';
@@ -15,6 +16,7 @@ export const commands: Command[] = [
 	new MeaningCommand(),
 	new SynonymsCommand(),
 	new SentencesCommand(),
+	new SettingsCommand(),
 	new HelpCommand(),
 	new CancelCommand(),
 	new DonateCommand(),
