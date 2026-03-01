@@ -1,6 +1,7 @@
 import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/db';
-import { events, users, type Shortcut } from '../db/schema';
+import { defaultSearchEngines, events, users, type Shortcut } from '../db/schema';
+import removeTelegramHTML from '../utils/removeTelegramHTML';
 
 export async function getUserData(userID: number) {
 	const userData = await db
@@ -39,6 +40,18 @@ export async function getUserShortcuts(userID: number, type: 'regular' | 'slash'
 	return type == 'slash' ? (userShortcuts?.slash_shortcut ?? 'meanings') : (userShortcuts?.shortcut ?? 'meanings');
 }
 
+type SearchEngine = { name: string; url: string };
+export async function getUserSearchEngines(userID: number): Promise<SearchEngine[]> {
+	const userSearchEngines = await db
+		.select({ search_engines: users.search_engines })
+		.from(users)
+		.where(eq(users.id, userID))
+		.limit(1)
+		.then((rows) => rows[0]);
+
+	return (userSearchEngines?.search_engines as SearchEngine[]) || defaultSearchEngines;
+}
+
 export async function saveUserLastUse(
 	userID: number,
 	event?: {
@@ -68,6 +81,42 @@ export async function saveUserShortcuts(userID: number, slash: boolean, newValue
 			target: users.id,
 			set: valueToChange
 		});
+}
+
+export async function saveUserSearchEngines(userID: number, searchEngines: SearchEngine[]) {
+	const sanitizedSearchEngines = searchEngines.map((e) => ({
+		...e,
+		name: removeTelegramHTML(e.name).substring(0, 33) || Date.now().toString()
+	}));
+
+	return await db
+		.insert(users)
+		.values({ id: userID, search_engines: sanitizedSearchEngines })
+		.onConflictDoUpdate({
+			target: users.id,
+			set: { search_engines: sanitizedSearchEngines }
+		});
+}
+
+export async function addUserSearchEngine(userID: number, name: string, url: string) {
+	let searchEngines = await getUserSearchEngines(userID);
+
+	if (!url.includes('$')) throw 'Missing $.';
+	try {
+		new URL(url);
+	} catch (e) {
+		throw 'Invalid URL.';
+	}
+
+	searchEngines.push({ name, url });
+	return await saveUserSearchEngines(userID, searchEngines);
+}
+
+export async function deleteUserSearchEngine(userID: number, name: string) {
+	const searchEngines = await getUserSearchEngines(userID);
+	const filteredSearchEngines = searchEngines.filter((e) => e.name != name);
+
+	return await saveUserSearchEngines(userID, filteredSearchEngines);
 }
 
 export async function deleteUser(userID: number) {

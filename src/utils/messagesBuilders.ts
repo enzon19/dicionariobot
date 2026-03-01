@@ -1,3 +1,5 @@
+import { getUserSearchEngines } from '../services/users';
+
 export function getWordFromSyllables(syllables: string[], fallbackWord: string) {
 	fallbackWord = fallbackWord;
 	if (fallbackWord.includes('-')) return fallbackWord;
@@ -10,6 +12,13 @@ export function buildHeader(resource: string, word: string) {
 
 export function buildWaitingReplyMessage(resource: string) {
 	return `Respondendo <b>esta mensagem</b>, envie a palavra que você quer ${resource}.`;
+}
+
+export async function buildSearchEnginesText(userID: number, word: string, leading?: string) {
+	const userSearchEngines = await getUserSearchEngines(userID);
+	if (userSearchEngines.length == 0) return leading ? 'sem mecanismos de busca' : 'Sem mecanismos de busca.';
+
+	return userSearchEngines.map((e) => `<a href="${e.url.replace('$', word)}">${e.name}</a>`).join(' • ');
 }
 
 export async function buildEmptyMessage(resource: string, gender: 'masculine' | 'feminine', word: string) {

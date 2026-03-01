@@ -5,6 +5,7 @@ import { buildChangeShortcut, buildShortcutMenu } from '../menus/settings/shortc
 import { mainMenuText } from '../messages/settingsMessages';
 import { buildSettingsMainMenu } from '../menus/settings';
 import { buildDataMenu, buildDeleteDataMenu } from '../menus/settings/dataMenus';
+import { buildDeleteSearchEngineMenu, buildEditSearchEnginesMenu, buildSearchEnginesMenu } from '../menus/settings/searchEnginesMenus';
 
 export class SettingsCommand extends Command {
 	name = 'Configurações';
@@ -28,6 +29,13 @@ export class SettingsCommand extends Command {
 		const deleteDataMenu = buildDeleteDataMenu();
 		dataMenu.register(deleteDataMenu);
 		main.register(dataMenu);
+
+		const searchEnginesMenu = buildSearchEnginesMenu();
+		const searchEnginesEditMenu = buildEditSearchEnginesMenu();
+		searchEnginesMenu.register(searchEnginesEditMenu);
+		const searchEnginesDeleteMenu = buildDeleteSearchEngineMenu();
+		searchEnginesEditMenu.register(searchEnginesDeleteMenu);
+		main.register(searchEnginesMenu);
 
 		return [main];
 	};

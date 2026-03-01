@@ -1,6 +1,6 @@
 import { bigint, jsonb, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
-const defaultSearchEngines = [
+export const defaultSearchEngines = [
 	{ name: 'Google', url: 'https://www.google.com/search?q=$' },
 	{ name: 'Bing', url: 'https://www.bing.com/search?q=$' },
 	{ name: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=$' },
