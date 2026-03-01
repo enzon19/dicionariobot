@@ -1,13 +1,14 @@
-import type { Bot, Context, FilterQuery } from 'grammy';
+import type { Bot, FilterQuery } from 'grammy';
+import type { BotContext } from '../bot/bot';
 import { saveUserLastUse } from '../services/users';
 
 export abstract class Listener {
 	abstract listenerName: string;
 	abstract on: FilterQuery[];
 	abstract saveUserData: boolean;
-	abstract handle(ctx: Context): void;
+	abstract handle(ctx: BotContext): void;
 
-	register(bot: Bot<Context>): void {
+	register(bot: Bot<BotContext>): void {
 		bot.on(this.on, async (ctx) => {
 			this.handle(ctx);
 

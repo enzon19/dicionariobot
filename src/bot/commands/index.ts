@@ -1,5 +1,6 @@
-import type { Bot, Context } from 'grammy';
+import type { Bot } from 'grammy';
 import type { Command } from '../../models/Command';
+import type { BotContext } from '../bot';
 import { StartCommand } from './Start';
 import { MeaningCommand } from './Meanings';
 import { SynonymsCommand } from './Synonyms';
@@ -24,7 +25,7 @@ export const commands: Command[] = [
 	new PingCommand()
 ];
 
-export function registerCommands(bot: Bot<Context>): void {
+export function registerCommands(bot: Bot<BotContext>): void {
 	for (const command of commands) {
 		if (command.menus) {
 			const menus = typeof command.menus === 'function' ? command.menus() : command.menus;
