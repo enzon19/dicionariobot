@@ -1,4 +1,4 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 import { Menu } from '@grammyjs/menu';
 import { commands } from '.';
@@ -31,13 +31,13 @@ export class HelpCommand extends Command {
 		return [main];
 	};
 
-	handle = (ctx: Context) => {
+	handle = (ctx: BotContext) => {
 		ctx.reply(mainMenuText, {
 			parse_mode: 'HTML',
 			link_preview_options: {
 				is_disabled: true
 			},
-			reply_markup: this.menus(true) as Menu
+			reply_markup: this.menus(true) as Menu<BotContext>
 		});
 	};
 }

@@ -1,4 +1,4 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../../bot';
 import type { Shortcut } from '../../../db/schema';
 import { Menu } from '@grammyjs/menu';
 import { saveUserShortcuts } from '../../../services/users';
@@ -6,14 +6,14 @@ import { changeShortcutsMenuText, mainMenuText, shortcutsMenuText } from '../../
 import { editMessageOptions } from '.';
 
 export function buildChangeShortcut(id: string, slash: boolean) {
-	const saveChangesAndGoBack = async (ctx: Context, slash: boolean, newShortcutValue: Shortcut) => {
+	const saveChangesAndGoBack = async (ctx: BotContext, slash: boolean, newShortcutValue: Shortcut) => {
 		const userID = ctx.from!.id;
 
 		await saveUserShortcuts(userID, slash, newShortcutValue);
 		ctx.editMessageText(await shortcutsMenuText(userID), editMessageOptions);
 	};
 
-	return new Menu(id)
+	return new Menu<BotContext>(id)
 		.submenu('Definições', 'shortcuts-menu', (ctx) => saveChangesAndGoBack(ctx, slash, 'meanings'))
 		.submenu('Sinônimos', 'shortcuts-menu', (ctx) => saveChangesAndGoBack(ctx, slash, 'synonyms'))
 		.submenu('Exemplos', 'shortcuts-menu', (ctx) => saveChangesAndGoBack(ctx, slash, 'sentences'))
@@ -22,7 +22,7 @@ export function buildChangeShortcut(id: string, slash: boolean) {
 }
 
 export function buildShortcutMenu() {
-	return new Menu('shortcuts-menu')
+	return new Menu<BotContext>('shortcuts-menu')
 		.submenu('Atalho sem /', 'regular-shortcut', (ctx) =>
 			ctx.editMessageText(changeShortcutsMenuText(false), editMessageOptions)
 		)

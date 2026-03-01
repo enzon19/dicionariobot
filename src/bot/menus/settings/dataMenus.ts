@@ -1,3 +1,4 @@
+import type { BotContext } from '../../bot';
 import { Menu } from '@grammyjs/menu';
 import { dataMenuText, deleteDataMenuText, mainMenuText } from '../../messages/settingsMessages';
 import { editMessageOptions } from '.';
@@ -5,7 +6,7 @@ import { deleteUser, getUserEvents } from '../../../services/users';
 import { InputFile } from 'grammy';
 
 export function buildDeleteDataMenu() {
-	return new Menu('delete-data')
+	return new Menu<BotContext>('delete-data')
 		.back('Apagar permanentemente', async (ctx) => {
       await deleteUser(ctx.from.id);
 			ctx.editMessageText(await dataMenuText(ctx.from.id), editMessageOptions);
@@ -14,7 +15,7 @@ export function buildDeleteDataMenu() {
 }
 
 export function buildDataMenu() {
-	return new Menu('data-menu')
+	return new Menu<BotContext>('data-menu')
 		.text('Ver eventos', async (ctx) => {
 			await ctx.replyWithChatAction('upload_document');
 

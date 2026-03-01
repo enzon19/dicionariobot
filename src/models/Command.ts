@@ -12,7 +12,7 @@ export abstract class Command {
 	abstract handle(ctx: BotContext): void;
 
 	admin?: boolean;
-	menus?: ((...args: any[]) => Menu[] | Menu) | Menu | Menu[];
+	menus?: ((...args: any[]) => Menu<BotContext>[] | Menu<BotContext>) | Menu<BotContext> | Menu<BotContext>[];
 	args?: string;
 	example?: string;
 

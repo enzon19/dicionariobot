@@ -1,4 +1,5 @@
 import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 import { Menu } from '@grammyjs/menu';
 import { buildChangeShortcut, buildShortcutMenu } from '../menus/settings/shortcutsMenus';
@@ -46,7 +47,7 @@ export class SettingsCommand extends Command {
 			link_preview_options: {
 				is_disabled: true
 			},
-			reply_markup: this.menus(true) as Menu
+			reply_markup: this.menus(true) as Menu<BotContext>
 		});
 	}
 }

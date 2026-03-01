@@ -1,4 +1,5 @@
 import type { ParseMode } from 'grammy/types';
+import type { BotContext } from '../bot';
 import type { Command } from '../../models/Command';
 import { Menu } from '@grammyjs/menu';
 import help from '../../assets/help';
@@ -7,7 +8,7 @@ import { commandsMenuText, faqMenuText, mainMenuText } from '../messages/helpMes
 const editMessageOptions = { parse_mode: 'HTML' as ParseMode };
 
 export function buildHelpMainMenu(commands: Command[]) {
-	return new Menu('help-main-menu')
+	return new Menu<BotContext>('help-main-menu')
 		.submenu('Comandos', 'commands-menu', (ctx) =>
 			ctx.editMessageText(commandsMenuText(commands.length), editMessageOptions)
 		)
@@ -16,8 +17,8 @@ export function buildHelpMainMenu(commands: Command[]) {
 
 export function buildCommandsMenus(commands: Command[]) {
 	const aboutCommandHeader = `<u><b>AJUDA > COMANDOS > SOBRE</b></u>\n\n`;
-	const commandsMenu = new Menu('commands-menu');
-	const allCommandsSubmenus: Menu[] = [];
+	const commandsMenu = new Menu<BotContext>('commands-menu');
+	const allCommandsSubmenus: Menu<BotContext>[] = [];
 
 	for (let i = 0; i < commands.length; i++) {
 		const command = commands[i];
@@ -39,7 +40,7 @@ export function buildCommandsMenus(commands: Command[]) {
 
 			ctx.editMessageText(aboutCommandHeader + aboutCommandTextBuilder.join('\n'), editMessageOptions);
 		});
-		const commandSubmenu = new Menu(commandOpenMenuID).submenu('⬅️ Voltar', 'commands-menu', (ctx) =>
+		const commandSubmenu = new Menu<BotContext>(commandOpenMenuID).submenu('⬅️ Voltar', 'commands-menu', (ctx) =>
 			ctx.editMessageText(commandsMenuText(commands.length), editMessageOptions)
 		);
 		allCommandsSubmenus.push(commandSubmenu);
@@ -60,8 +61,8 @@ export function buildFaqMenus() {
 	const faqQuestionOpenHeader = (section: string) =>
 		`<u><b>AJUDA > PERGUNTAS FREQUENTES > ${section.toUpperCase()} > PERGUNTA</b></u>\n\n`;
 
-	const faqMenu = new Menu('faq-menu');
-	const allFaqSubmenus: Menu[] = [];
+	const faqMenu = new Menu<BotContext>('faq-menu');
+	const allFaqSubmenus: Menu<BotContext>[] = [];
 
 	for (const { section, sectionID, questions } of help) {
 		const faqSubmenuID = 'faq-submenu-' + sectionID;
@@ -70,12 +71,12 @@ export function buildFaqMenus() {
 			.submenu(section, faqSubmenuID, (ctx) => ctx.editMessageText(faqSubmenuText(section), editMessageOptions))
 			.row();
 
-		const faqSubmenu = new Menu(faqSubmenuID);
+		const faqSubmenu = new Menu<BotContext>(faqSubmenuID);
 
 		for (const question of questions) {
 			const questionOpenMenuID = 'faq-question-' + sectionID + '-' + question.id;
 
-			const faqQuestionOpenMenu = new Menu(questionOpenMenuID).submenu('⬅️ Voltar', faqSubmenuID, (ctx) =>
+			const faqQuestionOpenMenu = new Menu<BotContext>(questionOpenMenuID).submenu('⬅️ Voltar', faqSubmenuID, (ctx) =>
 				ctx.editMessageText(faqSubmenuText(section), editMessageOptions)
 			);
 

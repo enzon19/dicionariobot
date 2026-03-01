@@ -1,11 +1,12 @@
 import type { ParseMode } from 'grammy/types';
+import type { BotContext } from '../../bot';
 import { dataMenuText, searchEnginesMenuText, shortcutsMenuText } from '../../messages/settingsMessages';
 import { Menu } from '@grammyjs/menu';
 
 export const editMessageOptions = { parse_mode: 'HTML' as ParseMode, link_preview_options: { is_disabled: true } };
 
 export function buildSettingsMainMenu() {
-	return new Menu('settings-main-menu')
+	return new Menu<BotContext>('settings-main-menu')
 		.submenu('Atalhos', 'shortcuts-menu', async (ctx) =>
 			ctx.editMessageText(await shortcutsMenuText(ctx.from.id), editMessageOptions)
 		)

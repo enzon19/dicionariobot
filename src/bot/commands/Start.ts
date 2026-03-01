@@ -1,4 +1,4 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Menu } from '@grammyjs/menu';
 import { Command } from '../../models/Command';
 import { MeaningCommand } from './Meanings';
@@ -10,12 +10,12 @@ export class StartCommand extends Command {
 	description = 'Introdução do bot.';
 	saveUserData = false;
 
-	menus = new Menu('menu-cta')
+	menus = new Menu<BotContext>('menu-cta')
 		.text('Definir uma palavra', (ctx) => new MeaningCommand().handle(ctx))
 		.text('Usar modo inline')
 		.switchInline('');
 
-	handle(ctx: Context): void {
+	handle(ctx: BotContext): void {
 		const message = ctx.message;
 		const addedToGroup = message?.chat.type != 'private';
 
