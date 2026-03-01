@@ -7,7 +7,7 @@ import getSentencesMessage from '../messages/sentencesMessage';
 import removeTelegramHTML from '../../utils/removeTelegramHTML';
 import { buildHeader, getWordFromSyllables } from '../../utils/messagesBuilders';
 import { getSyllables } from '../../services/dictionary';
-import { saveLastUse } from '../../services/users';
+import { saveUserLastUse } from '../../services/users';
 
 type ResourceType = 'meanings' | 'synonyms' | 'sentences';
 interface MessageResult {
@@ -102,7 +102,7 @@ export class InlineQueryListener extends Listener {
 		const result = await buildInlineResults(query);
 		try {
 			await ctx.answerInlineQuery(result, { cache_time: 1800 });
-			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
+			if (ctx.from) await saveUserLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
 		} catch (e) {
 			console.error(e);
 		}

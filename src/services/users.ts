@@ -2,7 +2,7 @@ import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/db';
 import { events, users, type Shortcut } from '../db/schema';
 
-export async function saveLastUse(
+export async function saveUserLastUse(
 	userID: number,
 	event?: {
 		type: string;

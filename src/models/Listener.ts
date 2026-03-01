@@ -1,5 +1,5 @@
 import type { Bot, Context, FilterQuery } from 'grammy';
-import { saveLastUse } from '../services/users';
+import { saveUserLastUse } from '../services/users';
 
 export abstract class Listener {
 	abstract listenerName: string;
@@ -13,7 +13,7 @@ export abstract class Listener {
 
 			if (this.saveUserData) {
 				try {
-					if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
+					if (ctx.from) await saveUserLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
 				} catch (err) {
 					console.error('Error saving user data:', err);
 				}

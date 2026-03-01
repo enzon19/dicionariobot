@@ -6,7 +6,7 @@ import removeTelegramHTML from '../../utils/removeTelegramHTML';
 import getMeaningMessage from '../messages/meaningMessage';
 import getSynonymsMessage from '../messages/synonymsMessage';
 import getSentencesMessage from '../messages/sentencesMessage';
-import { getUserShortcuts, saveLastUse } from '../../services/users';
+import { getUserShortcuts, saveUserLastUse } from '../../services/users';
 import { type Shortcut } from '../../db/schema';
 const BOT_USERNAME = process.env.BOT_USERNAME;
 
@@ -24,14 +24,14 @@ export class TextListener extends Listener {
 			// if it has reply_to_message from bot, so it could be the empty message from a command
 			await handleReply(message, text, ctx);
 
-			if (ctx.from) await saveLastUse(ctx.from.id, { type: 'event:' + this.listenerName + ':reply' });
+			if (ctx.from) await saveUserLastUse(ctx.from.id, { type: 'event:' + this.listenerName + ':reply' });
 		} else if (message.chat.type == 'private') {
 			// if it's from a private chat, it's a shortcut
 			const isSlashShortcut = text.startsWith('/');
 			await shortcut(ctx, text, isSlashShortcut);
 
 			if (ctx.from)
-				await saveLastUse(ctx.from.id, {
+				await saveUserLastUse(ctx.from.id, {
 					type: 'event:' + this.listenerName + (isSlashShortcut ? ':slash-shortcut' : ':shortcut')
 				});
 		} else if (message.chat.type == 'group' || message.chat.type == 'supergroup') {
