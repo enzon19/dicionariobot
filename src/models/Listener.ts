@@ -14,7 +14,7 @@ export abstract class Listener {
 
 			if (this.saveUserData) {
 				try {
-					if (ctx.from) await saveUserLastUse(ctx.from.id, { type: 'event:' + this.listenerName });
+					if (ctx.from) await saveUserLastUse(ctx.from.id, { type: this.listenerName });
 				} catch (err) {
 					console.error('Error saving user data:', err);
 				}
