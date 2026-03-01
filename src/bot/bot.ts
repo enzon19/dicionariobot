@@ -20,7 +20,7 @@ export type BotContext = Context & SessionFlavor<SessionData>;
 export const bot = new Bot<BotContext>(TG_TOKEN);
 bot.use(autoQuote());
 bot.use(session({ initial: () => initialSessionData }));
-
+registerMenus(bot);
 registerStatelessQuestions(bot);
 registerCommands(bot);
 registerListeners(bot);
