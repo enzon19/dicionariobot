@@ -29,9 +29,10 @@ export const editSearchEngineMenuText = (name: string, url: string) =>
 export const setSearchEngineNameText = 'Respondendo <b>esta mensagem</b>, envie o <b>nome</b> do mecanismo de busca.';
 export const setSearchEngineURLText =
 	'Respondendo <b>esta mensagem</b>, envie o <b>URL</b> do mecanismo de busca. Não se esqueça de adicionar o "$". Saiba mais no comando /ajuda.';
+export const deleteSearchEngineMenuText = (name: string) =>
+	`<u><b>CONFIGURAÇÕES > MECANISMOS DE BUSCA > APAGAR</b></u>\n\nTem certeza de que deseja <b>apagar "${name}" permanentemente</b>?`;
 
 // DATA
-
 export async function dataMenuText(userID: number) {
 	const user = await getUserData(userID);
 
