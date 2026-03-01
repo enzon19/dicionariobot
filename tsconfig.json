@@ -9,5 +9,6 @@
 		"verbatimModuleSyntax": true,
 		"isolatedModules": true,
 		"skipLibCheck": true
-	}
+	},
+	"exclude": ["./drizzle.config.ts"]
 }
