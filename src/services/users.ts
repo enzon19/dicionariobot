@@ -40,7 +40,7 @@ export async function getUserShortcuts(userID: number, type: 'regular' | 'slash'
 	return type == 'slash' ? (userShortcuts?.slash_shortcut ?? 'meanings') : (userShortcuts?.shortcut ?? 'meanings');
 }
 
-type SearchEngine = { name: string; url: string };
+type SearchEngine = { name: string; url: string; id?: string };
 export async function getUserSearchEngines(userID: number): Promise<SearchEngine[]> {
 	const userSearchEngines = await db
 		.select({ search_engines: users.search_engines })
@@ -80,7 +80,9 @@ export async function saveUserShortcuts(userID: number, slash: boolean, newValue
 		.onConflictDoUpdate({
 			target: users.id,
 			set: valueToChange
-		});
+		})
+		.returning({ slash_shortcut: users.slash_shortcut, shortcut: users.shortcut })
+		.then((rows) => rows[0]);
 }
 
 export async function saveUserSearchEngines(userID: number, searchEngines: SearchEngine[]) {
@@ -95,21 +97,31 @@ export async function saveUserSearchEngines(userID: number, searchEngines: Searc
 		.onConflictDoUpdate({
 			target: users.id,
 			set: { search_engines: sanitizedSearchEngines }
-		});
+		})
+		.returning({ search_engines: users.search_engines })
+		.then((rows) => rows[0]?.search_engines as SearchEngine[]);
 }
 
-export async function addUserSearchEngine(userID: number, name: string, url: string) {
+export async function saveUserSearchEngine(userID: number, { url, name, id }: SearchEngine) {
 	let searchEngines = await getUserSearchEngines(userID);
 
-	if (!url.includes('$')) throw 'Missing $.';
 	try {
 		new URL(url);
 	} catch (e) {
 		throw 'Invalid URL.';
 	}
+	if (!url.includes('$')) throw 'Missing $.';
 
-	searchEngines.push({ name, url });
-	return await saveUserSearchEngines(userID, searchEngines);
+	const alreadyAddedIndex = searchEngines.findIndex((e) => e.id == id);
+	if (alreadyAddedIndex == -1) {
+		id = crypto.randomUUID();
+		searchEngines.push({ name, url, id });
+	} else {
+		searchEngines[alreadyAddedIndex] = { name, url, id };
+	}
+
+	const savedSearchEngines = await saveUserSearchEngines(userID, searchEngines);
+	return savedSearchEngines.find((e) => e.id == id);
 }
 
 export async function deleteUserSearchEngine(userID: number, name: string) {
@@ -120,5 +132,9 @@ export async function deleteUserSearchEngine(userID: number, name: string) {
 }
 
 export async function deleteUser(userID: number) {
-	return await db.delete(users).where(eq(users.id, userID));
+	return await db
+		.delete(users)
+		.where(eq(users.id, userID))
+		.returning()
+		.then((rows) => rows[0]);
 }
