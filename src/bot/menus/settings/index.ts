@@ -1,5 +1,5 @@
 import type { ParseMode } from 'grammy/types';
-import { shortcutsMenuText } from '../../messages/settingsMessages';
+import { dataMenuText, shortcutsMenuText } from '../../messages/settingsMessages';
 import { Menu } from '@grammyjs/menu';
 
 export const editMessageOptions = { parse_mode: 'HTML' as ParseMode };
@@ -12,5 +12,7 @@ export function buildSettingsMainMenu() {
 		.row()
 		.submenu('Mecanismos de Busca', 'engines-menu')
 		.row()
-		.submenu('Dados Armazenados', 'data-menu');
+		.submenu('Dados Armazenados', 'data-menu', async (ctx) =>
+			ctx.editMessageText(await dataMenuText(ctx.from.id), editMessageOptions)
+		);
 }

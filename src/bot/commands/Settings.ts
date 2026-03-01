@@ -4,6 +4,7 @@ import { Menu } from '@grammyjs/menu';
 import { buildChangeShortcut, buildShortcutMenu } from '../menus/settings/shortcutsMenus';
 import { mainMenuText } from '../messages/helpMessages';
 import { buildSettingsMainMenu } from '../menus/settings';
+import { buildDataMenu, buildDeleteDataMenu } from '../menus/settings/dataMenus';
 
 export class SettingsCommand extends Command {
 	name = 'Configurações';
@@ -22,6 +23,11 @@ export class SettingsCommand extends Command {
 		shortcutsMenu.register(regularShortcut);
 		shortcutsMenu.register(slashShortcut);
 		main.register(shortcutsMenu);
+
+		const dataMenu = buildDataMenu();
+		const deleteDataMenu = buildDeleteDataMenu();
+		dataMenu.register(deleteDataMenu);
+		main.register(dataMenu);
 
 		return [main];
 	};

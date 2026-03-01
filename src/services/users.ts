@@ -1,6 +1,6 @@
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/db';
-import { events, shortcutEnum, users, type Shortcut } from '../db/schema';
+import { events, users, type Shortcut } from '../db/schema';
 
 export async function saveLastUse(
 	userID: number,
@@ -19,6 +19,23 @@ export async function saveLastUse(
 		});
 
 	if (event) await db.insert(events).values({ user_id: userID, ...event });
+}
+
+export async function getUserData(userID: number) {
+	const userData = await db
+		.select()
+		.from(users)
+		.where(eq(users.id, userID))
+		.limit(1)
+		.then((rows) => rows[0]);
+
+	return userData;
+}
+
+export async function getUserEvents(userID: number) {
+	const eventsData = await db.select().from(events).where(eq(events.user_id, userID)).orderBy(desc(events.created_at));
+
+	return eventsData;
 }
 
 export async function getUserShortcuts(
@@ -51,4 +68,8 @@ export async function saveUserShortcuts(userID: number, slash: boolean, newValue
 			target: users.id,
 			set: valueToChange
 		});
+}
+
+export async function deleteUser(userID: number) {
+	return await db.delete(users).where(eq(users.id, userID));
 }
