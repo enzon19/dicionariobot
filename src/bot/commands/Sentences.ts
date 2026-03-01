@@ -2,6 +2,7 @@ import type { Context } from 'grammy';
 import { Command } from '../../models/Command';
 import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
 import getSentencesMessage from '../messages/sentencesMessage';
+import { SentencesQuestion } from '../questions/Sentences';
 
 export class SentencesCommand extends Command {
 	name = 'Exemplos para Palavras';
@@ -13,7 +14,7 @@ export class SentencesCommand extends Command {
 
 	handle = async (ctx: Context) => {
 		if (!ctx.match) {
-			ctx.reply(buildWaitingReplyMessage('exemplos'), {
+			ctx.reply(buildWaitingReplyMessage('exemplos') + SentencesQuestion.messageSuffixHTML(), {
 				parse_mode: 'HTML',
 				reply_markup: {
 					force_reply: true,

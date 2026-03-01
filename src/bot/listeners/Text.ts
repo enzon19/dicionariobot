@@ -1,14 +1,10 @@
 import type { Context, FilterQuery } from 'grammy';
 import { Listener } from '../../models/Listener';
-import type { Message } from 'grammy/types';
-import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
-import removeTelegramHTML from '../../utils/removeTelegramHTML';
 import getMeaningMessage from '../messages/meaningMessage';
 import getSynonymsMessage from '../messages/synonymsMessage';
 import getSentencesMessage from '../messages/sentencesMessage';
 import { getUserShortcuts, saveUserLastUse } from '../../services/users';
 import { type Shortcut } from '../../db/schema';
-const BOT_USERNAME = process.env.BOT_USERNAME;
 
 export class TextListener extends Listener {
 	listenerName = 'text-message';
@@ -20,55 +16,20 @@ export class TextListener extends Listener {
 		const text = message?.text || message?.caption;
 		if (!text) return;
 
-		if (message.reply_to_message?.text && message.reply_to_message.from?.username == BOT_USERNAME) {
-			// if it has reply_to_message from bot, so it could be the empty message from a command
-			await handleReply(message, text, ctx);
-
-			if (ctx.from) await saveUserLastUse(ctx.from.id, { type: 'event:' + this.listenerName + ':reply' });
-		} else if (message.chat.type == 'private') {
+		if (message.chat.type == 'private') {
 			// if it's from a private chat, it's a shortcut
 			const isSlashShortcut = text.startsWith('/');
 			await shortcut(ctx, text, isSlashShortcut);
 
 			if (ctx.from)
 				await saveUserLastUse(ctx.from.id, {
-					type: 'event:' + this.listenerName + (isSlashShortcut ? ':slash-shortcut' : ':shortcut')
+					type: this.listenerName + (isSlashShortcut ? ':slash-shortcut' : ':shortcut')
 				});
 		} else if (message.chat.type == 'group' || message.chat.type == 'supergroup') {
 			// if it's from a group, check for mistakes
 			console.log('check for mistakes');
 		}
 	};
-}
-
-// REPLY, WORD REQUEST
-
-async function handleReply(message: Message, text: string, ctx: Context) {
-	const repliedMessageText = message.reply_to_message?.text;
-
-	// could be asking for a word for meanings, synonyms, sentences
-	const waitingReplyMessage = removeTelegramHTML(buildWaitingReplyMessage('').slice(0, -2));
-	if (repliedMessageText?.startsWith(waitingReplyMessage)) {
-		await handleWordRequest(ctx, text, repliedMessageText, waitingReplyMessage.length + 1);
-	}
-}
-
-type WordAction = 'definir' | 'sinônimos' | 'exemplos';
-async function handleWordRequest(ctx: Context, text: string, repliedMessageText: string, start: number) {
-	const action = repliedMessageText.slice(start, -1) as WordAction;
-
-	const handlers: Record<WordAction, (word: string) => Promise<string>> = {
-		definir: getMeaningMessage,
-		sinônimos: getSynonymsMessage,
-		exemplos: getSentencesMessage
-	};
-
-	await ctx.replyWithChatAction('typing');
-
-	const result = await handlers[action](text);
-	ctx.reply(result, {
-		parse_mode: 'HTML'
-	});
 }
 
 // SHORTCUT

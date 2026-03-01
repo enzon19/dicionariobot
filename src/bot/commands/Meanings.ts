@@ -2,6 +2,7 @@ import type { Context } from 'grammy';
 import { Command } from '../../models/Command';
 import getMeaningMessage from '../messages/meaningMessage';
 import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
+import { MeaningsQuestion } from '../questions/Meanings';
 
 export class MeaningCommand extends Command {
 	name = 'Definição de Palavras';
@@ -24,7 +25,7 @@ export class MeaningCommand extends Command {
 
 	handle = async (ctx: Context) => {
 		if (!ctx.match) {
-			ctx.reply(buildWaitingReplyMessage('definir'), {
+			ctx.reply(buildWaitingReplyMessage('definir') + MeaningsQuestion.messageSuffixHTML(), {
 				parse_mode: 'HTML',
 				reply_markup: {
 					force_reply: true,

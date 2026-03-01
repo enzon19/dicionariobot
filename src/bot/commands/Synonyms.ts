@@ -2,6 +2,7 @@ import type { Context } from 'grammy';
 import { Command } from '../../models/Command';
 import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
 import getSynonymsMessage from '../messages/synonymsMessage';
+import { SynonymsQuestion } from '../questions/Synonyms';
 
 export class SynonymsCommand extends Command {
 	name = 'Sinônimos de Palavras';
@@ -13,7 +14,7 @@ export class SynonymsCommand extends Command {
 
 	handle = async (ctx: Context) => {
 		if (!ctx.match) {
-			ctx.reply(buildWaitingReplyMessage('sinônimos'), {
+			ctx.reply(buildWaitingReplyMessage('sinônimos') + SynonymsQuestion.messageSuffixHTML(), {
 				parse_mode: 'HTML',
 				reply_markup: {
 					force_reply: true,
