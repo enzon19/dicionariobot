@@ -2,7 +2,7 @@ import type { Context } from 'grammy';
 import { Command } from '../../models/Command';
 import { Menu } from '@grammyjs/menu';
 import { buildChangeShortcut, buildShortcutMenu } from '../menus/settings/shortcutsMenus';
-import { mainMenuText } from '../messages/helpMessages';
+import { mainMenuText } from '../messages/settingsMessages';
 import { buildSettingsMainMenu } from '../menus/settings';
 import { buildDataMenu, buildDeleteDataMenu } from '../menus/settings/dataMenus';
 
