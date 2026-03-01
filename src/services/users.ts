@@ -2,25 +2,6 @@ import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/db';
 import { events, users, type Shortcut } from '../db/schema';
 
-export async function saveUserLastUse(
-	userID: number,
-	event?: {
-		type: string;
-		metadata?: string;
-	}
-) {
-	const now = new Date();
-	await db
-		.insert(users)
-		.values({ id: userID, last_use_at: now })
-		.onConflictDoUpdate({
-			target: users.id,
-			set: { last_use_at: now }
-		});
-
-	if (event) await db.insert(events).values({ user_id: userID, ...event });
-}
-
 export async function getUserData(userID: number) {
 	const userData = await db
 		.select()
@@ -56,6 +37,25 @@ export async function getUserShortcuts(userID: number, type: 'regular' | 'slash'
 
 	if (type == 'both') return userShortcuts ?? { shortcut: 'meanings', slash_shortcut: 'meanings' };
 	return type == 'slash' ? (userShortcuts?.slash_shortcut ?? 'meanings') : (userShortcuts?.shortcut ?? 'meanings');
+}
+
+export async function saveUserLastUse(
+	userID: number,
+	event?: {
+		type: string;
+		metadata?: string;
+	}
+) {
+	const now = new Date();
+	await db
+		.insert(users)
+		.values({ id: userID, last_use_at: now })
+		.onConflictDoUpdate({
+			target: users.id,
+			set: { last_use_at: now }
+		});
+
+	if (event) await db.insert(events).values({ user_id: userID, ...event });
 }
 
 export async function saveUserShortcuts(userID: number, slash: boolean, newValue: Shortcut) {
