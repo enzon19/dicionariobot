@@ -1,0 +1,466 @@
+[
+	{
+		"wrong": "toraxico",
+		"right": "torácico"
+	},
+	{
+		"wrong": "asteristico",
+		"right": "asterisco"
+	},
+	{
+		"wrong": "superfulo",
+		"right": "supérfluo"
+	},
+	{
+		"wrong": "bicabornato",
+		"right": "bicarbonato"
+	},
+	{
+		"wrong": "beneficiente",
+		"right": "beneficente"
+	},
+	{
+		"wrong": "metereologia",
+		"right": "meteorologia"
+	},
+	{
+		"wrong": "previlegio",
+		"right": "privilégio"
+	},
+	{
+		"wrong": "losangulo",
+		"right": "losango"
+	},
+	{
+		"wrong": "triologia",
+		"right": "trilogia"
+	},
+	{
+		"wrong": "reinvindicar",
+		"right": "reivindicar"
+	},
+	{
+		"wrong": "conhecidencia",
+		"right": "coincidência"
+	},
+	{
+		"wrong": "compania",
+		"right": "companhia"
+	},
+	{
+		"wrong": "madastra",
+		"right": "madrasta"
+	},
+	{
+		"wrong": "milhonario",
+		"right": "milionário"
+	},
+	{
+		"wrong": "degladiar",
+		"right": "digladiar"
+	},
+	{
+		"wrong": "impecilho",
+		"right": "empecilho"
+	},
+	{
+		"wrong": "estrupo",
+		"right": "estupro"
+	},
+	{
+		"wrong": "sombrancelha",
+		"right": "sobrancelha"
+	},
+	{
+		"wrong": "mortandela",
+		"right": "mortadela"
+	},
+	{
+		"wrong": "iorgute",
+		"right": "iogurte"
+	},
+	{
+		"wrong": "largata",
+		"right": "lagarta"
+	},
+	{
+		"wrong": "esposto",
+		"right": "exposto"
+	},
+	{
+		"wrong": "ebolicao",
+		"right": "ebulição"
+	},
+	{
+		"wrong": "azuleijos",
+		"right": "azulejos"
+	},
+	{
+		"wrong": "tempeiros",
+		"right": "temperos"
+	},
+	{
+		"wrong": "simplismente",
+		"right": "simplesmente"
+	},
+	{
+		"wrong": "bandeija",
+		"right": "bandeja"
+	},
+	{
+		"wrong": "bandeijas",
+		"right": "bandejas"
+	},
+	{
+		"wrong": "tempeiro",
+		"right": "tempero"
+	},
+	{
+		"wrong": "tijela",
+		"right": "tigela"
+	},
+	{
+		"wrong": "tijelinha",
+		"right": "tigelinha"
+	},
+	{
+		"wrong": "indentidade",
+		"right": "identidade"
+	},
+	{
+		"wrong": "indentindade",
+		"right": "identidade"
+	},
+	{
+		"wrong": "mantega",
+		"right": "manteiga"
+	},
+	{
+		"wrong": "imprecionante",
+		"right": "impressionante"
+	},
+	{
+		"wrong": "jente",
+		"right": "gente"
+	},
+	{
+		"wrong": "geito",
+		"right": "jeito"
+	},
+	{
+		"wrong": "è",
+		"right": "é"
+	},
+	{
+		"wrong": "subil",
+		"right": "subiu"
+	},
+	{
+		"wrong": "bayle",
+		"right": "baile"
+	},
+	{
+		"wrong": "preção",
+		"right": "pressão"
+	},
+	{
+		"wrong": "intretenimento",
+		"right": "entretenimento"
+	},
+	{
+		"wrong": "construil",
+		"right": "construiu"
+	},
+	{
+		"wrong": "menas",
+		"right": "menos"
+	},
+	{
+		"wrong": "fasso",
+		"right": "faço"
+	},
+	{
+		"wrong": "nada aver",
+		"right": "nada a ver"
+	},
+	{
+		"wrong": "nada haver",
+		"right": "nada a ver"
+	},
+	{
+		"wrong": "concerteza",
+		"right": "com certeza"
+	},
+	{
+		"wrong": "excessão",
+		"right": "exceção"
+	},
+	{
+		"wrong": "derrepente",
+		"right": "de repente"
+	},
+	{
+		"wrong": "amorsinho",
+		"right": "amorzinho"
+	},
+	{
+		"wrong": "encima",
+		"right": "em cima"
+	},
+	{
+		"wrong": "mecher",
+		"right": "mexer"
+	},
+	{
+		"wrong": "mecheu",
+		"right": "mexeu"
+	},
+	{
+		"wrong": "homen",
+		"right": "homem"
+	},
+	{
+		"wrong": "idro",
+		"right": "hidro"
+	},
+	{
+		"wrong": "concertar",
+		"right": "consertar"
+	},
+	{
+		"wrong": "chow",
+		"right": "show"
+	},
+	{
+		"wrong": "surgil",
+		"right": "surgiu"
+	},
+	{
+		"wrong": "axo",
+		"right": "acho"
+	},
+	{
+		"wrong": "siguino",
+		"right": "signo"
+	},
+	{
+		"wrong": "ária",
+		"right": "área"
+	},
+	{
+		"wrong": "árias",
+		"right": "áreas"
+	},
+	{
+		"wrong": "foçe",
+		"right": "fosse"
+	},
+	{
+		"wrong": "voçes",
+		"right": "vocês"
+	},
+	{
+		"wrong": "denovo",
+		"right": "de novo"
+	},
+	{
+		"wrong": "vês",
+		"right": "vez"
+	},
+	{
+		"wrong": "sucego",
+		"right": "sossego"
+	},
+	{
+		"wrong": "hontem",
+		"right": "ontem"
+	},
+	{
+		"wrong": "acustuma",
+		"right": "acostuma"
+	},
+	{
+		"wrong": "acustumar",
+		"right": "acostumar"
+	},
+	{
+		"wrong": "demas",
+		"right": "demais"
+	},
+	{
+		"wrong": "deicha",
+		"right": "deixa"
+	},
+	{
+		"wrong": "deichar",
+		"right": "deixar"
+	},
+	{
+		"wrong": "foce",
+		"right": "fosse"
+	},
+	{
+		"wrong": "sastifazer",
+		"right": "satisfazer"
+	},
+	{
+		"wrong": "hotem",
+		"right": "ontem"
+	},
+	{
+		"wrong": "chefrudo",
+		"right": "chifrudo"
+	},
+	{
+		"wrong": "guando",
+		"right": "quando"
+	},
+	{
+		"wrong": "confeço",
+		"right": "confesso"
+	},
+	{
+		"wrong": "tivece",
+		"right": "tivesse"
+	},
+	{
+		"wrong": "puchado",
+		"right": "puxado"
+	},
+	{
+		"wrong": "puchar",
+		"right": "puxar"
+	},
+	{
+		"wrong": "iludio",
+		"right": "iludiu"
+	},
+	{
+		"wrong": "agrecivo",
+		"right": "agressivo"
+	},
+	{
+		"wrong": "imagrecer",
+		"right": "emagrecer"
+	},
+	{
+		"wrong": "siguinifica",
+		"right": "significa"
+	},
+	{
+		"wrong": "perssebemos",
+		"right": "percebemos"
+	},
+	{
+		"wrong": "omenagiar",
+		"right": "homenagear"
+	},
+	{
+		"wrong": "omenagem",
+		"right": "homenagem"
+	},
+	{
+		"wrong": "facsao",
+		"right": "facção"
+	},
+	{
+		"wrong": "imprecionado",
+		"right": "impressionado"
+	},
+	{
+		"wrong": "indguinado",
+		"right": "indignado"
+	},
+	{
+		"wrong": "agrecividade",
+		"right": "agressividade"
+	},
+	{
+		"wrong": "descubrir",
+		"right": "descobrir"
+	},
+	{
+		"wrong": "chuver",
+		"right": "chover"
+	},
+	{
+		"wrong": "preferiria",
+		"right": "prefiriria"
+	},
+	{
+		"wrong": "acontencer",
+		"right": "acontecer"
+	},
+	{
+		"wrong": "antiguado",
+		"right": "antiquado"
+	},
+	{
+		"wrong": "abducido",
+		"right": "abduzido"
+	},
+	{
+		"wrong": "narizão",
+		"right": "narigão"
+	},
+	{
+		"wrong": "cecidilha",
+		"right": "cedilha"
+	},
+	{
+		"wrong": "ce-cidilha",
+		"right": "cedilha"
+	},
+	{
+		"wrong": "foquete",
+		"right": "foguete"
+	},
+	{
+		"wrong": "cicoenta",
+		"right": "cinquenta"
+	},
+	{
+		"wrong": "criançinha",
+		"right": "criancinha"
+	},
+	{
+		"wrong": "abrido",
+		"right": "aberto"
+	},
+	{
+		"wrong": "celebral",
+		"right": "cerebral"
+	},
+	{
+		"wrong": "insulficiência",
+		"right": "insuficiência"
+	},
+	{
+		"wrong": "catalizar",
+		"right": "catalisar"
+	},
+	{
+		"wrong": "eletrolizar",
+		"right": "eletrolisar"
+	},
+	{
+		"wrong": "paralizar",
+		"right": "paralisar"
+	},
+	{
+		"wrong": "qualho",
+		"right": "coalho"
+	},
+	{
+		"wrong": "extendido",
+		"right": "estendido"
+	},
+	{
+		"wrong": "extender",
+		"right": "estender"
+	},
+	{
+		"wrong": "extendendo",
+		"right": "estendendo"
+	}
+]
