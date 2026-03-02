@@ -1,61 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Privacidade - Dicionário Bot</title>
-    <meta name="description" content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="/css/tailwind.css" rel="stylesheet">
-  </head> 
-  <body class="bg-blood text-white flex flex-col h-screen">
-    <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center">
-      <a class="flex items-center" href="/">
-        <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
-        <h3 class="ml-2 text-xl font-semibold">Dicionário Bot</h3>
-      </a>
-      <div class="flex items-center">
-        <a href="https://t.me/dicionariobot" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Iniciar</a>
-      </div>
-    </header>
-    <div class="px-4 pt-4 grow">
-      <div class="container mx-auto">
-        <h1 class="text-3xl font-bold mb-2">Política de Privacidade</h1>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <h3 class="text-xl font-bold">Dados recebidos</h3>
-        <p class="text-base">Todas as mensagens trocadas, seu nome e pedidos feitos via inline são recebidos e analisados pelo bot, porém não são armazenados.</p>
-        <h3 class="text-xl font-bold">Dados armazenados</h3>
-        <p class="text-base">O bot armazena: seu ID do Telegram (são apenas números); Tipo de chat (privado, grupo, supergrupo); Configurações, como: atalho (definição, sinônimos ou exemplos), mecanismos de busca, data da primeira e da última interação com o bot. Essas informações só são realmente salvas ao usar o bot com qualquer comando diferente do /start ou do /privacy. Gerencie os dados que o bot tem sobre você no comando de configurações (/settings).</p>
+		<title>Dicionário Bot</title>
+		<meta
+			name="description"
+			content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline." />
 
-        <hr class="my-2">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+		<link rel="icon" href="/static/favicon.ico" />
+		<link rel="manifest" href="/static/favicon/site.webmanifest" />
 
-        <h3 class="text-xl font-bold">Notas de atualização</h3>
-        <p class="text-base">As notas de atualização do bot são novos recursos, mudanças feitas e correções do bot, ou seja, atualizações. Inclui apenas novidades do bot utilizado (Dicionário Bot).</p>
-        <h3 class="text-xl font-bold">Anúncios e divulgações</h3>
-        <p class="text-base">Qualquer anunciante pode utilizar o Dicionário Bot como canal de anúncios. Esses anúncios não estão vinculados à você e podem ser enviados ao usar os seguintes comandos: /definir, /sinonimos ou /exemplos, além dos atalhos.</p>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet" />
+		<link href="/css/tailwind.css" rel="stylesheet" />
+		<link href="/css/iconfont.css" rel="stylesheet" />
+	</head>
+	<body class="bg-blood flex h-screen flex-col text-white">
+		<header class="bg-dry-tomato/90 sticky top-0 w-full p-4 shadow-md backdrop-blur-md">
+			<nav class="container mx-auto flex items-center justify-between">
+				<a class="flex items-center" href="/">
+					<img class="h-14" src="/static/favicon.png" alt="Dicionário Logo" />
+					<h1 class="ml-2 text-xl font-semibold lg:text-2xl">Dicionário Bot</h1>
+				</a>
+				<div class="flex items-center">
+					<a
+						href="https://t.me/dicionariobot"
+						class="bg-red hover:bg-clear-red ml-1 rounded-full px-4.5 py-2.5 font-semibold transition-colors hover:transition-colors lg:text-lg"
+						>Iniciar</a
+					>
+				</div>
+			</nav>
+		</header>
+		<div class="grow px-4 pt-4">
+			<div class="container mx-auto">
+				<h2 class="mb-2 text-2xl font-bold lg:text-3xl">Política de Privacidade</h2>
 
-        <hr class="my-2">
-        <p class="text-base">Alterações na política de privacidade do bot serão avisadas pelo recurso "Notas de atualização" do bot que não pode ser desativado.</p>
-        <p class="text-base">Última modificação na política de privacidade do bot: 01/01/2023 às 22:06</p>
-      </div>
-    </div>
-    <footer class="bg-blood container text-center mx-auto pb-4 mt-4">
-      <span class="text-center text-base">
-        <a class="link-as-underline" href="/novidades">Novidades</a> •
-        <a class="link-as-underline" href="/privacidade">Privacidade</a> •
-        <a class="link-as-underline" href="/lista">Lista</a> •
-        <a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
-      </span>
-      <br>
-      <span class="text-center text-sm">
-        Desenvolvido por
-        <a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>.
-        Veja esse projeto no
-        <a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>.
-        Faça uma doação
-        <a target="blank" class="link-as-underline" href="https://enzon19.com/#donate">aqui</a>.
-      </span>
-    </footer> 
-  </body>
+				<section class="mt-4 space-y-2">
+					<h3 class="text-xl font-semibold">1. Dados recebidos</h3>
+					<p class="text-base">
+						O Dicionário Bot recebe e processa as mensagens trocadas com os usuários, bem como os pedidos realizados por
+						meio do modo inline. Esses dados são utilizados exclusivamente para a execução das funcionalidades do bot e
+						<strong>não são armazenados</strong>.
+					</p>
+				</section>
+
+				<section class="mt-4 space-y-2">
+					<h3 class="text-xl font-semibold">2. Dados armazenados</h3>
+					<p class="text-base">
+						O Dicionário Bot armazena apenas os dados estritamente necessários para o seu funcionamento, conforme
+						descrito abaixo.
+					</p>
+					<ul class="list-disc pl-5 text-base">
+						<li>
+							<strong>ID do Telegram do usuário:</strong>
+							identificador numérico único utilizado para reconhecer o usuário e associar suas configurações.
+						</li>
+						<li>
+							<strong>Configurações do usuário:</strong>
+							<ul class="list-disc pl-5">
+								<li>
+									se o atalho não iniciado por "/" configurado para consultas no bate-papo privado, sem o uso de
+									comandos explícitos, corresponde a definições, sinônimos ou exemplos;
+								</li>
+								<li>
+									se o atalho iniciado por "/" configurado para consultas no bate-papo privado, sem o uso de comandos
+									explícitos, corresponde a definições, sinônimos ou exemplos;
+								</li>
+								<li>mecanismos de busca personalizados ou mantidos no padrão do bot.</li>
+							</ul>
+						</li>
+						<li>
+							<strong>Recebimento do último anúncio:</strong>
+							indica se o usuário recebeu o anúncio mais recente veiculado por meio do bot.
+						</li>
+						<li>
+							<strong>Datas de uso:</strong>
+							registro da data e hora da primeira e da última interação com o bot.
+						</li>
+						<li>
+							<strong>Eventos de uso:</strong>
+							registros técnicos relacionados a interações com o bot, contendo o tipo de evento, dados auxiliares e data
+							de criação, utilizados exclusivamente para fins operacionais e de manutenção.
+						</li>
+					</ul>
+					<p class="text-base">
+						Os dados são armazenados somente quando o usuário interage com o bot por meio de comandos funcionais. O
+						gerenciamento das configurações associadas ao usuário pode ser realizado a qualquer momento pelo comando
+						<code>/settings</code>.
+					</p>
+				</section>
+
+				<section class="mt-4 space-y-2">
+					<h3 class="text-xl font-semibold">3. Notas de atualização</h3>
+					<p class="text-base">
+						As notas de atualização informam os usuários sobre novos recursos, alterações e correções realizadas no
+						Dicionário Bot. Essas comunicações dizem respeito exclusivamente ao funcionamento do bot e às suas
+						atualizações.
+					</p>
+				</section>
+
+				<section class="mt-4 space-y-2">
+					<h3 class="text-xl font-semibold">4. Anúncios e divulgações</h3>
+					<p class="text-base">
+						O Dicionário Bot poderá ser utilizado como canal para veiculação de anúncios por terceiros. Esses anúncios
+						não são personalizados com base nos dados dos usuários e podem ser exibidos durante o uso dos comandos
+						<code>/definir</code>, <code>/sinonimos</code>, <code>/exemplos</code> ou por meio dos atalhos configurados.
+					</p>
+				</section>
+
+				<section class="mt-4 space-y-2">
+					<h3 class="text-xl font-semibold">5. Alterações nesta política</h3>
+					<p class="text-base">
+						Quaisquer alterações nesta Política de Privacidade serão comunicadas por meio do recurso "Notas de
+						atualização" do bot, o qual não pode ser desativado.
+					</p>
+					<p class="text-base"><strong>Última atualização:</strong> 02/03/2026 às 20:09</p>
+				</section>
+			</div>
+		</div>
+		<footer
+			class="container mx-auto mt-4 flex flex-col items-center gap-2.5 pb-4 text-center lg:flex-row-reverse lg:justify-between">
+			<span class="text-center text-base">
+				<a class="link-as-underline" href="/novidades">Novidades</a> •
+				<a class="link-as-underline" href="/privacidade">Privacidade</a> •
+				<a class="link-as-underline" href="/lista">Lista</a> •
+				<a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
+			</span>
+			<span class="text-center text-sm">
+				Desenvolvido por
+				<a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>. Veja esse projeto no
+				<a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>. Faça uma
+				doação <a target="blank" class="link-as-underline" href="https://enzon19.com/donate">aqui</a>.
+			</span>
+		</footer>
+	</body>
 </html>
