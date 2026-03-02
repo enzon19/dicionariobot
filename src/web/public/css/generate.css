@@ -1,18 +1,26 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-*: initial;
-  --font-sans: Montserrat, sans-serif;
-  --font-mono: Consolas, Courier New, monospace;
+	--font-*: initial;
+	--font-sans: Montserrat, sans-serif;
+	--font-mono: Consolas, Courier New, monospace;
 
-  --color-red: #ee2919;
-  --color-dry-tomato: #8e190f;
-  --color-burnt-tomato: #7a160d;
-  --color-blood: #661008;
-  --color-hurt: #420903;
-  --color-pain: #2d0804;
-  --color-bulgarian-rose: #500c06;
-  --color-clear-red: #ff3826;
+	--color-red: #ee2919;
+	--color-dry-tomato: #8e190f;
+	--color-burnt-tomato: #7a160d;
+	--color-blood: #661008;
+	--color-hurt: #420903;
+	--color-pain: #2d0804;
+	--color-bulgarian-rose: #560d06;
+	--color-clear-red: #ff3826;
+	--color-red-on-bg: #f5e9e8;
+	--color-terra-cota: #ef675b;
+}
+
+@utility container {
+	@variant 2xl {
+		width: var(--breakpoint-xl);
+	}
 }
 
 /*
@@ -24,23 +32,24 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 .link-as-underline {
-  @apply underline underline-offset-2 decoration-2 decoration-red hover:decoration-clear-red hover:transition-colors hover:[text-shadow:0_0_0.2em_red] transition-colors;
+	@apply decoration-red hover:decoration-clear-red underline decoration-2 underline-offset-2 transition-colors hover:transition-colors hover:[text-shadow:0_0_0.2em_red];
 }
 
 .tableRow {
-  @apply odd:bg-bulgarian-rose even:bg-hurt border border-pain;
+	@apply odd:bg-bulgarian-rose even:bg-hurt border-pain border;
 }
 
 .tableCell {
-  @apply border border-pain p-2;
+	@apply border-pain border p-2;
 }
+

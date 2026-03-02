@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'Streamline Font';
+	src:
+		url('../static/iconfont/iconfont.woff2') format('woff2'),
+		url('../static/iconfont/iconfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.i {
+	font-family: 'Streamline Font' !important;
+	font-size: 1em;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.i.streamline\:asterisk-1-solid:before {
+	content: '\e001';
+}
+
+.i.streamline\:definition-search-book-solid:before {
+	content: '\e002';
+}
+
+.i.streamline\:dictionary-language-book-solid:before {
+	content: '\e003';
+}
+
+.i.streamline\:magnifying-glass-remix:before {
+	content: '\e004';
+}
+
+.i.streamline\:mail-send-email-message-solid:before {
+	content: '\e005';
+}
+
+.i.streamline\:sign-at-solid:before {
+	content: '\e006';
+}
+
