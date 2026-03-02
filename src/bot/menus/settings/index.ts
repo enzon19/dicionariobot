@@ -4,6 +4,13 @@ import { dataMenuText, searchEnginesMenuText, shortcutsMenuText } from '../../me
 import { Menu } from '@grammyjs/menu';
 
 export const editMessageOptions = { parse_mode: 'HTML' as ParseMode, link_preview_options: { is_disabled: true } };
+export const replyOptions = {
+	parse_mode: 'HTML',
+	reply_markup: {
+		force_reply: true,
+		selective: true
+	}
+} as any;
 
 export function buildSettingsMainMenu() {
 	return new Menu<BotContext>('settings-main-menu')
