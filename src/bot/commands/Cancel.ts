@@ -1,4 +1,4 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 
 export class CancelCommand extends Command {
@@ -7,7 +7,9 @@ export class CancelCommand extends Command {
 	description = 'Cancele uma operação do bot.';
 	saveUserData = true;
 
-	handle(ctx: Context): void {
+	handle(ctx: BotContext): void {
+		ctx.session.settings.searchEngines.editing = {};
+
 		ctx.reply('Operação cancelada.', {
 			reply_markup: {
 				remove_keyboard: true
