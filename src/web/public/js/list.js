@@ -1,5 +1,5 @@
 async function addList() {
-	const dataURL = 'https://raw.githubusercontent.com/enzon19/dicionariobot/main/src/assets/json/mistakes.json';
+	const dataURL = 'https://raw.githubusercontent.com/enzon19/dicionariobot/main/public/mistakes.json';
 	const response = await fetch(dataURL);
 
 	const mistakes = response.ok ? await response.json() : [];
