@@ -87,6 +87,7 @@ export function buildDeleteSearchEngineMenu() {
 			if (!name) return;
 
 			await deleteUserSearchEngine(ctx.from.id, name);
+			ctx.session.settings.searchEngines.editing = {};
 			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
 		})
 		.back('Cancelar', async (ctx) => {

@@ -18,9 +18,10 @@ export function buildSettingsMainMenu() {
 			ctx.editMessageText(await shortcutsMenuText(ctx.from.id), editMessageOptions)
 		)
 		.row()
-		.submenu('Mecanismos de Busca', 'search-engines-menu', async (ctx) =>
-			ctx.editMessageText(searchEnginesMenuText, editMessageOptions)
-		)
+		.submenu('Mecanismos de Busca', 'search-engines-menu', async (ctx) => {
+			ctx.session.settings.searchEngines.editing = {};
+			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
+		})
 		.row()
 		.submenu('Dados Armazenados', 'data-menu', async (ctx) =>
 			ctx.editMessageText(await dataMenuText(ctx.from.id), editMessageOptions)
