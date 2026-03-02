@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.link-as-underline {
+  @apply underline underline-offset-2 decoration-2 decoration-red hover:decoration-clear-red hover:transition-colors hover:[text-shadow:0_0_0.2em_red] transition-colors;
+}
+
+.tableRow {
+  @apply odd:bg-bulgarian-rose even:bg-hurt border border-pain;
+}
+
+.tableCell {
+  @apply border border-pain p-2;
+}
