@@ -1,13 +1,13 @@
 import { saveUserSearchEngine } from '../../services/users';
 import type { BotContext } from '../bot';
 import { StatelessQuestion } from '@grammyjs/stateless-question';
-import { editMessageOptions } from '../menus/settings';
-import { editSearchEngineMenuText } from '../messages/settingsMessages';
+import { editMessageOptions, replyOptions } from '../menus/settings';
+import { editSearchEngineMenuText, setSearchEngineURLText } from '../messages/settingsMessages';
 import { buildEditSearchEnginesMenu } from '../menus/settings/searchEnginesMenus';
 
 export const EditSearchEngineQuestion = new StatelessQuestion<BotContext>(
 	'search-engine-edit',
-	async (ctx, ids?: string) => {
+	async (ctx, msgID?: string) => {
 		let searchEngine = ctx.session.settings.searchEngines.editing;
 		if (!searchEngine.field) return;
 
@@ -16,24 +16,42 @@ export const EditSearchEngineQuestion = new StatelessQuestion<BotContext>(
 
 		const { name, url, id } = searchEngine;
 		try {
-			if (!(ctx.from && name && url)) return;
-			const updatedSearchEngine = await saveUserSearchEngine(ctx.from.id, { name, url, id });
-			await ctx.react(['👍']);
+			if (!ctx.from) return;
 
-			if (ids && updatedSearchEngine) {
-				const [chatID, msgID] = JSON.parse(ids);
-				ctx.api.editMessageText(
-					Number(chatID),
-					Number(msgID),
-					editSearchEngineMenuText(updatedSearchEngine.name, updatedSearchEngine.url),
-					{ ...editMessageOptions, reply_markup: buildEditSearchEnginesMenu() }
-				);
+			if (name && url) {
+				const updatedSearchEngine = await saveUserSearchEngine(ctx.from.id, { name, url, id });
+				await ctx.react(['👍']);
+
+				if (msgID && ctx.chatId && updatedSearchEngine) {
+					ctx.api.editMessageText(
+						ctx.chatId,
+						Number(msgID),
+						editSearchEngineMenuText(updatedSearchEngine.name, updatedSearchEngine.url),
+						{ ...editMessageOptions, reply_markup: buildEditSearchEnginesMenu() }
+					);
+				}
+			} else {
+				if (searchEngine.field == 'name') {
+					ctx.session.settings.searchEngines.editing.field = 'url';
+					ctx.reply(setSearchEngineURLText + EditSearchEngineQuestion.messageSuffixHTML(msgID), replyOptions);
+				} else if (searchEngine.field == 'url') {
+					ctx.session.settings.searchEngines.editing.field = 'name';
+					ctx.reply(setSearchEngineURLText + EditSearchEngineQuestion.messageSuffixHTML(msgID), replyOptions);
+				}
 			}
 		} catch (e) {
 			if (e == 'Missing $.') {
-				ctx.reply('Você esqueceu de adicionar o "$". Tente novamente.');
+				ctx.reply(
+					'Você esqueceu de <b>adicionar o "$". Tente novamente, respondendo esta mensagem.</b>' +
+						EditSearchEngineQuestion.messageSuffixHTML(msgID),
+					replyOptions
+				);
 			} else if (e == 'Invalid URL.') {
-				ctx.reply('Isto não é um URL válido. Tente novamente.');
+				ctx.reply(
+					'Isto <b>não</b> é um URL válido. <b>Tente novamente, respondendo esta mensagem.</b>' +
+						EditSearchEngineQuestion.messageSuffixHTML(msgID),
+					replyOptions
+				);
 			} else {
 				console.error(e);
 			}

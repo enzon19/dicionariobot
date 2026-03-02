@@ -8,7 +8,7 @@ import {
 	setSearchEngineURLText,
 	deleteSearchEngineMenuText
 } from '../../messages/settingsMessages';
-import { editMessageOptions } from '.';
+import { editMessageOptions, replyOptions } from '.';
 import { deleteUserSearchEngine, getUserSearchEngines } from '../../../services/users';
 import { EditSearchEngineQuestion } from '../../questions/SearchEngines';
 
@@ -37,7 +37,13 @@ export function buildSearchEnginesMenu() {
 			return searchEnginesRange;
 		})
 		.row()
-		.text('➕ Adicionar Mecanismo de Busca')
+		.text('➕ Adicionar Mecanismo de Busca', (ctx) => {
+			ctx.session.settings.searchEngines.editing = { field: 'name' };
+			ctx.reply(
+				setSearchEngineNameText + EditSearchEngineQuestion.messageSuffixHTML(ctx.msgId?.toString()),
+				replyOptions
+			);
+		})
 		.row()
 		.text('↩️ Restaurar padrões')
 		.row()
@@ -45,26 +51,18 @@ export function buildSearchEnginesMenu() {
 }
 
 export function buildEditSearchEnginesMenu() {
-	const replyOptions = {
-		parse_mode: 'HTML',
-		reply_markup: {
-			force_reply: true,
-			selective: true
-		}
-	} as any;
-
 	return new Menu<BotContext>('edit-search-engine-menu')
 		.text('Editar nome', (ctx) => {
 			ctx.session.settings.searchEngines.editing.field = 'name';
 			ctx.reply(
-				setSearchEngineNameText + EditSearchEngineQuestion.messageSuffixHTML(`[${ctx.chatId},${ctx.msgId}]`),
+				setSearchEngineNameText + EditSearchEngineQuestion.messageSuffixHTML(ctx.msgId?.toString()),
 				replyOptions
 			);
 		})
 		.text('Editar URL', (ctx) => {
 			ctx.session.settings.searchEngines.editing.field = 'url';
 			ctx.reply(
-				setSearchEngineURLText + EditSearchEngineQuestion.messageSuffixHTML(`[${ctx.chatId},${ctx.msgId}]`),
+				setSearchEngineURLText + EditSearchEngineQuestion.messageSuffixHTML(ctx.msgId?.toString()),
 				replyOptions
 			);
 		})
@@ -76,7 +74,10 @@ export function buildEditSearchEnginesMenu() {
 			ctx.editMessageText(deleteSearchEngineMenuText(name), editMessageOptions);
 		})
 		.row()
-		.back('⬅️ Voltar', (ctx) => ctx.editMessageText(searchEnginesMenuText, editMessageOptions));
+		.back('⬅️ Voltar', (ctx) => {
+			ctx.session.settings.searchEngines.editing = {};
+			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
+		});
 }
 
 export function buildDeleteSearchEngineMenu() {
