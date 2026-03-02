@@ -1,48 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Página não encontrada - Dicionário Bot</title>
-    <meta name="description" content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="/css/tailwind.css" rel="stylesheet">
-  </head> 
-  <body class="bg-blood text-white flex flex-col h-screen">
-    <header class="sticky top-0 w-full shadow-md backdrop-blur-md bg-dry-tomato/90 p-4 flex justify-between items-center">
-      <a class="flex items-center" href="/">
-        <img class="h-14" src="/static/favicon.png" alt="Dicionário Logo">
-        <h3 class="ml-2 text-xl font-semibold">Dicionário Bot</h3>
-      </a>
-      <div class="flex items-center">
-        <a href="https://t.me/dicionariobot" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Iniciar</a>
-      </div>
-    </header>
-    <div class="px-4 pt-4 grow">
-      <div class="container mx-auto text-center">
-        <span class="text-6xl font-extrabold">404</span>
-        <h1 class="text-3xl font-bold mb-2">Essa página não existe!</h1>
-        <br>
-        <a href="/" class="ml-1 px-4 py-2 font-semibold bg-red hover:bg-clear-red hover:transition-colors transition-colors rounded-full">Voltar para o início</a>
-      </div>
-    </div>
-    <footer class="container text-center mx-auto pb-4 mt-4">
-      <span class="text-center text-base">
-        <a class="link-as-underline" href="/novidades">Novidades</a> •
-        <a class="link-as-underline" href="/privacidade">Privacidade</a> •
-        <a class="link-as-underline" href="/lista">Lista</a> •
-        <a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
-      </span>
-      <br>
-      <span class="text-center text-sm">
-        Desenvolvido por
-        <a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>.
-        Veja esse projeto no
-        <a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>.
-        Faça uma doação
-        <a target="blank" class="link-as-underline" href="https://enzon19.com/#donate">aqui</a>.
-      </span>
-    </footer>   
-  </body>
-</html> 
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Dicionário Bot</title>
+		<meta
+			name="description"
+			content="Um dicionário da língua portuguesa brasileira no Telegram. Disponível também em inline." />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+		<link rel="icon" href="/static/favicon.ico" />
+		<link rel="manifest" href="/static/favicon/site.webmanifest" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet" />
+		<link href="/css/tailwind.css" rel="stylesheet" />
+		<link href="/css/iconfont.css" rel="stylesheet" />
+	</head>
+	<body class="bg-blood flex h-screen flex-col text-white">
+		<header class="bg-dry-tomato/90 sticky top-0 w-full p-4 shadow-md backdrop-blur-md">
+			<nav class="container mx-auto flex items-center justify-between">
+				<a class="flex items-center" href="/">
+					<img class="h-14" src="/static/favicon.png" alt="Dicionário Logo" />
+					<h1 class="ml-2 text-xl font-semibold lg:text-2xl">Dicionário Bot</h1>
+				</a>
+				<div class="flex items-center">
+					<a
+						href="https://t.me/dicionariobot"
+						class="bg-red hover:bg-clear-red ml-1 rounded-full px-4.5 py-2.5 font-semibold transition-colors hover:transition-colors lg:text-lg"
+						>Iniciar</a
+					>
+				</div>
+			</nav>
+		</header>
+		<div class="mt-4 grow px-4 pt-4">
+			<div class="container mx-auto text-center">
+				<span class="text-6xl font-extrabold">404</span>
+				<h1 class="mb-2 text-3xl font-bold">Esta página não existe!</h1>
+				<br />
+				<a
+					href="/"
+					class="bg-red hover:bg-clear-red ml-1 rounded-full px-5 py-2.5 font-semibold transition-colors hover:transition-colors"
+					>Voltar para o início</a
+				>
+			</div>
+		</div>
+		<footer
+			class="container mx-auto mt-4 flex flex-col items-center gap-2.5 pb-4 text-center lg:flex-row-reverse lg:justify-between">
+			<span class="text-center text-base">
+				<a class="link-as-underline" href="/novidades">Novidades</a> •
+				<a class="link-as-underline" href="/privacidade">Privacidade</a> •
+				<a class="link-as-underline" href="/lista">Lista</a> •
+				<a target="blank" class="link-as-underline" href="mailto:dicionariobot@enzon19.com">Anunciar</a>
+			</span>
+			<span class="text-center text-sm">
+				Desenvolvido por
+				<a target="blank" class="link-as-underline" href="https://enzon19.com">Enzo (enzon19)</a>. Veja esse projeto no
+				<a target="blank" class="link-as-underline" href="https://github.com/enzon19/dicionariobot">GitHub</a>. Faça uma
+				doação <a target="blank" class="link-as-underline" href="https://enzon19.com/donate">aqui</a>.
+			</span>
+		</footer>
+	</body>
+</html>

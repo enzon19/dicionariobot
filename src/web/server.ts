@@ -10,5 +10,7 @@ export async function server() {
 		extensions: ['html']
 	});
 
+	fastify.setNotFoundHandler((request, reply) => reply.code(404).type('text/html').sendFile('404.html'));
+
 	return fastify;
 }
