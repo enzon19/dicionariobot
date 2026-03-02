@@ -9,7 +9,7 @@ import {
 	deleteSearchEngineMenuText,
 	resetEnginesMenuText
 } from '../../messages/settingsMessages';
-import { editMessageOptions, replyOptions } from '.';
+import { editMessageOptions, replyOptions, searchEngineListMenuEditMessage } from '.';
 import { deleteUserSearchEngine, getUserSearchEngines, saveUserSearchEngines } from '../../../services/users';
 import { EditSearchEngineQuestion } from '../../questions/SearchEngines';
 import { defaultSearchEngines } from '../../../db/schema';
@@ -78,10 +78,7 @@ export function buildEditSearchEnginesMenu() {
 			ctx.editMessageText(deleteSearchEngineMenuText(name), editMessageOptions);
 		})
 		.row()
-		.back('⬅️ Voltar', (ctx) => {
-			ctx.session.settings.searchEngines.editing = {};
-			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
-		});
+		.back('⬅️ Voltar', searchEngineListMenuEditMessage);
 }
 
 export function buildDeleteSearchEngineMenu() {
@@ -91,8 +88,7 @@ export function buildDeleteSearchEngineMenu() {
 			if (!name) return;
 
 			await deleteUserSearchEngine(ctx.from.id, name);
-			ctx.session.settings.searchEngines.editing = {};
-			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
+			searchEngineListMenuEditMessage(ctx);
 		})
 		.back('Cancelar', async (ctx) => {
 			const searchEngine = ctx.session.settings.searchEngines.editing;
@@ -107,11 +103,7 @@ export function buildResetSearchEnginesMenu() {
 	return new Menu<BotContext>('reset-search-engines-menu')
 		.submenu('Restaurar padrões', 'search-engines-menu', async (ctx) => {
 			await saveUserSearchEngines(ctx.from.id, defaultSearchEngines);
-			ctx.session.settings.searchEngines.editing = {};
-			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
+			searchEngineListMenuEditMessage(ctx);
 		})
-		.back('Cancelar', async (ctx) => {
-			ctx.session.settings.searchEngines.editing = {};
-			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
-		});
+		.back('Cancelar', searchEngineListMenuEditMessage);
 }
