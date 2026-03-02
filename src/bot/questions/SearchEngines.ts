@@ -4,14 +4,20 @@ import { StatelessQuestion } from '@grammyjs/stateless-question';
 import { editMessageOptions, replyOptions } from '../menus/settings';
 import { editSearchEngineMenuText, setSearchEngineURLText } from '../messages/settingsMessages';
 import { buildEditSearchEnginesMenu } from '../menus/settings/searchEnginesMenus';
+import { CancelCommand } from '../commands/Cancel';
+
+const cancelCommand = new CancelCommand();
 
 export const EditSearchEngineQuestion = new StatelessQuestion<BotContext>(
 	'search-engine-edit',
 	async (ctx, msgID?: string) => {
+		const text = ctx.message.text;
+		if (cancelCommand.commands.includes(text?.replace('/', '') || '')) return cancelCommand.handle(ctx);
+
 		let searchEngine = ctx.session.settings.searchEngines.editing;
 		if (!searchEngine.field) return;
 
-		ctx.session.settings.searchEngines.editing[searchEngine.field] = ctx.message.text;
+		ctx.session.settings.searchEngines.editing[searchEngine.field] = text;
 		searchEngine = ctx.session.settings.searchEngines.editing;
 
 		const { name, url, id } = searchEngine;
