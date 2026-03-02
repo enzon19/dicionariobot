@@ -6,11 +6,13 @@ import {
 	mainMenuText,
 	setSearchEngineNameText,
 	setSearchEngineURLText,
-	deleteSearchEngineMenuText
+	deleteSearchEngineMenuText,
+	resetEnginesMenuText
 } from '../../messages/settingsMessages';
 import { editMessageOptions, replyOptions } from '.';
-import { deleteUserSearchEngine, getUserSearchEngines } from '../../../services/users';
+import { deleteUserSearchEngine, getUserSearchEngines, saveUserSearchEngines } from '../../../services/users';
 import { EditSearchEngineQuestion } from '../../questions/SearchEngines';
+import { defaultSearchEngines } from '../../../db/schema';
 
 export function buildSearchEnginesMenu() {
 	return new Menu<BotContext>('search-engines-menu')
@@ -45,7 +47,9 @@ export function buildSearchEnginesMenu() {
 			);
 		})
 		.row()
-		.text('↩️ Restaurar padrões')
+		.submenu('↩️ Restaurar padrões', 'reset-search-engines-menu', (ctx) =>
+			ctx.editMessageText(resetEnginesMenuText, editMessageOptions)
+		)
 		.row()
 		.back('⬅️ Voltar', (ctx) => ctx.editMessageText(mainMenuText, editMessageOptions));
 }
@@ -96,5 +100,18 @@ export function buildDeleteSearchEngineMenu() {
 				editSearchEngineMenuText(searchEngine.name || 'desconhecido', searchEngine.url || 'desconhecido'),
 				editMessageOptions
 			);
+		});
+}
+
+export function buildResetSearchEnginesMenu() {
+	return new Menu<BotContext>('reset-search-engines-menu')
+		.submenu('Restaurar padrões', 'search-engines-menu', async (ctx) => {
+			await saveUserSearchEngines(ctx.from.id, defaultSearchEngines);
+			ctx.session.settings.searchEngines.editing = {};
+			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
+		})
+		.back('Cancelar', async (ctx) => {
+			ctx.session.settings.searchEngines.editing = {};
+			ctx.editMessageText(searchEnginesMenuText, editMessageOptions);
 		});
 }

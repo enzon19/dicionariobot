@@ -25,12 +25,14 @@ export const searchEnginesMenuText = `<u><b>CONFIGURAÇÕES > MECANISMOS DE BUSC
 
 export const editSearchEngineMenuText = (name: string, url: string) =>
 	`<u><b>CONFIGURAÇÕES > MECANISMOS DE BUSCA > EDITAR</b></u>\n\n<b>Nome:</b> ${name}\n<b>URL:</b> ${url}`;
-
 export const setSearchEngineNameText = 'Respondendo <b>esta mensagem</b>, envie o <b>nome</b> do mecanismo de busca.';
 export const setSearchEngineURLText =
 	'Respondendo <b>esta mensagem</b>, envie o <b>URL</b> do mecanismo de busca. Não se esqueça de adicionar o "$". Saiba mais no comando /ajuda.';
+
 export const deleteSearchEngineMenuText = (name: string) =>
 	`<u><b>CONFIGURAÇÕES > MECANISMOS DE BUSCA > APAGAR</b></u>\n\nTem certeza de que deseja <b>apagar "${name}" permanentemente</b>?`;
+
+export const resetEnginesMenuText = `<u><b>CONFIGURAÇÕES > MECANISMOS DE BUSCA > RESTAURAR</b></u>\n\nTem certeza de que seja restaurar <b>todos</b> os mecanismos de busca para a <b>configuração padrão</b>? Isto <b>apagará qualquer modificação que você tenha feito</b>, incluindo a adição de novos mecanismos.`;
 
 // DATA
 export async function dataMenuText(userID: number) {
