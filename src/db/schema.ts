@@ -1,4 +1,4 @@
-import { bigint, jsonb, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { bigint, boolean, jsonb, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 export const defaultSearchEngines = [
 	{ name: 'Google', url: 'https://www.google.com/search?q=$', id: 'd7746574-28ce-4502-aa67-efe8325506fe' },
@@ -22,6 +22,7 @@ export const users = pgTable('users', {
 	shortcut: shortcutEnum().default('meanings').notNull(),
 	slash_shortcut: shortcutEnum().default('meanings').notNull(),
 	search_engines: jsonb().default(defaultSearchEngines).notNull(),
+	received_last_ad: boolean().default(true),
 	last_use_at: timestamp({ withTimezone: true }).defaultNow().notNull(),
 	created_at: timestamp({ withTimezone: true }).defaultNow().notNull()
 });
@@ -31,5 +32,13 @@ export const events = pgTable('events', {
 	user_id: bigint({ mode: 'number' }).references(() => users.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
 	type: text().notNull(),
 	metadata: text(),
+	created_at: timestamp({ withTimezone: true }).defaultNow().notNull()
+});
+
+export const campaigns = pgTable('campaigns', {
+	id: uuid().defaultRandom().primaryKey().notNull(),
+	text: text(),
+	photo: text(),
+	message_options: jsonb(),
 	created_at: timestamp({ withTimezone: true }).defaultNow().notNull()
 });

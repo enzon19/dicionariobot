@@ -1,8 +1,9 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
 import getSynonymsMessage from '../messages/synonymsMessage';
 import { SynonymsQuestion } from '../questions/Synonyms';
+import { sendLastAd } from '../../services/ads';
 
 export class SynonymsCommand extends Command {
 	name = 'Sinônimos de Palavras';
@@ -12,7 +13,9 @@ export class SynonymsCommand extends Command {
 	example = '/sinonimos dicionário';
 	saveUserData = true;
 
-	handle = async (ctx: Context) => {
+	handle = async (ctx: BotContext) => {
+		await sendLastAd(ctx);
+		
 		if (!ctx.match) {
 			ctx.reply(buildWaitingReplyMessage('sinônimos') + SynonymsQuestion.messageSuffixHTML(), {
 				parse_mode: 'HTML',

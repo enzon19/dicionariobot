@@ -1,8 +1,9 @@
-import type { Context } from 'grammy';
+import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 import getMeaningMessage from '../messages/meaningMessage';
 import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
 import { MeaningsQuestion } from '../questions/Meanings';
+import { sendLastAd } from '../../services/ads';
 
 export class MeaningCommand extends Command {
 	name = 'Definição de Palavras';
@@ -23,7 +24,9 @@ export class MeaningCommand extends Command {
 	example = '/definir dicionário';
 	saveUserData = true;
 
-	handle = async (ctx: Context) => {
+	handle = async (ctx: BotContext) => {
+		await sendLastAd(ctx);
+
 		if (!ctx.match) {
 			ctx.reply(buildWaitingReplyMessage('definir') + MeaningsQuestion.messageSuffixHTML(), {
 				parse_mode: 'HTML',

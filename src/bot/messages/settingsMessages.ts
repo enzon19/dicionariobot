@@ -45,6 +45,7 @@ export async function dataMenuText(userID: number) {
 	const shortcutBlock = `<b>Atalho sem /:</b> ${shortcutNameInPortuguese[user.shortcut]}`;
 	const slashShortcutBlock = `<b>Atalho com /:</b> ${shortcutNameInPortuguese[user.slash_shortcut]}`;
 	const searchEnginesBlock = `<b>Mecanismos de busca:</b> ${await buildSearchEnginesText(userID, '')}`;
+	const receivedLastAdBlock = `<b>Recebimento do último anúncio:</b> ${user.received_last_ad ? 'sim' : 'não'}`;
 	const createdAtBlock = `<b>Primeira interação com o bot:</b> ${user.created_at.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}`;
 	const lastUseAtBlock = `<b>Última interação com o bot:</b> ${user.last_use_at.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}`;
 
@@ -54,6 +55,7 @@ export async function dataMenuText(userID: number) {
 		shortcutBlock,
 		slashShortcutBlock,
 		searchEnginesBlock,
+		receivedLastAdBlock,
 		createdAtBlock,
 		lastUseAtBlock
 	].join('\n');
