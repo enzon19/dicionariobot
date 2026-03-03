@@ -9,6 +9,16 @@ export function getAdmins() {
 	return admins;
 }
 
+export async function getUsersIDs() {
+	const usersIDs = await db
+		.select({
+			id: users.id
+		})
+		.from(users);
+
+	return usersIDs.map((e) => e.id);
+}
+
 export async function getUserData(userID: number) {
 	const userData = await db
 		.select()
