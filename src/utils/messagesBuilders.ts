@@ -1,3 +1,4 @@
+import { escapeHTML } from 'bun';
 import { getUserSearchEngines } from '../services/users';
 
 export function getWordFromSyllables(syllables: string[], fallbackWord: string) {
@@ -19,7 +20,7 @@ export async function buildSearchEnginesText(userID: number, word: string, leadi
 	if (userSearchEngines.length == 0) return leading ? 'sem mecanismos de busca' : 'Sem mecanismos de busca.';
 
 	const searchEnginesText = userSearchEngines
-		.map((e) => `<a href="${e.url.replace('$', word)}">${e.name}</a>`)
+		.map((e) => `<a href="${e.url.replace('$', encodeURIComponent(word))}">${e.name}</a>`)
 		.join(' • ');
 	return leading ? `${leading} ${searchEnginesText}` : searchEnginesText;
 }
@@ -31,7 +32,7 @@ export async function buildEmptyMessage(
 	word: string
 ) {
 	const suffix = gender == 'feminine' ? 'cadastradas' : 'cadastrados';
-	return `Infelizmente, a palavra <b>"${word}"</b> não possui <b>${resource}</b> ${suffix} no dicionário.\n\n${await buildSearchEnginesText(userID, word, 'Pesquisar em:')}`;
+	return `Infelizmente, a palavra <b>"${escapeHTML(word)}"</b> não possui <b>${resource}</b> ${suffix} no dicionário.\n\n${await buildSearchEnginesText(userID, word, 'Pesquisar em:')}`;
 }
 
 export async function buildGenericResourceMessage(
