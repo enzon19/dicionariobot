@@ -5,6 +5,7 @@ import { saveUserLastUse } from '../../services/users';
 import { chooseShortcutMessage } from '../messages/shortcutsMessage';
 import { checkForMistakesAndBuildMessage } from '../messages/mistakesMessage';
 import { replyWithWordResult } from '../../utils/handleWordQueryCommand';
+import { sendLastAd } from '../../services/ads';
 
 export class TextListener extends Listener {
 	listenerName = 'text-message';
@@ -19,6 +20,12 @@ export class TextListener extends Listener {
 		if (message.chat.type == 'private' && ctx.from) {
 			// if it's from a private chat, it's a shortcut
 			const isSlashShortcut = text.startsWith('/');
+
+			try {
+				await sendLastAd(ctx);
+			} catch (e) {
+				console.error('Error sending ads:', e);
+			}
 
 			const shortcutMessageBuilder = await chooseShortcutMessage(ctx.from.id, isSlashShortcut);
 			await replyWithWordResult(ctx, shortcutMessageBuilder, text);
