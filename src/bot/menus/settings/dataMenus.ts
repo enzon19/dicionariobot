@@ -8,7 +8,7 @@ import { InputFile } from 'grammy';
 export function buildDeleteDataMenu() {
 	return new Menu<BotContext>('delete-data')
 		.back('Apagar permanentemente', async (ctx) => {
-      await deleteUser(ctx.from.id);
+			await deleteUser(ctx.from.id);
 			ctx.editMessageText(await dataMenuText(ctx.from.id), editMessageOptions);
 		})
 		.back('Cancelar', async (ctx) => ctx.editMessageText(await dataMenuText(ctx.from.id), editMessageOptions));
