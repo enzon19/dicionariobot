@@ -11,16 +11,24 @@ function buildSentencesBlock({ sentence, author }: Sentence) {
 	return block.trim();
 }
 
-export default async function getSentencesMessage(word: string, returnAsArray: true): Promise<string[]>;
-export default async function getSentencesMessage(word: string, returnAsArray?: false): Promise<string>;
-export default async function getSentencesMessage(word: string, returnAsArray: boolean = false) {
+export default async function getSentencesMessage(word: string, userID: number, returnAsArray: true): Promise<string[]>;
+export default async function getSentencesMessage(word: string, userID: number, returnAsArray?: false): Promise<string>;
+export default async function getSentencesMessage(word: string, userID: number, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
 	const resource = 'exemplos';
 	const syllables = await getSyllables(word);
 	const sentences = await getSentences(word);
 	const sentencesBlock = sentences.map(buildSentencesBlock);
 
-	const message = await buildGenericResourceMessage(word, resource, 'masculine', sentences, sentencesBlock, syllables);
+	const message = await buildGenericResourceMessage(
+		word,
+		resource,
+		'masculine',
+		sentences,
+		userID,
+		sentencesBlock,
+		syllables
+	);
 
 	return returnAsArray ? message : message.join('\n\n');
 }

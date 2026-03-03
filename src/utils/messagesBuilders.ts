@@ -18,12 +18,20 @@ export async function buildSearchEnginesText(userID: number, word: string, leadi
 	const userSearchEngines = await getUserSearchEngines(userID);
 	if (userSearchEngines.length == 0) return leading ? 'sem mecanismos de busca' : 'Sem mecanismos de busca.';
 
-	return userSearchEngines.map((e) => `<a href="${e.url.replace('$', word)}">${e.name}</a>`).join(' • ');
+	const searchEnginesText = userSearchEngines
+		.map((e) => `<a href="${e.url.replace('$', word)}">${e.name}</a>`)
+		.join(' • ');
+	return leading ? `${leading} ${searchEnginesText}` : searchEnginesText;
 }
 
-export async function buildEmptyMessage(resource: string, gender: 'masculine' | 'feminine', word: string) {
+export async function buildEmptyMessage(
+	resource: string,
+	gender: 'masculine' | 'feminine',
+	userID: number,
+	word: string
+) {
 	const suffix = gender == 'feminine' ? 'cadastradas' : 'cadastrados';
-	return `Infelizmente, a palavra <b>"${word}"</b> não possui <b>${resource}</b> ${suffix} no dicionário.`; // \n\nPesquisar em: ${await getUserSearchEngines(null, args, chatID)}"`
+	return `Infelizmente, a palavra <b>"${word}"</b> não possui <b>${resource}</b> ${suffix} no dicionário.\n\n${await buildSearchEnginesText(userID, word, 'Pesquisar em:')}`;
 }
 
 export async function buildGenericResourceMessage(
@@ -31,12 +39,13 @@ export async function buildGenericResourceMessage(
 	resource: string,
 	gender: 'masculine' | 'feminine',
 	resourceData: any[],
+	userID: number,
 	blocks: string[],
 	syllables?: string[]
 ) {
 	const correctWordSpelling = syllables ? getWordFromSyllables(syllables, word) : word;
 
-	if (resourceData.length == 0) return [await buildEmptyMessage(resource, gender, correctWordSpelling)];
+	if (resourceData.length == 0) return [await buildEmptyMessage(resource, gender, userID, correctWordSpelling)];
 
 	const header = buildHeader(resource, correctWordSpelling);
 	return [header, ...blocks].filter((e) => e);

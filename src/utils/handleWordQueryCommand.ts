@@ -5,7 +5,7 @@ import { buildWaitingReplyMessage } from './messagesBuilders';
 
 export async function handleWordQueryCommand(
 	ctx: BotContext,
-	buildMessage: (word: string) => Promise<string>,
+	buildMessage: (word: string, userID: number) => Promise<string>,
 	statelessQuestion: StatelessQuestion<BotContext>,
 	commandName: 'definir' | 'sinônimos' | 'exemplos'
 ) {
@@ -32,11 +32,11 @@ export async function handleWordQueryCommand(
 
 export async function replyWithWordResult(
 	ctx: BotContext,
-	buildMessage: (word: string) => Promise<string>,
+	buildMessage: (word: string, userID: number) => Promise<string>,
 	word: string
 ) {
 	await ctx.replyWithChatAction('typing');
-	const result = await buildMessage(word);
+	const result = await buildMessage(word, ctx.from?.id || 0);
 
 	await ctx.reply(result, {
 		parse_mode: 'HTML'

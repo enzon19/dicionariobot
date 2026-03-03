@@ -33,11 +33,11 @@ function buildArticleDescription(message: string[], resourceType: ResourceType) 
 	return description;
 }
 
-async function buildInlineResults(word: string): Promise<InlineQueryResult[]> {
+async function buildInlineResults(word: string, userID: number): Promise<InlineQueryResult[]> {
 	const [meanings, synonyms, sentences, syllables] = await Promise.all([
-		getMeaningMessage(word, true),
-		getSynonymsMessage(word, true),
-		getSentencesMessage(word, true),
+		getMeaningMessage(word, userID, true),
+		getSynonymsMessage(word, userID, true),
+		getSentencesMessage(word, userID, true),
 		getSyllables(word)
 	]);
 	const messagesResults: MessageResult[] = [
@@ -99,7 +99,7 @@ export class InlineQueryListener extends Listener {
 				cache_time: 7 * 24 * 3600 // 7 days
 			});
 
-		const result = await buildInlineResults(query);
+		const result = await buildInlineResults(query, ctx.from?.id || 0);
 		try {
 			await ctx.answerInlineQuery(result, { cache_time: 1800 });
 			if (ctx.from) await saveUserLastUse(ctx.from.id, { type: this.listenerName });

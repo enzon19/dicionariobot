@@ -10,7 +10,7 @@ export async function buildShortcutMessage(ctx: Context, text: string, slash: bo
 
 	await ctx.replyWithChatAction('typing');
 
-	const handlers: Record<Shortcut, (word: string) => Promise<string>> = {
+	const handlers: Record<Shortcut, (word: string, userID: number) => Promise<string>> = {
 		meanings: getMeaningMessage,
 		synonyms: getSynonymsMessage,
 		sentences: getSentencesMessage
@@ -18,6 +18,6 @@ export async function buildShortcutMessage(ctx: Context, text: string, slash: bo
 
 	const userChosenShortcut = await getUserShortcuts(ctx.from.id, slash ? 'slash' : 'regular');
 
-	const result = await handlers[userChosenShortcut](text);
+	const result = await handlers[userChosenShortcut](text, ctx.from.id);
 	return result;
 }

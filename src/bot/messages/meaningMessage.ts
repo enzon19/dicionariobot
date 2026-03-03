@@ -16,9 +16,9 @@ function buildMeaningBlock({ partOfSpeech, meanings, etymology }: Meaning) {
 	return block.trim();
 }
 
-export default async function getMeaningMessage(word: string, returnAsArray: true): Promise<string[]>;
-export default async function getMeaningMessage(word: string, returnAsArray?: false): Promise<string>;
-export default async function getMeaningMessage(word: string, returnAsArray: boolean = false) {
+export default async function getMeaningMessage(word: string, userID: number, returnAsArray: true): Promise<string[]>;
+export default async function getMeaningMessage(word: string, userID: number, returnAsArray?: false): Promise<string>;
+export default async function getMeaningMessage(word: string, userID: number, returnAsArray: boolean = false) {
 	word = normalizeWord(word);
 	const resource = 'definições';
 	const syllables = await getSyllables(word);
@@ -31,6 +31,7 @@ export default async function getMeaningMessage(word: string, returnAsArray: boo
 		resource,
 		'feminine',
 		meanings,
+		userID,
 		[syllablesBlock, ...meaningsBlock],
 		syllables
 	);

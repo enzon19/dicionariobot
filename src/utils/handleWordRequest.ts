@@ -6,7 +6,7 @@ import { replyWithWordResult } from './handleWordQueryCommand';
 
 export async function handleWordRequest(
 	ctx: ReplyToMessageContext<BotContext>,
-	buildMessage: (word: string) => Promise<string>,
+	buildMessage: (word: string, userID: number) => Promise<string>,
 	originalCommandName: string
 ) {
 	const text = ctx.message?.text;
