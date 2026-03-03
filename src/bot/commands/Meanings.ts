@@ -1,9 +1,8 @@
 import type { BotContext } from '../bot';
 import { Command } from '../../models/Command';
 import getMeaningMessage from '../messages/meaningMessage';
-import { buildWaitingReplyMessage } from '../../utils/messagesBuilders';
 import { MeaningsQuestion } from '../questions/Meanings';
-import { sendLastAd } from '../../services/ads';
+import { handleWordQueryCommand } from '../../utils/handleWordQueryCommand';
 
 export class MeaningCommand extends Command {
 	name = 'Definição de Palavras';
@@ -25,26 +24,6 @@ export class MeaningCommand extends Command {
 	saveUserData = true;
 
 	handle = async (ctx: BotContext) => {
-		await sendLastAd(ctx);
-
-		if (!ctx.match) {
-			ctx.reply(buildWaitingReplyMessage('definir') + MeaningsQuestion.messageSuffixHTML(), {
-				parse_mode: 'HTML',
-				reply_markup: {
-					force_reply: true,
-					selective: true,
-					input_field_placeholder: 'Escrever uma palavra...'
-				}
-			});
-		} else {
-			const word = ctx.match.toString();
-
-			await ctx.replyWithChatAction('typing');
-			const meanings = await getMeaningMessage(word);
-
-			await ctx.reply(meanings, {
-				parse_mode: 'HTML'
-			});
-		}
+		handleWordQueryCommand(ctx, getMeaningMessage, MeaningsQuestion, 'definir');
 	};
 }

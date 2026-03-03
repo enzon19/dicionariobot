@@ -2,6 +2,7 @@ import type { ReplyToMessageContext } from '@grammyjs/stateless-question/dist/id
 import type { BotContext } from '../bot/bot';
 import { saveUserLastUse } from '../services/users';
 import { hasCancelCommand } from './hasCancelCommand';
+import { replyWithWordResult } from './handleWordQueryCommand';
 
 export async function handleWordRequest(
 	ctx: ReplyToMessageContext<BotContext>,
@@ -12,12 +13,6 @@ export async function handleWordRequest(
 	if (!text) return;
 	if (hasCancelCommand(ctx, text)) return;
 
-	await ctx.replyWithChatAction('typing');
-	const result = await buildMessage(text);
-
-	ctx.reply(result, {
-		parse_mode: 'HTML'
-	});
-
+	await replyWithWordResult(ctx, buildMessage, text);
 	if (ctx.from?.id) await saveUserLastUse(ctx.from.id, { type: 'question:command:' + originalCommandName });
 }
