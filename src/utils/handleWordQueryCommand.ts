@@ -39,6 +39,7 @@ export async function replyWithWordResult(
 	const result = await buildMessage(word, ctx.from?.id || 0);
 
 	await ctx.reply(result, {
-		parse_mode: 'HTML'
+		parse_mode: 'HTML',
+		link_preview_options: { is_disabled: true }
 	});
 }

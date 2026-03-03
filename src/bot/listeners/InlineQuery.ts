@@ -74,7 +74,8 @@ async function buildInlineResults(word: string, userID: number): Promise<InlineQ
 				.normalize('NFD')
 				.replace(/[\u0300-\u036f]/g, '')}.png`
 		}).text(message.join('\n\n'), {
-			parse_mode: 'HTML'
+			parse_mode: 'HTML',
+			link_preview_options: { is_disabled: true }
 		});
 
 		results.push(result);
