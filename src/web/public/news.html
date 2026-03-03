@@ -38,9 +38,9 @@
 				<div class="w-1/2">
 					<form action="/sendNews" method="post" enctype="application/x-www-form-urlencoded">
 						<h2 class="mb-2 text-lg font-medium">Modo de Envio</h2>
-						<input type="radio" id="r1" name="type" value="Rascunho" />
+						<input type="radio" id="r1" name="type" value="draft" />
 						<label for="r1" class="mr-2">Rascunho</label>
-						<input type="radio" id="r2" name="type" value="Oficial" />
+						<input type="radio" id="r2" name="type" value="final" />
 						<label for="r2" class="mr-2">Oficial</label>
 						<hr class="mt-2 mb-4" />
 						<textarea
@@ -67,6 +67,12 @@
 							class="form-control focus:border-clear-red hover:border-dry-tomato m-0 mt-2 block w-full rounded-xl border border-solid border-gray-300 bg-white p-2 font-mono text-base text-black transition ease-in-out focus:outline-hidden">
 {"reply_markup": {"inline_keyboard": [[{"text": "Usar o bot", "switch_inline_query": ""}]]}}</textarea
 						>
+						<input
+							type="password"
+							id="password"
+							placeholder="Senha"
+							name="password"
+							class="form-control focus:border-clear-red hover:border-dry-tomato m-0 mt-2 block w-full rounded-xl border border-solid border-gray-300 bg-white p-2 text-base text-black transition ease-in-out focus:outline-hidden" />
 						<input
 							class="bg-red hover:bg-clear-red my-3 cursor-pointer rounded-full px-4 py-2 font-semibold transition-colors hover:transition-colors"
 							type="submit"
