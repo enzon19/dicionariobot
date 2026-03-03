@@ -22,7 +22,7 @@ export const users = pgTable('users', {
 	shortcut: shortcutEnum().default('meanings').notNull(),
 	slash_shortcut: shortcutEnum().default('meanings').notNull(),
 	search_engines: jsonb().default(defaultSearchEngines).notNull(),
-	received_last_ad: boolean().default(true),
+	received_last_ad: boolean().default(true).notNull(),
 	last_use_at: timestamp({ withTimezone: true }).defaultNow().notNull(),
 	created_at: timestamp({ withTimezone: true }).defaultNow().notNull()
 });
