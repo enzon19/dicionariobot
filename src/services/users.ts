@@ -2,6 +2,12 @@ import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/db';
 import { defaultSearchEngines, events, users, type Shortcut } from '../db/schema';
 import removeTelegramHTML from '../utils/removeTelegramHTML';
+const ADMIN_IDS = process.env.ADMIN_IDS;
+
+export function getAdmins() {
+	const admins = ADMIN_IDS?.split(',') || [];
+	return admins;
+}
 
 export async function getUserData(userID: number) {
 	const userData = await db

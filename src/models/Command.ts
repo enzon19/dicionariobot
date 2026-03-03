@@ -1,8 +1,7 @@
 import type { Menu } from '@grammyjs/menu';
 import type { Bot } from 'grammy';
 import type { BotContext } from '../bot/bot';
-import { saveUserLastUse } from '../services/users';
-const ADMIN_IDS = process.env.ADMIN_IDS;
+import { getAdmins, saveUserLastUse } from '../services/users';
 
 export abstract class Command {
 	abstract name: string;
@@ -19,7 +18,7 @@ export abstract class Command {
 	register(bot: Bot<BotContext>): void {
 		bot.command(this.commands, async (ctx) => {
 			if (this.admin) {
-				const admins = ADMIN_IDS?.split(',') || [];
+				const admins = getAdmins();
 				if (!admins.includes(ctx.from?.id.toString() || '')) return;
 			}
 
