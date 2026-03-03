@@ -49,6 +49,8 @@ export class SettingsCommand extends Command {
 	};
 
 	handle(ctx: Context): void {
+		if (ctx.chat?.type != 'private') return;
+
 		ctx.reply(mainMenuText, {
 			parse_mode: 'HTML',
 			link_preview_options: {
