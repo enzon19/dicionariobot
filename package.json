@@ -22,6 +22,7 @@
 		"tailwind": "npx @tailwindcss/cli -i ./src/web/public/css/generate.css -o ./src/web/public/css/tailwind.css --watch"
 	},
 	"dependencies": {
+		"@fastify/formbody": "^8.0.2",
 		"@fastify/static": "^9.0.0",
 		"@grammyjs/menu": "^1.3.1",
 		"@grammyjs/stateless-question": "^4.0.0",
@@ -32,6 +33,7 @@
 		"pg": "^8.18.0"
 	},
 	"devDependencies": {
+		"@types/bun": "^1.3.10",
 		"@types/pg": "^8.16.0",
 		"drizzle-kit": "^0.31.9",
 		"prettier": "^3.8.1",
