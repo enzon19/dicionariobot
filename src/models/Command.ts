@@ -19,7 +19,7 @@ export abstract class Command {
 		bot.command(this.commands, async (ctx) => {
 			if (this.admin) {
 				const admins = getAdmins();
-				if (!admins.includes(ctx.from?.id.toString() || '')) return;
+				if (!admins.includes(ctx.from?.id || 0)) return;
 			}
 
 			this.handle(ctx);

@@ -5,7 +5,7 @@ import removeTelegramHTML from '../utils/removeTelegramHTML';
 const ADMIN_IDS = process.env.ADMIN_IDS;
 
 export function getAdmins() {
-	const admins = ADMIN_IDS?.split(',') || [];
+	const admins = ADMIN_IDS?.split(',').map((e) => Number(e)) || [];
 	return admins;
 }
 
