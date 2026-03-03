@@ -19,7 +19,8 @@
 	"scripts": {
 		"check": "tsc --project tsconfig.json --noEmit",
 		"format": "prettier --write .",
-		"tailwind": "npx @tailwindcss/cli -i ./src/web/public/css/generate.css -o ./src/web/public/css/tailwind.css --watch"
+		"tailwind": "bunx @tailwindcss/cli -i ./src/web/public/css/generate.css -o ./src/web/public/css/tailwind.css --watch",
+		"db": "bunx --bun drizzle-kit push"
 	},
 	"dependencies": {
 		"@fastify/formbody": "^8.0.2",
@@ -43,3 +44,4 @@
 		"typescript": "^5.9.3"
 	}
 }
+
