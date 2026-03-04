@@ -1,33 +1,51 @@
 <p align="center">
-  <img align="center" src="https://raw.githubusercontent.com/enzon19/dicionariobot/main/images/logo/favicon.png" alt="Dicionário Bot" width="187" height="187">
-  <br><br>
-    <img height="20px" src="https://img.shields.io/badge/Vers%C3%A3o%20Atual-v3.1-ee2919">
-    <a href="https://github.com/enzon19/dicionariobot/blob/main/README.en.md">
-        <img height="20px" src="https://img.shields.io/badge/Read%20in%20English-flag.svg?color=555555&style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNjAgMzAiIGhlaWdodD0iNjAwIj4NCjxkZWZzPg0KPGNsaXBQYXRoIGlkPSJ0Ij4NCjxwYXRoIGQ9Im0zMCwxNWgzMHYxNXp2MTVoLTMwemgtMzB2LTE1enYtMTVoMzB6Ii8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPHBhdGggZmlsbD0iIzAwMjQ3ZCIgZD0ibTAsMHYzMGg2MHYtMzB6Ii8+DQo8cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNiIgZD0ibTAsMGw2MCwzMG0wLTMwbC02MCwzMCIvPg0KPHBhdGggc3Ryb2tlPSIjY2YxNDJiIiBzdHJva2Utd2lkdGg9IjQiIGQ9Im0wLDBsNjAsMzBtMC0zMGwtNjAsMzAiIGNsaXAtcGF0aD0idXJsKCN0KSIvPg0KPHBhdGggc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBkPSJtMzAsMHYzMG0tMzAtMTVoNjAiLz4NCjxwYXRoIHN0cm9rZT0iI2NmMTQyYiIgc3Ryb2tlLXdpZHRoPSI2IiBkPSJtMzAsMHYzMG0tMzAtMTVoNjAiLz4NCjwvc3ZnPg0K">
-    </a>
+  <img src="./public/logo/Logopng.png" alt="Dicionário Bot Logo" height="120px" />
+  <h1 align="center">
+    Dicionário Bot
+  </h1>
+
+  <p align="center">
+    A Brazilian Portuguese dictionary on Telegram.
+    <br />
+    <a href="https://t.me/dicionariobot"><strong>Open in Telegram »</strong></a>
+    <br />
+    <a href="https://dicionariobot.enzon19.com">Website</a>
+  </p>
+
 </p>
 
-# Dicionário Bot
+## About
 
-Um dicionário da língua portuguesa brasileira no Telegram. Receba definições, sinônimos e exemplos de qualquer palavra. Use o modo inline em qualquer bate-papo. Corrija erros gramaticais em grupos.
+Dicionário Bot is a bot for Telegram that gives you the Brazilian Portuguese dictionary directly in the app. Look up definitions (including definition per parts of speech, syllable breakdown and etymology), synonyms, and usage examples for any word.
 
-## Desenvolvimento
+You can use it in private conversations, invoke it inline in any chat by typing @dicionariobot, or add it to groups to automatically correct common spelling mistakes.
 
-Este projeto utiliza a [Dicio API](https://github.com/ThiagoNelsi/dicio-api) criada pelo [ThiagoNelsi](https://github.com/ThiagoNelsi) como a fonte do dicionário. O bot está hospedado no [Replit](https://replit.com) e as informações do usuário são armazenadas em um banco de dados usando o [Xata](https://xata.io). A biblioteca [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api) também foi utilizada para facilitar a interação com a API do Telegram. Por último, o [site de apresentação do bot](https://dicionariobot.enzon19.com/) usa [Tailwind CSS](https://tailwindcss.com).
+Dicionário Bot also offers shortcuts so you don't need to type a command every time and customizable search engines as a fallback when a word isn't found.
 
-## Variáveis de Ambiente (.env)
+## Development
 
-```
-TG_TOKEN=Token que o @BotFather informa ao criar bot
-NEWS_PASSWORD=Senha para acessar criador de notícias
-BOT_USERNAME=Username do bot
-OWNER_ID=ID do Telegram do dono do bot
-API_PROVIDER_URL=URL do provedor do dicionário (significado.herokuapp.com)
-XATA_URL=URL do banco de dados
-XATA_API_KEY=Token do banco de dados
-XATA_BRANCH=main
-```
+To reproduce the project locally for development or contribution:
 
-## Atualizações
+1. **Clone the repository**
 
-Você pode ver as notas de atualização no [site do bot](https://dicionariobot.enzon19.com/novidades).
+   ```bash
+   git clone https://github.com/enzon19/dicionariobot.git
+   cd dicionariobot
+   ```
+
+2. **Get a Telegram token**
+
+   Message [@BotFather](https://t.me/botfather) on Telegram to register your bot and receive its authentication token.
+
+3. **Create a Postgres database**
+
+4. **Set up the environment variables**
+
+   Copy `.env.example` to `.env` and fill in the values.
+
+5. **Install dependencies, sync schema and run it**
+   ```bash
+   bun install
+   bun run db
+   bun .
+   ```
