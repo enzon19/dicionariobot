@@ -13,15 +13,15 @@ import { AboutCommand } from './About';
 import { PingCommand } from './Ping';
 
 export const commands: Command[] = [
-	new StartCommand(),
 	new MeaningCommand(),
 	new SynonymsCommand(),
 	new SentencesCommand(),
 	new SettingsCommand(),
-	new HelpCommand(),
 	new CancelCommand(),
 	new DonateCommand(),
+	new HelpCommand(),
 	new AboutCommand(),
+	new StartCommand(),
 	new PingCommand()
 ];
 
