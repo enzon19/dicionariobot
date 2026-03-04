@@ -22,9 +22,9 @@ export const db = drizzle({
 		ssl:
 			DATABASE_CA && DATABASE_CERT && DATABASE_KEY
 				? {
-						ca: DATABASE_CA,
-						cert: DATABASE_CERT,
-						key: DATABASE_KEY
+						ca: DATABASE_CA?.replace(/\\n/g, '\n'),
+						cert: DATABASE_CERT?.replace(/\\n/g, '\n'),
+						key: DATABASE_KEY?.replace(/\\n/g, '\n')
 					}
 				: false
 	}
