@@ -42,7 +42,8 @@ export class TextListener extends Listener {
 
 				if (ctx.from)
 					await saveUserLastUse(ctx.from.id, {
-						type: this.listenerName + ':mistakes'
+						type: this.listenerName + ':mistakes',
+						metadata: `{ "group_id": ${ctx.chatId} }`
 					});
 			}
 		}
