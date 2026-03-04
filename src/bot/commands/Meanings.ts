@@ -18,7 +18,7 @@ export class MeaningCommand extends Command {
 		'significados'
 	];
 	description =
-		'Receba as definições de acordo com as várias classes de palavras que uma palavra pode exercer, a separação silábica e uma pequena etimologia.';
+		'Receba a separação silábica, as definições de acordo com as várias classes de palavras que uma palavra pode exercer e uma pequena etimologia.';
 	args = '[palavra]';
 	example = '/definir dicionário';
 	saveUserData = true;

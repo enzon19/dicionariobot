@@ -7,7 +7,7 @@ import { handleWordQueryCommand } from '../../utils/handleWordQueryCommand';
 export class SentencesCommand extends Command {
 	name = 'Exemplos para Palavras';
 	commands = ['exemplos', 'exemplo', 'exemplificar', 'frases', 'frase'];
-	description = 'Receba frases exemplificando o uso de uma palavra.';
+	description = 'Receba frases, extraídas de notícias e de citações famosas, que fazem uso de uma determinada palavra.';
 	args = '[palavra]';
 	example = '/exemplos dicionário';
 	saveUserData = true;
