@@ -36,12 +36,15 @@ export class TextListener extends Listener {
 		} else if (!message.from.is_bot && (message.chat.type == 'group' || message.chat.type == 'supergroup')) {
 			// if it's from a group and user is not a bot, check for mistakes
 			const mistakes = await checkForMistakesAndBuildMessage(ctx, text);
-			if (mistakes) await ctx.reply(mistakes);
 
-			if (ctx.from)
-				await saveUserLastUse(ctx.from.id, {
-					type: this.listenerName + ':mistakes'
-				});
+			if (mistakes) {
+				await ctx.reply(mistakes);
+
+				if (ctx.from)
+					await saveUserLastUse(ctx.from.id, {
+						type: this.listenerName + ':mistakes'
+					});
+			}
 		}
 	};
 }
